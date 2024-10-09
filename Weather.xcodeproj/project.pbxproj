@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
+		B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */; };
+		B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652F2CB6F63D00256A86 /* DetailView.swift */; };
 		B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5770FC72AFC20AC007FB34E /* WeatherModel.swift */; };
 		B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */; };
 		B5D5ABD22AFADDFD00A1FAC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStateManager.swift; sourceTree = "<group>"; };
+		B56F652F2CB6F63D00256A86 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B5770FC72AFC20AC007FB34E /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		B59514B02B04318A00B1515D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B5D5ABCC2AFADDFD00A1FAC3 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B56F652A2CB6F52500256A86 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
 		B5D5ABC32AFADDFD00A1FAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +68,7 @@
 		B5D5ABCE2AFADDFD00A1FAC3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				B56F652A2CB6F52500256A86 /* Routing */,
 				B59514B02B04318A00B1515D /* Info.plist */,
 				B5D5ABDD2AFAE06F00A1FAC3 /* Model */,
 				B5D5ABDE2AFAE07500A1FAC3 /* View */,
@@ -85,9 +98,10 @@
 		B5D5ABDE2AFAE07500A1FAC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */,
 				B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */,
 				B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */,
+				B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */,
+				B56F652F2CB6F63D00256A86 /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,8 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */,
 				B5D5ABD22AFADDFD00A1FAC3 /* ContentView.swift in Sources */,
 				B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */,
+				B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */,
 				B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -283,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

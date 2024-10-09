@@ -8,26 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var nav = NavigationStateManager()
+        
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $nav.path) {
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("Hello, world!")
-                    .foregroundColor(Color("Text"))
+                Text("Hello world!")
+                    .foregroundStyle(.white)
                     .font(.title)
-            }
+//                NavigationLink("Go To Details", value: "Hello there")
+                Button {
+                    nav.path.append("Hello there")
+                } label: {
+                    Text("Go to Details")
+                }
+                .navigationDestination(for: String.self) { textValue in
+                    DetailView(text: textValue)
+                }
+            } //: VStack
             .padding()
-            .background(Color("Background"))
-        }
-        .background(Color("Background"))
+            .navigationTitle("Main View")
+        } //: NavigationStack
+        .environmentObject(nav)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .preferredColorScheme(.dark)
+            .environmentObject(NavigationStateManager())
     }
 }
