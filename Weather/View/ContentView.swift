@@ -13,9 +13,6 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $nav.path) {
             VStack {
-                Text("Hello world!")
-                    .foregroundStyle(.white)
-                    .font(.title)
 //                NavigationLink("Go To Details", value: "Hello there")
                 Button {
                     nav.path.append("Hello there")
