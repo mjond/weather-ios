@@ -15,6 +15,7 @@
 		B5D5ABD22AFADDFD00A1FAC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */; };
 		B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */; };
 		B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */; };
+		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */,
 				B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */,
 				B56F652F2CB6F63D00256A86 /* DetailView.swift */,
+				B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */,
 				B5D5ABD22AFADDFD00A1FAC3 /* ContentView.swift in Sources */,
 				B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */,
+				B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */,
 				B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */,
 				B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */,
 			);

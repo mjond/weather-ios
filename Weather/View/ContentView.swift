@@ -13,18 +13,17 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $nav.path) {
             VStack {
-//                NavigationLink("Go To Details", value: "Hello there")
                 Button {
                     nav.path.append("Hello there")
                 } label: {
                     Text("Go to Details")
                 }
-                .navigationDestination(for: String.self) { textValue in
-                    DetailView(text: textValue)
-                }
             } //: VStack
             .padding()
             .navigationTitle("Main View")
+            .navigationDestination(for: String.self) { textValue in
+                DetailView(text: textValue)
+            }
         } //: NavigationStack
         .environmentObject(nav)
     }

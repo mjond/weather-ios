@@ -9,13 +9,28 @@ import SwiftUI
 
 struct DetailView: View {
     @EnvironmentObject var nav: NavigationStateManager
+    @State private var showSettings: Bool = false
     
     let text: String
     
     var body: some View {
         VStack {
             Text(text)
+            
+            Button {
+//                nav.path.append("Settings View")
+                showSettings.toggle()
+            } label: {
+                Text("Go to Settings")
+            }
+
         }
+//        .navigationDestination(for: String.self) { textValue in
+//            SettingsView(text: textValue)
+//        }
+        .navigationDestination(isPresented: $showSettings, destination: {
+            SettingsView()
+        })
         .navigationTitle("Detail View")
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -33,6 +48,6 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(text: "hello there")
+    DetailView(text: "Details")
         .environmentObject(NavigationStateManager())
 }
