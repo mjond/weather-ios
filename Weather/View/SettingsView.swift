@@ -13,6 +13,12 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             Text("Settings View")
+            Button {
+                nav.popToRoot()
+            } label: {
+                Text("Pop to root")
+            }
+
         }
         .navigationTitle("Settings")
 //        .navigationBarBackButtonHidden()

@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var nav = NavigationStateManager()
+    @State private var showDetails: Bool = false
         
     var body: some View {
         NavigationStack(path: $nav.path) {
             VStack {
                 Button {
                     nav.path.append("Hello there")
+//                    showDetails.toggle()
                 } label: {
                     Text("Go to Details")
                 }
@@ -24,8 +26,15 @@ struct ContentView: View {
             .navigationDestination(for: String.self) { textValue in
                 DetailView(text: textValue)
             }
+//            .navigationDestination(isPresented: $showDetails) {
+//                DetailView(text: "Hello world")
+//            }
         } //: NavigationStack
         .environmentObject(nav)
+        
+        VStack {
+            Text("Number of items on nav stack: \(nav.path.count)")
+        }
     }
 }
 
