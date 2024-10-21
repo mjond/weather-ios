@@ -7,10 +7,30 @@
 
 import SwiftUI
 
-//struct HomeViewModel: ObservableObject {
-//    var weatherData: WeatherModel
-//    
-//    func getWeather() {
-//        
-//    }
-//}
+class HomeViewModel: ObservableObject {
+    @Published var state = State.isLoading
+    var isAPICallInProgress = false
+    
+    enum State {
+        case isLoading
+        case failure
+        case success(WeatherModel)
+    }
+    
+    func getWeather() async {
+        guard !isAPICallInProgress else { return }
+        isAPICallInProgress = true
+        
+        do {
+            if let weatherData = try await WeatherService().getWeather() {
+                print(weatherData)
+                self.state = .success(weatherData)
+            }
+        } catch {
+            self.state = .failure
+            print("HomeViewModel.getWeather() -> failed to get weather data")
+        }
+        
+        isAPICallInProgress = false
+    }
+}
