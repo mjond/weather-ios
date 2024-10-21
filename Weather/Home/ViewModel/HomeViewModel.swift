@@ -24,10 +24,14 @@ class HomeViewModel: ObservableObject {
         do {
             if let weatherData = try await WeatherService().getWeather() {
                 print(weatherData)
-                self.state = .success(weatherData)
+                DispatchQueue.main.async {
+                    self.state = .success(weatherData)
+                }
             }
         } catch {
-            self.state = .failure
+            DispatchQueue.main.async {
+                self.state = .failure
+            }
             print("HomeViewModel.getWeather() -> failed to get weather data")
         }
         
