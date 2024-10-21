@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
-		B56A066F2CC6CAAE0080DC74 /* OpenMeteoSdk in Frameworks */ = {isa = PBXBuildFile; productRef = B56A066E2CC6CAAE0080DC74 /* OpenMeteoSdk */; };
+		B56A06762CC6CE710080DC74 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A06752CC6CE6E0080DC74 /* WeatherService.swift */; };
+		B56A06782CC6DD050080DC74 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A06772CC6DD000080DC74 /* HomeViewModel.swift */; };
 		B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */; };
 		B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652F2CB6F63D00256A86 /* DetailView.swift */; };
 		B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5770FC72AFC20AC007FB34E /* WeatherModel.swift */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B56A06752CC6CE6E0080DC74 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		B56A06772CC6DD000080DC74 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStateManager.swift; sourceTree = "<group>"; };
 		B56F652F2CB6F63D00256A86 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B5770FC72AFC20AC007FB34E /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -38,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B56A066F2CC6CAAE0080DC74 /* OpenMeteoSdk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,8 +77,17 @@
 		B56A06732CC6CDFA0080DC74 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B56A06772CC6DD000080DC74 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B56A06742CC6CE660080DC74 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B56A06752CC6CE6E0080DC74 /* WeatherService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		B56F652A2CB6F52500256A86 /* Routing */ = {
@@ -106,11 +117,12 @@
 		B5D5ABCE2AFADDFD00A1FAC3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				B56A06712CC6CDA60080DC74 /* Main */,
 				B56A06702CC6CD8D0080DC74 /* Home */,
+				B56A06712CC6CDA60080DC74 /* Main */,
 				B56F652A2CB6F52500256A86 /* Routing */,
-				B59514B02B04318A00B1515D /* Info.plist */,
+				B56A06742CC6CE660080DC74 /* Service */,
 				B5D5ABDE2AFAE07500A1FAC3 /* OtherViews */,
+				B59514B02B04318A00B1515D /* Info.plist */,
 				B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */,
 				B5D5ABD52AFADDFE00A1FAC3 /* Preview Content */,
 			);
@@ -187,7 +199,6 @@
 			);
 			mainGroup = B5D5ABC32AFADDFD00A1FAC3;
 			packageReferences = (
-				B56A066D2CC6CAAE0080DC74 /* XCRemoteSwiftPackageReference "sdk" */,
 			);
 			productRefGroup = B5D5ABCD2AFADDFD00A1FAC3 /* Products */;
 			projectDirPath = "";
@@ -219,9 +230,11 @@
 				B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */,
 				B5D5ABD22AFADDFD00A1FAC3 /* HomeView.swift in Sources */,
 				B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */,
+				B56A06782CC6DD050080DC74 /* HomeViewModel.swift in Sources */,
 				B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */,
 				B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */,
 				B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */,
+				B56A06762CC6CE710080DC74 /* WeatherService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,25 +437,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		B56A066D2CC6CAAE0080DC74 /* XCRemoteSwiftPackageReference "sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/open-meteo/sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		B56A066E2CC6CAAE0080DC74 /* OpenMeteoSdk */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B56A066D2CC6CAAE0080DC74 /* XCRemoteSwiftPackageReference "sdk" */;
-			productName = OpenMeteoSdk;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B5D5ABC42AFADDFD00A1FAC3 /* Project object */;
 }

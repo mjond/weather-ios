@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
     @State private var showDetails: Bool = false
+    @State var weatherData: WeatherModel
         
     var body: some View {
         NavigationStack(path: $nav.path) {
@@ -31,6 +32,15 @@ struct HomeView: View {
 //            }
         } //: NavigationStack
         .environmentObject(nav)
+        .task {
+            do {
+                if let weatherData = try await WeatherService().getWeather() {
+                    print(weatherData)
+                }
+            } catch {
+                print("HomeView.task -> failed to get weather data")
+            }
+        }
         
         VStack {
             Text("Number of items on nav stack: \(nav.path.count)")
@@ -40,7 +50,7 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(weatherData: WeatherModel(current: Current(time: "", temperature: 15.0, weatherCode: 3)))
             .environmentObject(NavigationStateManager())
     }
 }
