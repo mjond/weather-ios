@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
+		B56A066F2CC6CAAE0080DC74 /* OpenMeteoSdk in Frameworks */ = {isa = PBXBuildFile; productRef = B56A066E2CC6CAAE0080DC74 /* OpenMeteoSdk */; };
 		B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */; };
 		B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652F2CB6F63D00256A86 /* DetailView.swift */; };
 		B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5770FC72AFC20AC007FB34E /* WeatherModel.swift */; };
 		B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */; };
-		B5D5ABD22AFADDFD00A1FAC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */; };
+		B5D5ABD22AFADDFD00A1FAC3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */; };
 		B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */; };
 		B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */; };
 		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
@@ -26,7 +27,7 @@
 		B59514B02B04318A00B1515D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B5D5ABCC2AFADDFD00A1FAC3 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
-		B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -37,12 +38,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56A066F2CC6CAAE0080DC74 /* OpenMeteoSdk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B56A06702CC6CD8D0080DC74 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B56A06732CC6CDFA0080DC74 /* ViewModel */,
+				B56A06722CC6CDF40080DC74 /* View */,
+				B5D5ABDD2AFAE06F00A1FAC3 /* Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B56A06712CC6CDA60080DC74 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */,
+				B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B56A06722CC6CDF40080DC74 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B56A06732CC6CDFA0080DC74 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B56F652A2CB6F52500256A86 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +106,11 @@
 		B5D5ABCE2AFADDFD00A1FAC3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				B56A06712CC6CDA60080DC74 /* Main */,
+				B56A06702CC6CD8D0080DC74 /* Home */,
 				B56F652A2CB6F52500256A86 /* Routing */,
 				B59514B02B04318A00B1515D /* Info.plist */,
-				B5D5ABDD2AFAE06F00A1FAC3 /* Model */,
-				B5D5ABDE2AFAE07500A1FAC3 /* View */,
-				B5D5ABDF2AFAE0C800A1FAC3 /* Controller */,
+				B5D5ABDE2AFAE07500A1FAC3 /* OtherViews */,
 				B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */,
 				B5D5ABD52AFADDFE00A1FAC3 /* Preview Content */,
 			);
@@ -97,23 +133,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B5D5ABDE2AFAE07500A1FAC3 /* View */ = {
+		B5D5ABDE2AFAE07500A1FAC3 /* OtherViews */ = {
 			isa = PBXGroup;
 			children = (
-				B5D5ABD12AFADDFD00A1FAC3 /* ContentView.swift */,
-				B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */,
-				B5D5ABCF2AFADDFD00A1FAC3 /* WeatherApp.swift */,
 				B56F652F2CB6F63D00256A86 /* DetailView.swift */,
 				B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B5D5ABDF2AFAE0C800A1FAC3 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
+			path = OtherViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +186,9 @@
 				Base,
 			);
 			mainGroup = B5D5ABC32AFADDFD00A1FAC3;
+			packageReferences = (
+				B56A066D2CC6CAAE0080DC74 /* XCRemoteSwiftPackageReference "sdk" */,
+			);
 			productRefGroup = B5D5ABCD2AFADDFD00A1FAC3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */,
-				B5D5ABD22AFADDFD00A1FAC3 /* ContentView.swift in Sources */,
+				B5D5ABD22AFADDFD00A1FAC3 /* HomeView.swift in Sources */,
 				B5770FC82AFC20AC007FB34E /* WeatherModel.swift in Sources */,
 				B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */,
 				B56F65302CB6F63D00256A86 /* DetailView.swift in Sources */,
@@ -395,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B56A066D2CC6CAAE0080DC74 /* XCRemoteSwiftPackageReference "sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/open-meteo/sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B56A066E2CC6CAAE0080DC74 /* OpenMeteoSdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B56A066D2CC6CAAE0080DC74 /* XCRemoteSwiftPackageReference "sdk" */;
+			productName = OpenMeteoSdk;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B5D5ABC42AFADDFD00A1FAC3 /* Project object */;
 }
