@@ -11,7 +11,7 @@ struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
     @State private var showDetails: Bool = false
     @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
-        
+
     var body: some View {
         NavigationStack(path: $nav.path) {
             VStack {
@@ -28,12 +28,12 @@ struct HomeView: View {
                     VStack {
                         Text("current weather")
                         Text("\(weatherData.current.temperature)")
-                        Button {
-                            nav.path.append("Hello there")
-                            //                    showDetails.toggle()
-                        } label: {
-                            Text("Go to Details")
-                        }
+//                        Button {
+//                            nav.path.append("Hello there")
+//                            //                    showDetails.toggle()
+//                        } label: {
+//                            Text("Go to Details")
+//                        }
                     } //: VStack
                     .padding()
                     .navigationTitle("Main View")

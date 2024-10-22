@@ -14,7 +14,7 @@ class HomeViewModel: ObservableObject {
     enum State {
         case isLoading
         case failure
-        case success(WeatherModel)
+        case success(WeatherDataModel)
     }
     
     func getWeather() async {

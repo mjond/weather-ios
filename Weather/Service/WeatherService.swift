@@ -8,16 +8,16 @@
 import Foundation
 
 protocol WeatherServiceProtocol {
-    func getWeather() async throws -> WeatherModel?
+    func getWeather() async throws -> WeatherDataModel?
 }
 
 struct WeatherService {
-    func getWeather() async throws -> WeatherModel? {
+    func getWeather() async throws -> WeatherDataModel? {
         if let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=52.521&longitude=13.41&current=temperature_2m,weather_code&daily=temperature_2m_min,temperature_2m_max&timezone=auto") {
 
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
-                let response = try JSONDecoder().decode(WeatherModel.self, from: data)
+                let response = try JSONDecoder().decode(WeatherDataModel.self, from: data)
                 return response
             } catch let error as DecodingError {
                 switch error {
@@ -34,6 +34,6 @@ struct WeatherService {
                 print("WeatherService.getWeather() -> failed to fetch weather data")
             }
         }
-        return WeatherModel(current: Current())
+        return WeatherDataModel(current: Current())
     }
 }
