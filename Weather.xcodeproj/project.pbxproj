@@ -61,9 +61,9 @@
 		B56A06702CC6CD8D0080DC74 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B56A06732CC6CDFA0080DC74 /* ViewModel */,
-				B56A06722CC6CDF40080DC74 /* View */,
 				B5D5ABDD2AFAE06F00A1FAC3 /* Model */,
+				B56A06722CC6CDF40080DC74 /* View */,
+				B56A06732CC6CDFA0080DC74 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";

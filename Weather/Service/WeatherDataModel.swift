@@ -8,10 +8,11 @@
 import Foundation
 
 struct WeatherDataModel: Codable {
-    var current: Current
+    var current: CurrentWeatherData
+    var daily: DailyWeatherData
 }
 
-struct Current: Codable {
+struct CurrentWeatherData: Codable {
     let time: String
     let temperature: Double
     let weatherCode: Double
@@ -20,12 +21,6 @@ struct Current: Codable {
         self.time = time
         self.temperature = temperature
         self.weatherCode = weatherCode
-    }
-    
-    init() {
-        time = ""
-        temperature = 0.0
-        weatherCode = 0.0
     }
     
     enum CodingKeys: String, CodingKey {
@@ -40,4 +35,11 @@ struct Current: Codable {
         temperature = try values.decodeIfPresent(Double.self, forKey: .temperature) ?? 0.0
         weatherCode = try values.decodeIfPresent(Double.self, forKey: .weatherCode) ?? 0.0
     }
+}
+
+struct DailyWeatherData: Codable {
+    let time: [String]
+    let temperature_2m_min: [Double]
+    let temperature_2m_max: [Double]
+    let weather_code: [Double]
 }

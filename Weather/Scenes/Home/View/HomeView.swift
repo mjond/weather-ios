@@ -36,7 +36,7 @@ struct HomeView: View {
                             .foregroundStyle(.primary)
                             .padding(.bottom, 4)
 
-                        Image(systemName: weatherModel.weatherIconName)
+                        Image(systemName: weatherModel.currentWeatherIconName)
                             .font(.system(size: 80))
                         
                         Spacer()
