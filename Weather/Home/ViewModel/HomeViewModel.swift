@@ -14,7 +14,7 @@ class HomeViewModel: ObservableObject {
     enum State {
         case isLoading
         case failure
-        case success(WeatherDataModel)
+        case success(HomeModel)
     }
     
     func getWeather() async {
@@ -24,8 +24,12 @@ class HomeViewModel: ObservableObject {
         do {
             if let weatherData = try await WeatherService().getWeather() {
                 print(weatherData)
+                let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
+                let weatherCode = Int(weatherData.current.weatherCode)
+                let homeModel = HomeModel(currentTemperature: currentTemperature,
+                                          weatherCode: weatherCode)
                 DispatchQueue.main.async {
-                    self.state = .success(weatherData)
+                    self.state = .success(homeModel)
                 }
             }
         } catch {

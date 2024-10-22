@@ -24,10 +24,22 @@ struct HomeView: View {
                     VStack {
                         Text("failure")
                     }
-                case let .success(weatherData):
+                case let .success(weatherModel):
                     VStack {
-                        Text("current weather")
-                        Text("\(weatherData.current.temperature)")
+                        Text("Current Weather")
+                            .font(.title)
+                            .padding(.bottom, 2)
+                        
+                        Text(weatherModel.currentTemperature)
+                            .font(.system(size: 42))
+                            .fontWeight(.bold)
+                            .foregroundStyle(.primary)
+                            .padding(.bottom, 4)
+
+                        Image(systemName: weatherModel.weatherIconName)
+                            .font(.system(size: 80))
+                        
+                        Spacer()
 //                        Button {
 //                            nav.path.append("Hello there")
 //                            //                    showDetails.toggle()
@@ -35,8 +47,7 @@ struct HomeView: View {
 //                            Text("Go to Details")
 //                        }
                     } //: VStack
-                    .padding()
-                    .navigationTitle("Main View")
+                    .padding(.top, 70)
                     .navigationDestination(for: String.self) { textValue in
                         DetailView(text: textValue)
                     }
