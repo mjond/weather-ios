@@ -42,4 +42,9 @@ struct DailyWeatherData: Codable {
     let temperature_2m_min: [Double]
     let temperature_2m_max: [Double]
     let weather_code: [Double]
+    let sunrise: [String]
+    let sunset: [String]
+    let precipitation_probability_mean: [Double]
+    let precipitation_sum: [Double]
+    let uv_index_max: [Double]
 }
