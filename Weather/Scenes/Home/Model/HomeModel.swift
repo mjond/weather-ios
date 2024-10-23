@@ -46,8 +46,11 @@ struct HomeModel {
 struct DailyWeatherModel: Identifiable {
     var id = UUID()
     var date: Date
-    var dayName: String {
+    var abbreviatedDayName: String {
         return date.formatted(Date.FormatStyle().weekday(.abbreviated))
+    }
+    var fullDayName: String {
+        return date.formatted(Date.FormatStyle().weekday(.wide))
     }
     var minimumTemperature: String
     var maximumTemperature: String

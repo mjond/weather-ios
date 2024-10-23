@@ -45,7 +45,7 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(weatherModel.dailyForecast) { day in
-                                    DayCardView(dayName: day.dayName,
+                                    DayCardView(dayName: day.abbreviatedDayName,
                                                 maxTemp: day.maximumTemperature,
                                                 minTemp: day.minimumTemperature,
                                                 weatherIconName: day.weatherIconName)
