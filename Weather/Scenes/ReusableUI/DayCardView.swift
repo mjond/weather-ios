@@ -32,7 +32,7 @@ struct DayCardView: View {
         .frame(width: 75, height: 160, alignment: .center)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(.black, lineWidth: 2)
+                .stroke(.black, lineWidth: 1)
         )
     }
 }

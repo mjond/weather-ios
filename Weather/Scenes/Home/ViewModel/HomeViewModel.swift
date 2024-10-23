@@ -46,22 +46,43 @@ class HomeViewModel: ObservableObject {
     
     func parseDailyWeatherValues(with response: DailyWeatherData) -> [DailyWeatherModel] {
         var dailyForecast: [DailyWeatherModel] = []
-        // todo: add check for number of values in each array
+
+        guard response.time.count == 7,
+              response.weather_code.count == 7,
+              response.temperature_2m_min.count == 7,
+              response.temperature_2m_max.count == 7,
+              response.sunrise.count == 7,
+              response.sunset.count == 7,
+              response.precipitation_probability_mean.count == 7,
+              response.precipitation_sum.count == 7,
+              response.uv_index_max.count == 7 else {
+            return dailyForecast
+        }
+        
         for (index, dateStamp) in response.time.enumerated() {
+            guard let date = getDateFromString(dateStamp) else { return dailyForecast }
+
             let minTemp = response.temperature_2m_min[index].rounded()
             let maxTemp = response.temperature_2m_max[index].rounded()
             let weatherCode = Int(response.weather_code[index].rounded())
-            if let date = getDateFromString(dateStamp) {
-                let formattedMinTemp = String(format: "%.0f", minTemp)
-                let formattedMaxTemp = String(format: "%.0f", maxTemp)
-                
-                let dailyWeatherObject = DailyWeatherModel(date: date,
-                                                           minimumTemperature: formattedMinTemp,
-                                                           maximumTemperature: formattedMaxTemp,
-                                                           weatherCode: weatherCode)
-                
-                dailyForecast.append(dailyWeatherObject)
-            }
+            let precipitationProbability = String(response.precipitation_probability_mean[index])
+            let precipitationAmount = response.precipitation_sum[index].rounded()
+            let uvIndex = response.uv_index_max[index].rounded()
+
+            let formattedMinTemp = String(format: "%.0f", minTemp)
+            let formattedMaxTemp = String(format: "%.0f", maxTemp)
+            let formattedPrecipitationAmount = String(format: "%.0f", precipitationAmount)
+            let formattedUv = String(format: "%.0f", uvIndex)
+            
+            let dailyWeatherObject = DailyWeatherModel(date: date,
+                                                       minimumTemperature: formattedMinTemp,
+                                                       maximumTemperature: formattedMaxTemp,
+                                                       weatherCode: weatherCode,
+                                                       precipitationProbability: precipitationProbability,
+                                                       precipitationAmount: formattedPrecipitationAmount,
+                                                       uvIndexMax: formattedUv)
+            
+            dailyForecast.append(dailyWeatherObject)
         }
         
         return dailyForecast

@@ -85,4 +85,9 @@ struct DailyWeatherModel: Identifiable {
             return "cloud"
         }
     }
+    var precipitationProbability: String
+    var precipitationAmount: String
+    var uvIndexMax: String
+//    var sunset: Date
+//    var sunrise: Date
 }
