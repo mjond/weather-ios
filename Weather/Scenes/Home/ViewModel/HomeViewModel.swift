@@ -51,7 +51,7 @@ class HomeViewModel: ObservableObject {
             let minTemp = response.temperature_2m_min[index].rounded()
             let maxTemp = response.temperature_2m_max[index].rounded()
             let weatherCode = Int(response.weather_code[index].rounded())
-            if let date = dateFromISOString(dateStamp) {
+            if let date = getDateFromString(dateStamp) {
                 let formattedMinTemp = String(format: "%.0f", minTemp)
                 let formattedMaxTemp = String(format: "%.0f", maxTemp)
                 
@@ -66,10 +66,14 @@ class HomeViewModel: ObservableObject {
         
         return dailyForecast
     }
-    
-    private func dateFromISOString(_ isoString: String) -> Date? {
-        let isoDateFormatter = ISO8601DateFormatter()
-        isoDateFormatter.formatOptions = [.withFullDate]
-        return isoDateFormatter.date(from: isoString)
+
+    private func getDateFromString(_ dateAsString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let newDate = dateFormatter.date(from: dateAsString) {
+            print(newDate)
+            return newDate
+        }
+        return nil
     }
 }
