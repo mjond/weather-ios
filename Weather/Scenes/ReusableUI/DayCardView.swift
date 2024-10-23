@@ -1,53 +1,45 @@
 //
-//  DetailView.swift
+//  DayCardView.swift
 //  Weather
 //
-//  Created by Mark Davis on 10/9/24.
+//  Created by Mark Davis on 10/22/24.
 //
 
 import SwiftUI
 
-struct DetailView: View {
-    @EnvironmentObject var nav: NavigationStateManager
-    @State private var showSettings: Bool = false
-    
-    let text: String
-    
-    var body: some View {
-        VStack {
-            Text(text)
-            
-            Button {
-//                nav.path.append("Settings View")
-                showSettings.toggle()
-            } label: {
-                Text("Go to Settings")
-            }
+struct DayCardView: View {
+    let dayName: String
+    let maxTemp: String
+    let minTemp: String
+    let weatherIconName: String
 
+    var body: some View {
+        VStack(alignment: .center) {
+            Text(dayName)
+                .padding()
+            
+            Text(maxTemp)
+                .font(.headline)
+            Text(minTemp)
+                .font(.subheadline)
+                .padding(.bottom, 7)
+                        
+            Image(systemName: weatherIconName)
+                .font(.system(size: 32))
+            
+            Spacer()
         }
-//        .navigationDestination(for: String.self) { textValue in
-//            SettingsView(text: textValue)
-//        }
-        .navigationDestination(isPresented: $showSettings, destination: {
-            SettingsView()
-        })
-        .navigationTitle("Detail View")
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    if nav.path.count > 0 {
-                        nav.path.removeLast()
-                    }
-                } label: {
-                    Image(systemName: "chevron.left.circle")
-                }
-            }
-        }
+        .frame(width: 75, height: 160, alignment: .center)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.black, lineWidth: 2)
+        )
     }
 }
 
 #Preview {
-    DetailView(text: "Details")
-        .environmentObject(NavigationStateManager())
+    DayCardView(dayName: "Mon",
+                maxTemp: "25",
+                minTemp: "12",
+                weatherIconName: "cloud.rain")
 }

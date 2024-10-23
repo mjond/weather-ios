@@ -5,6 +5,8 @@
 //  Created by Mark Davis on 10/22/24.
 //
 
+import Foundation
+
 struct HomeModel {
     var currentTemperature: String
     var currentWeatherCode: Int
@@ -41,8 +43,12 @@ struct HomeModel {
     var dailyForecast: [DailyWeatherModel]
 }
 
-struct DailyWeatherModel {
-    var date: String
+struct DailyWeatherModel: Identifiable {
+    var id = UUID()
+    var date: Date
+    var dayName: String {
+        return date.formatted(Date.FormatStyle().weekday(.abbreviated))
+    }
     var minimumTemperature: String
     var maximumTemperature: String
     var weatherCode: Int

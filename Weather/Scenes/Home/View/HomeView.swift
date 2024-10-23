@@ -26,18 +26,33 @@ struct HomeView: View {
                     }
                 case let .success(weatherModel):
                     VStack {
-                        Text("Current Weather")
-                            .font(.title)
-                            .padding(.bottom, 2)
+                        VStack {
+                            Text("Current Weather")
+                                .font(.title)
+                                .padding(.bottom, 2)
                         
-                        Text(weatherModel.currentTemperature)
-                            .font(.system(size: 42))
-                            .fontWeight(.bold)
-                            .foregroundStyle(.primary)
-                            .padding(.bottom, 4)
+                            Text(weatherModel.currentTemperature)
+                                .font(.system(size: 42))
+                                .fontWeight(.bold)
+                                .foregroundStyle(.primary)
+                                .padding(.bottom, 4)
 
-                        Image(systemName: weatherModel.currentWeatherIconName)
-                            .font(.system(size: 80))
+                            Image(systemName: weatherModel.currentWeatherIconName)
+                                .font(.system(size: 80))
+                        } //: VStack
+                        .padding(.bottom, 35)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(weatherModel.dailyForecast) { day in
+                                    DayCardView(dayName: day.dayName,
+                                                maxTemp: day.maximumTemperature,
+                                                minTemp: day.minimumTemperature,
+                                                weatherIconName: day.weatherIconName)
+                                }
+                            }
+                        } //: ScrollView
+                        .padding()
                         
                         Spacer()
 //                        Button {
@@ -52,13 +67,12 @@ struct HomeView: View {
                         DetailView(text: textValue)
                     }
                 }
-            }
+            } //: VStack
             .task {
                 await viewModel.getWeather()
             }
         }
         .environmentObject(nav)
-
     }
 }
 
