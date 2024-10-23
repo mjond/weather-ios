@@ -18,9 +18,9 @@ struct DayCardView: View {
             Text(dayName)
                 .padding()
             
-            Text(maxTemp)
+            Text(maxTemp+"°")
                 .font(.headline)
-            Text(minTemp)
+            Text(minTemp+"°")
                 .font(.subheadline)
                 .padding(.bottom, 8)
                         

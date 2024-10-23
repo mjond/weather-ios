@@ -61,6 +61,8 @@ class HomeViewModel: ObservableObject {
         
         for (index, dateStamp) in response.time.enumerated() {
             guard let date = getDateFromString(dateStamp) else { return dailyForecast }
+            guard let sunrise = getDateAndTimeFromString(response.sunrise[index]) else { return dailyForecast }
+            guard let sunset = getDateAndTimeFromString(response.sunset[index]) else { return dailyForecast }
 
             let minTemp = response.temperature_2m_min[index].rounded()
             let maxTemp = response.temperature_2m_max[index].rounded()
@@ -80,7 +82,9 @@ class HomeViewModel: ObservableObject {
                                                        weatherCode: weatherCode,
                                                        precipitationProbability: precipitationProbability,
                                                        precipitationAmount: formattedPrecipitationAmount,
-                                                       uvIndexMax: formattedUv)
+                                                       uvIndexMax: formattedUv,
+                                                       sunset: sunset,
+                                                       sunrise: sunrise)
             
             dailyForecast.append(dailyWeatherObject)
         }
@@ -97,4 +101,16 @@ class HomeViewModel: ObservableObject {
         }
         return nil
     }
+    
+    private func getDateAndTimeFromString(_ dateAsString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .gmt
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        if let newDate = dateFormatter.date(from: dateAsString) {
+            print(newDate)
+            return newDate
+        }
+        return nil
+    }
+
 }
