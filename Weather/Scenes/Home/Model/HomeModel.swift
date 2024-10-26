@@ -43,7 +43,7 @@ struct HomeModel {
     var dailyForecast: [DailyWeatherModel]
 }
 
-struct DailyWeatherModel: Identifiable {
+struct DailyWeatherModel: Identifiable, Hashable {
     var id = UUID()
     var date: Date
     var abbreviatedDayName: String {
