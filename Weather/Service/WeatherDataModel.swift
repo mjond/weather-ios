@@ -10,6 +10,7 @@ import Foundation
 struct WeatherDataModel: Codable {
     var current: CurrentWeatherData
     var daily: DailyWeatherData
+    var hourly: HourlyWeatherData
 }
 
 struct CurrentWeatherData: Codable {
@@ -47,4 +48,11 @@ struct DailyWeatherData: Codable {
     let precipitation_probability_mean: [Double]
     let precipitation_sum: [Double]
     let uv_index_max: [Double]
+}
+
+struct HourlyWeatherData: Codable {
+    let time: [String]
+    let temperature_2m: [Double]
+    let precipitation_probability: [Double]
+    let weather_code: [Double]
 }

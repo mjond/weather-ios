@@ -23,6 +23,8 @@ struct DayCardView: View {
             Text(minTemp+"°")
                 .font(.subheadline)
                 .padding(.bottom, 8)
+            
+            Spacer()
                         
             Image(systemName: weatherIconName)
                 .font(.system(size: 32))

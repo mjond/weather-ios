@@ -30,10 +30,12 @@ class HomeViewModel: ObservableObject {
                 print(weatherData)
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
                 let weatherCode = Int(weatherData.current.weatherCode)
-                let dailyWeather = parseDailyWeatherValues(with: weatherData.daily)
+                let dailyWeather = parseDailyWeatherData(with: weatherData.daily)
+                let hourlyWeather = parseHourlyWeatherData(with: weatherData.hourly)
                 let homeModel = HomeModel(currentTemperature: currentTemperature,
                                           currentWeatherCode: weatherCode,
-                                          dailyForecast: dailyWeather)
+                                          dailyForecast: dailyWeather,
+                                          hourlyForecast: hourlyWeather)
                 DispatchQueue.main.async {
                     self.state = .success(homeModel)
                 }
@@ -48,7 +50,7 @@ class HomeViewModel: ObservableObject {
         isAPICallInProgress = false
     }
     
-    func parseDailyWeatherValues(with response: DailyWeatherData) -> [DailyWeatherModel] {
+    func parseDailyWeatherData(with response: DailyWeatherData) -> [DailyWeatherModel] {
         var dailyForecast: [DailyWeatherModel] = []
 
         guard response.time.count == 7,
@@ -70,7 +72,7 @@ class HomeViewModel: ObservableObject {
 
             let minTemp = response.temperature_2m_min[index].rounded()
             let maxTemp = response.temperature_2m_max[index].rounded()
-            let weatherCode = Int(response.weather_code[index].rounded())
+            let weatherCode = Int(response.weather_code[index])
             let precipitationProbability = String(response.precipitation_probability_mean[index])
             let precipitationAmount = response.precipitation_sum[index].rounded()
             let uvIndex = response.uv_index_max[index].rounded()
@@ -94,6 +96,37 @@ class HomeViewModel: ObservableObject {
         }
         
         return dailyForecast
+    }
+    
+    private func parseHourlyWeatherData(with response: HourlyWeatherData) -> [HourlyWeatherModel] {
+        var hourlyForecast: [HourlyWeatherModel] = []
+        
+        guard response.time.count > 0,
+              response.temperature_2m.count > 0,
+              response.weather_code.count > 0
+//              response.precipitation_probability.count > 0
+        else {
+            return hourlyForecast
+        }
+        
+        for (index, dateStamp) in response.time.enumerated() {
+            guard let date = getDateAndTimeFromString(dateStamp) else { return hourlyForecast }
+
+            let temp = response.temperature_2m[index].rounded()
+            let weatherCode = Int(response.weather_code[index])
+//            let precipitationProbability = String(response.precipitation_probability[index])
+            
+            let formattedTemp = String(format: "%.0f", temp)
+
+
+            let hourlyForecastObject = HourlyWeatherModel(date: date,
+                                                          temperature: formattedTemp,
+                                                          weatherCode: weatherCode)
+            
+            hourlyForecast.append(hourlyForecastObject)
+        }
+        
+        return hourlyForecast
     }
 
     private func getDateFromString(_ dateAsString: String) -> Date? {
