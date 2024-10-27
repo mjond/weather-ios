@@ -12,13 +12,16 @@ struct HomeLoadingView: View {
         VStack {
             RoundedRectangle(cornerRadius: 12)
                 .foregroundStyle(Color.gray.opacity(0.5))
-                .frame(width: 70, height: 70)
+                .frame(width: 250, height: 70)
                 .padding(.top, 120)
                 .padding(.bottom, 10)
             RoundedRectangle(cornerRadius: 12)
                 .foregroundStyle(Color.gray.opacity(0.5))
-                .frame(width: 70, height: 70)
-                .padding(.top, 120)
+                .frame(width: 80, height: 80)
+                .padding(.bottom, 10)
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundStyle(Color.gray.opacity(0.5))
+                .frame(width: 200, height: 70)
                 .padding(.bottom, 10)
             RoundedRectangle(cornerRadius: 12)
                 .foregroundStyle(Color.gray.opacity(0.5))
@@ -28,10 +31,7 @@ struct HomeLoadingView: View {
                 .foregroundStyle(Color.gray.opacity(0.5))
                 .frame(width: 250, height: 70)
                 .padding(.bottom, 10)
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundStyle(Color.gray.opacity(0.5))
-                .frame(width: 250, height: 70)
-                .padding(.bottom, 10)
+            Spacer()
         }
     }
 }

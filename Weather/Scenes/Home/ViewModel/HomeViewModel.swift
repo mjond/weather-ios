@@ -8,11 +8,11 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var state = State.isLoading
+    @Published var state = State.loading
     var isAPICallInProgress = false
 
     enum State {
-        case isLoading
+        case loading
         case failure
         case success(HomeModel)
     }
@@ -20,6 +20,10 @@ class HomeViewModel: ObservableObject {
     func getWeather() async {
         guard !isAPICallInProgress else { return }
         isAPICallInProgress = true
+        
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
 
         do {
             if let weatherData = try await WeatherService().getWeather() {

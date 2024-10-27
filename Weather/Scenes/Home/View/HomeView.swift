@@ -16,13 +16,17 @@ struct HomeView: View {
         NavigationStack(path: $nav.path) {
             VStack {
                 switch viewModel.state {
-                case .isLoading:
+                case .loading:
                     HomeLoadingView()
                         .shimmer()
+                    
                 case .failure:
-                    VStack {
-                        Text("failure")
+                    HomeFailureView {
+                        Task {
+                            await viewModel.getWeather()
+                        }
                     }
+                    
                 case let .success(weatherModel):
                     VStack {
                         VStack {
