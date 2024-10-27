@@ -38,7 +38,7 @@ struct DayDetailView: View {
             }
             .padding(.bottom, 10)
             
-            Text("precipiration: \(precipitationProbability)%")
+            Text("precipitation: \(precipitationProbability)%")
                 .font(.system(size: 22))
                 .foregroundStyle(.primary)
             

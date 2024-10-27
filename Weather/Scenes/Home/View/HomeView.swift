@@ -17,9 +17,8 @@ struct HomeView: View {
             VStack {
                 switch viewModel.state {
                 case .isLoading:
-                    VStack {
-                        Text("loading...")
-                    }
+                    HomeLoadingView()
+                        .shimmer()
                 case .failure:
                     VStack {
                         Text("failure")
