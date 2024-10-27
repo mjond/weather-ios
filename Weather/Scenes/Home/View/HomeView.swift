@@ -19,14 +19,14 @@ struct HomeView: View {
                 case .loading:
                     HomeLoadingView()
                         .shimmer()
-                    
+
                 case .failure:
                     HomeFailureView {
                         Task {
                             await viewModel.getWeather()
                         }
                     }
-                    
+
                 case let .success(weatherModel):
                     VStack {
                         VStack {
@@ -42,8 +42,26 @@ struct HomeView: View {
 
                             Image(systemName: weatherModel.currentWeatherIconName)
                                 .font(.system(size: 80))
+                                .padding(.bottom)
+                            
+                            VStack {
+                                HStack {
+                                    Text("Sunrise:")
+                                        .fontWeight(.semibold)
+                                    let sunriseDate = weatherModel.dailyForecast[0].sunrise
+                                    Text(sunriseDate, format: .dateTime.hour().minute())
+                                }
+
+                                HStack {
+                                    Text("Sunset:")
+                                        .fontWeight(.semibold)
+                                    let sunsetDate = weatherModel.dailyForecast[0].sunset
+                                    Text(sunsetDate, format: .dateTime.hour().minute())
+                                }
+                            }
+
                         } //: VStack
-                        .padding(.bottom, 35)
+                        .padding(.bottom, 20)
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {

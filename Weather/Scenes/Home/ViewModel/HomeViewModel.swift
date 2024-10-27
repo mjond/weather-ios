@@ -100,7 +100,6 @@ class HomeViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         if let newDate = dateFormatter.date(from: dateAsString) {
-            print(newDate)
             return newDate
         }
         return nil
@@ -108,11 +107,15 @@ class HomeViewModel: ObservableObject {
     
     private func getDateAndTimeFromString(_ dateAsString: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .gmt
+        dateFormatter.timeZone = .current
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
-        if let newDate = dateFormatter.date(from: dateAsString) {
-            print(newDate)
-            return newDate
+        if let date = dateFormatter.date(from: dateAsString) {
+            print(date)
+//            let hour = Calendar.current.component(.hour, from: date)
+//            let minutes = Calendar.current.component(.minute, from: date)
+//            print("\(hour):\(minutes)")
+            
+            return date
         }
         return nil
     }
