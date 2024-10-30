@@ -62,6 +62,17 @@ struct HomeView: View {
 
                         } //: VStack
                         .padding(.bottom, 20)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(weatherModel.hourlyForecast) { hour in
+                                    HourlyCardView(date: hour.date,
+                                                   temp: hour.temperature,
+                                                   weatherIconName: hour.weatherIconName)
+                                }
+                            }
+                        } //: ScrollView
+                        .padding()
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
