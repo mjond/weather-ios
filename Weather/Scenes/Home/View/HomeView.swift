@@ -13,12 +13,12 @@ struct HomeView: View {
     @State private var showDetails: Bool = false
     @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
     
-    var userLatitude: String {
-        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+    var userLatitude: Double {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0.00
     }
     
-    var userLongitude: String {
-        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    var userLongitude: Double {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0.00
     }
 
     var body: some View {
