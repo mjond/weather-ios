@@ -31,7 +31,7 @@ struct HourlyCardView: View {
         .frame(width: 55, height: 100, alignment: .center)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(.black, lineWidth: 1)
+                .strokeBorder(.black, lineWidth: 1)
         )
     }
 }
