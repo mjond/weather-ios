@@ -9,8 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
+    @StateObject private var locationManager = LocationManager()
     @State private var showDetails: Bool = false
     @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
+    
+    var userLatitude: String {
+        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+    }
+    
+    var userLongitude: String {
+        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    }
 
     var body: some View {
         NavigationStack(path: $nav.path) {
@@ -30,6 +39,10 @@ struct HomeView: View {
                 case let .success(weatherModel):
                     VStack {
                         VStack {
+                            HStack {
+                                Text("latitude: \(userLatitude)")
+                                Text("longitude: \(userLongitude)")
+                            }
                             Text("Current Weather")
                                 .font(.title)
                                 .padding(.bottom, 2)

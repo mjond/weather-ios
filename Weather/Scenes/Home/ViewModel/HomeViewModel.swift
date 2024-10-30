@@ -50,7 +50,7 @@ class HomeViewModel: ObservableObject {
         isAPICallInProgress = false
     }
     
-    func parseDailyWeatherData(with response: DailyWeatherData) -> [DailyWeatherModel] {
+    private func parseDailyWeatherData(with response: DailyWeatherData) -> [DailyWeatherModel] {
         var dailyForecast: [DailyWeatherModel] = []
 
         guard response.time.count == 7,
