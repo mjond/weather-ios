@@ -9,6 +9,22 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     @Published var state = State.loading
+    private var locationManager = LocationManager()
+    
+    var userLatitude: String {
+        if let latitude = locationManager.lastLocation?.coordinate.latitude {
+            return String(format: "%.3f", latitude)
+        }
+        return "0.00"
+    }
+
+    var userLongitude: String {
+        if let longitude = locationManager.lastLocation?.coordinate.longitude {
+            return String(format: "%.3f", longitude)
+        }
+        return "0.00"
+    }
+
     var isAPICallInProgress = false
 
     enum State {
@@ -26,7 +42,7 @@ class HomeViewModel: ObservableObject {
         }
 
         do {
-            if let weatherData = try await WeatherService().getWeather() {
+            if let weatherData = try await WeatherService().getWeather(latitude: userLatitude, longitude: userLongitude) {
                 print(weatherData)
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
                 let weatherCode = Int(weatherData.current.weatherCode)
@@ -167,10 +183,6 @@ class HomeViewModel: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
         if let date = dateFormatter.date(from: dateAsString) {
             print(date)
-//            let hour = Calendar.current.component(.hour, from: date)
-//            let minutes = Calendar.current.component(.minute, from: date)
-//            print("\(hour):\(minutes)")
-            
             return date
         }
         return nil
