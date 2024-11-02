@@ -30,11 +30,7 @@ struct HomeView: View {
                 case let .success(weatherModel):
                     VStack {
                         VStack {
-                            HStack {
-                                Text("latitude: \(self.viewModel.userLatitude)")
-                                Text("longitude: \(self.viewModel.userLongitude)")
-                            }
-                            Text("Current Weather")
+                            Text(weatherModel.locationName)
                                 .font(.title)
                                 .padding(.bottom, 2)
 

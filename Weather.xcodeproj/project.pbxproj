@@ -10,6 +10,7 @@
 		B516DE672CC81DB9007C52B5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516DE662CC81D7F007C52B5 /* HomeModel.swift */; };
 		B52ACD6A2CCD954D00EE07F2 /* HomeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */; };
 		B52ACD6D2CCDBC5200EE07F2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */; };
+		B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */; };
 		B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56025202CD1B832007BB4F3 /* LocationManager.swift */; };
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
 		B56A06762CC6CE710080DC74 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A06752CC6CE6E0080DC74 /* WeatherService.swift */; };
@@ -33,6 +34,7 @@
 		B516DE662CC81D7F007C52B5 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLoadingView.swift; sourceTree = "<group>"; };
 		B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		B56025202CD1B832007BB4F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B56A06752CC6CE6E0080DC74 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		B52ACD6B2CCDBC1A00EE07F2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */,
 				B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */,
 			);
 			path = Extensions;
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B59DEFC92CC9BDB40061CF31 /* DayDetailView.swift in Sources */,
+				B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */,
 				B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */,
 				B59A48CF2CCDD01A00F2C9FB /* WeatherHelper.swift in Sources */,
 				B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */,

@@ -20,7 +20,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let status = locationStatus else {
             return "unknown"
         }
-        
+
         switch status {
         case .notDetermined: return "notDetermined"
         case .authorizedWhenInUse: return "authorizedWhenInUse"
@@ -35,7 +35,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationStatus = status
         print(#function, statusString)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         lastLocation = location

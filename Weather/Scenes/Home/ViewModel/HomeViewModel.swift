@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 class HomeViewModel: ObservableObject {
     @Published var state = State.loading
@@ -43,15 +44,18 @@ class HomeViewModel: ObservableObject {
 
         do {
             if let weatherData = try await WeatherService().getWeather(latitude: userLatitude, longitude: userLongitude) {
-                print(weatherData)
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
                 let weatherCode = Int(weatherData.current.weatherCode)
                 let dailyWeather = parseDailyWeatherData(with: weatherData.daily)
                 let hourlyWeather = parseHourlyWeatherData(with: weatherData.hourly)
-                let homeModel = HomeModel(currentTemperature: currentTemperature,
+                let locationName = await getLocationName(location: locationManager.lastLocation)
+
+                let homeModel = HomeModel(locationName: locationName,
+                                          currentTemperature: currentTemperature,
                                           currentWeatherCode: weatherCode,
                                           dailyForecast: dailyWeather,
                                           hourlyForecast: hourlyWeather)
+
                 DispatchQueue.main.async {
                     self.state = .success(homeModel)
                 }
@@ -64,6 +68,27 @@ class HomeViewModel: ObservableObject {
         }
         
         isAPICallInProgress = false
+    }
+
+    private func getLocationName(location: CLLocation?) async -> String {
+        return await withCheckedContinuation { continuation in
+            if let currentLocation = locationManager.lastLocation {
+                currentLocation.fetchCity(completion: { city, error in
+                    guard error == nil else {
+                        print("getLocationName() -> Error when getting location name")
+                        continuation.resume(returning: "Current Location")
+                        return
+                    }
+
+                    guard let city = city else {
+                        print("getLocationName() -> No location found")
+                        continuation.resume(returning: "Current Location")
+                        return
+                    }
+                    continuation.resume(returning: city)
+                })
+            }
+        }
     }
     
     private func parseDailyWeatherData(with response: DailyWeatherData) -> [DailyWeatherModel] {

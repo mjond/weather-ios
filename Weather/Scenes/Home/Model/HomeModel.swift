@@ -8,6 +8,7 @@
 import Foundation
 
 struct HomeModel {
+    var locationName: String
     var currentTemperature: String
     var currentWeatherCode: Int
     var currentWeatherIconName: String {
