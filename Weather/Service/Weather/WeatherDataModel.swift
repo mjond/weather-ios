@@ -53,6 +53,6 @@ struct DailyWeatherData: Codable {
 struct HourlyWeatherData: Codable {
     let time: [String]
     let temperature_2m: [Double]
-    let precipitation_probability: [Double]
+    let is_day: [Double]
     let weather_code: [Double]
 }

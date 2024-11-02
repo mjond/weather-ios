@@ -105,7 +105,7 @@ class HomeViewModel: ObservableObject {
               response.uv_index_max.count == 7 else {
             return dailyForecast
         }
-        
+
         for (index, dateStamp) in response.time.enumerated() {
             guard let date = getDateFromString(dateStamp) else { return dailyForecast }
             guard let sunrise = getDateAndTimeFromString(response.sunrise[index]) else { return dailyForecast }
@@ -144,7 +144,8 @@ class HomeViewModel: ObservableObject {
         
         guard response.time.count > 0,
               response.temperature_2m.count > 0,
-              response.weather_code.count > 0
+              response.weather_code.count > 0,
+              response.is_day.count > 0
         else {
             return hourlyForecast
         }
@@ -153,7 +154,7 @@ class HomeViewModel: ObservableObject {
         // so find the index that is closest to the current time, and then take the next 24 hours
         // for the hourly view.
         let startingIndex = findStartingHourlyIndex(from: response)
-        let endingIndex = startingIndex+24
+        let endingIndex = startingIndex + 24
         
         for index in startingIndex...endingIndex {
             let dateStamp = response.time[index]
@@ -161,12 +162,14 @@ class HomeViewModel: ObservableObject {
 
             let temp = response.temperature_2m[index].rounded()
             let weatherCode = Int(response.weather_code[index])
+            let isDay = Int(response.is_day[index])
 
             let formattedTemp = String(format: "%.0f", temp)
 
             let hourlyForecastObject = HourlyWeatherModel(date: date,
                                                           temperature: formattedTemp,
-                                                          weatherCode: weatherCode)
+                                                          weatherCode: weatherCode,
+                                                          isDay: isDay)
 
             hourlyForecast.append(hourlyForecastObject)
         }

@@ -45,7 +45,8 @@ struct HourlyWeatherModel: Identifiable, Hashable {
     var date: Date
     var temperature: String
     var weatherCode: Int
+    var isDay: Int
     var weatherIconName: String {
-        WeatherHelper().getWeatherCodeIcon(from: weatherCode)
+        WeatherHelper().getHourlyWeatherCodeIcon(weatherCode, isDay)
     }
 }
