@@ -35,7 +35,7 @@ struct HomeView: View {
                                 .padding(.bottom, 2)
 
                             Text(weatherModel.currentTemperature+"°")
-                                .font(.system(size: 42))
+                                .font(.system(size: 46))
                                 .fontWeight(.bold)
                                 .foregroundStyle(.primary)
                             
