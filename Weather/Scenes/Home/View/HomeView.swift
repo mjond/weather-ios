@@ -38,7 +38,9 @@ struct HomeView: View {
                                 .font(.system(size: 42))
                                 .fontWeight(.bold)
                                 .foregroundStyle(.primary)
-                                .padding(.bottom, 4)
+                            
+                            Text("Feels like \(weatherModel.apparentTemperature)°")
+                                .padding(.bottom, 5)
 
                             Image(systemName: weatherModel.currentWeatherIconName)
                                 .font(.system(size: 80))

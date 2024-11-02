@@ -25,7 +25,7 @@ struct DayCardView: View {
                 .padding(.bottom, 8)
             
             Spacer()
-                        
+            
             Image(systemName: weatherIconName)
                 .font(.system(size: 32))
             

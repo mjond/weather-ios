@@ -25,24 +25,24 @@ struct DayDetailView: View {
                 .font(.system(size: 36))
                 .padding(.bottom, 10)
             
-            HStack {
-                Text("Min: \(minTemp)°")
+            VStack {
+                Text("Max: \(maxTemp)°")
                     .font(.system(size: 24))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
                 
-                Text("Max: \(maxTemp)°")
+                Text("Min: \(minTemp)°")
                     .font(.system(size: 24))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
             }
             .padding(.bottom, 10)
             
-            Text("precipitation: \(precipitationProbability)%")
+            Text("Change of precipitation: \(precipitationProbability)%")
                 .font(.system(size: 22))
                 .foregroundStyle(.primary)
             
-            Text("precipitation amount: \(precipitationAmount)")
+            Text("Precipitation amount: \(precipitationAmount)")
                 .font(.system(size: 22))
                 .foregroundStyle(.primary)
                 .padding(.bottom, 10)

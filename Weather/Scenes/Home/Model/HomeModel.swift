@@ -10,6 +10,7 @@ import Foundation
 struct HomeModel {
     var locationName: String
     var currentTemperature: String
+    var apparentTemperature: String
     var currentWeatherCode: Int
     var currentWeatherIconName: String {
         WeatherHelper().getWeatherCodeIcon(from: currentWeatherCode)

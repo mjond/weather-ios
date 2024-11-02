@@ -46,12 +46,14 @@ class HomeViewModel: ObservableObject {
             if let weatherData = try await WeatherService().getWeather(latitude: userLatitude, longitude: userLongitude) {
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
                 let weatherCode = Int(weatherData.current.weatherCode)
+                let apparentTemperature = String(format: "%.0f", weatherData.current.apparentTemperature.rounded())
                 let dailyWeather = parseDailyWeatherData(with: weatherData.daily)
                 let hourlyWeather = parseHourlyWeatherData(with: weatherData.hourly)
                 let locationName = await getLocationName(location: locationManager.lastLocation)
 
                 let homeModel = HomeModel(locationName: locationName,
                                           currentTemperature: currentTemperature,
+                                          apparentTemperature: apparentTemperature,
                                           currentWeatherCode: weatherCode,
                                           dailyForecast: dailyWeather,
                                           hourlyForecast: hourlyWeather)

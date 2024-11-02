@@ -13,7 +13,7 @@ protocol WeatherServiceProtocol {
 
 struct WeatherService {
     func getWeather(latitude: String, longitude: String) async throws -> WeatherDataModel? {
-        if let url = URL(string: "https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset,precipitation_probability_mean,precipitation_sum,uv_index_max&timezone=auto&latitude=\(latitude)&longitude=\(longitude)&forecast_days=7&temperature_unit=celsius&hourly=temperature_2m,is_day,weather_code") {
+        if let url = URL(string: "https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code,apparent_temperature&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset,precipitation_probability_mean,precipitation_sum,uv_index_max&timezone=auto&latitude=\(latitude)&longitude=\(longitude)&forecast_days=7&temperature_unit=celsius&hourly=temperature_2m,is_day,weather_code") {
 
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
