@@ -12,11 +12,34 @@ struct SettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Unit of Measurement")
+
+            Text("Settings")
+                .font(.system(size: 42))
             Text("Current selection: " + settings.unitOfMeasurement.rawValue)
 
+            Text("Unit of Measurement")
+                .font(.title3)
+            
+            Divider()
+
+            TemperatureSettingsRowView(title: "Imperial",
+                                       subHeading: "Miles, Fahrenheit, etc.",
+                                       unitOfMeasurementKey: .imperial,
+                                       isSelected: settings.unitOfMeasurement == .imperial ? true : false)
+
+            Divider()
+
+            TemperatureSettingsRowView(title: "Celsius",
+                                       subHeading: "Kilometers, Celsius, etc.",
+                                       unitOfMeasurementKey: .metric,
+                                       isSelected: settings.unitOfMeasurement == .metric ? true : false)
+            
+            Divider()
+
+            Spacer()
         } //: VStack
-        .navigationTitle("Settings")
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .padding(25)
 //        .navigationBarBackButtonHidden()
 //        .toolbar {
 //            ToolbarItem(placement: .topBarLeading) {
