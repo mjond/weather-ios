@@ -8,18 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var nav: NavigationStateManager
-    
-    var body: some View {
-        VStack {
-            Text("Settings View")
-            Button {
-                nav.popToRoot()
-            } label: {
-                Text("Pop to root")
-            }
+    @Binding var settings: WeatherSettings
 
-        }
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Unit of Measurement")
+            Text("Current selection: " + settings.unitOfMeasurement.rawValue)
+
+        } //: VStack
         .navigationTitle("Settings")
 //        .navigationBarBackButtonHidden()
 //        .toolbar {
@@ -30,6 +26,8 @@ struct SettingsView: View {
 //                    }
 //                } label: {
 //                    Image(systemName: "chevron.left.circle")
+//                        .font(.system(size: 22))
+//                        .foregroundStyle(.black)
 //                }
 //            }
 //        }
@@ -37,6 +35,8 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    @Previewable @State var settings = WeatherSettings()
+    SettingsView(settings: $settings)
         .environmentObject(NavigationStateManager())
+//    SettingsView()
 }

@@ -21,7 +21,7 @@ struct HomeFailureView: View {
             Button {
                 tryAgainAction()
             } label: {
-                Text("Tap Again")
+                Text("Try Again")
             }
 
         }

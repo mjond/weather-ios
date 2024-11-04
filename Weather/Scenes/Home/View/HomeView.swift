@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
-    @State private var showDetails: Bool = false
-    @ObservedObject private var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @State private var goToSettings: Bool = false
 
     var body: some View {
         NavigationStack(path: $nav.path) {
@@ -90,10 +90,21 @@ struct HomeView: View {
                             }
                         } //: ScrollView
                         .padding()
-                        
+
                         Spacer()
                     } //: VStack
-                    .padding(.top, 70)
+                    .padding(.top, 15)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                goToSettings.toggle()
+                            } label: {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.system(size: 18))
+                                    .foregroundStyle(.black)
+                            }
+                        }
+                    }
                 }
             } //: VStack
             .task {
@@ -108,6 +119,9 @@ struct HomeView: View {
                               uvIndex: day.uvIndexMax,
                               sunrise: day.sunrise,
                               sunset: day.sunset)
+            }
+            .navigationDestination(isPresented: $goToSettings) {
+                SettingsView(settings: $viewModel.settings)
             }
         } //: NavigationStack
         .environmentObject(nav)

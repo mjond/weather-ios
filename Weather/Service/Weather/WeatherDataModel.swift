@@ -18,21 +18,21 @@ struct CurrentWeatherData: Codable {
     let temperature: Double
     let weatherCode: Double
     let apparentTemperature: Double
-    
+
     init(time: String, temperature: Double, weatherCode: Double, apparentTemperature: Double) {
         self.time = time
         self.temperature = temperature
         self.weatherCode = weatherCode
         self.apparentTemperature = apparentTemperature
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case time
         case temperature = "temperature_2m"
         case weatherCode = "weather_code"
         case apparentTemperature = "apparent_temperature"
     }
-    
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         time = try values.decodeIfPresent(String.self, forKey: .time) ?? ""

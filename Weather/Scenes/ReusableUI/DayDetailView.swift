@@ -18,35 +18,35 @@ struct DayDetailView: View {
     let uvIndex: String
     let sunrise: Date
     let sunset: Date
-    
+
     var body: some View {
         VStack {
             Text(dayName)
                 .font(.system(size: 36))
                 .padding(.bottom, 10)
-            
+
             VStack {
                 Text("Max: \(maxTemp)°")
                     .font(.system(size: 24))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
-                
+
                 Text("Min: \(minTemp)°")
                     .font(.system(size: 24))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
             }
             .padding(.bottom, 10)
-            
+
             Text("Change of precipitation: \(precipitationProbability)%")
                 .font(.system(size: 22))
                 .foregroundStyle(.primary)
-            
+
             Text("Precipitation amount: \(precipitationAmount)")
                 .font(.system(size: 22))
                 .foregroundStyle(.primary)
                 .padding(.bottom, 10)
-            
+
             Text("UV Index: \(uvIndex)")
                 .font(.system(size: 22))
                 .foregroundStyle(.primary)
@@ -62,6 +62,7 @@ struct DayDetailView: View {
                 } label: {
                     Image(systemName: "chevron.left.circle")
                         .font(.system(size: 22))
+                        .foregroundStyle(.black)
                 }
             }
         }

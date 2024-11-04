@@ -10,21 +10,9 @@ import CoreLocation
 
 class HomeViewModel: ObservableObject {
     @Published var state = State.loading
+    @ObservedObject var settings = WeatherSettings()
     private var locationManager = LocationManager()
-    
-    var userLatitude: String {
-        if let latitude = locationManager.lastLocation?.coordinate.latitude {
-            return String(format: "%.3f", latitude)
-        }
-        return "0.00"
-    }
-
-    var userLongitude: String {
-        if let longitude = locationManager.lastLocation?.coordinate.longitude {
-            return String(format: "%.3f", longitude)
-        }
-        return "0.00"
-    }
+    private var weatherService = WeatherService()
 
     var isAPICallInProgress = false
 
@@ -37,13 +25,24 @@ class HomeViewModel: ObservableObject {
     func getWeather() async {
         guard !isAPICallInProgress else { return }
         isAPICallInProgress = true
-        
+
         DispatchQueue.main.async {
             self.state = .loading
         }
 
         do {
-            if let weatherData = try await WeatherService().getWeather(latitude: userLatitude, longitude: userLongitude) {
+            guard let latitude = locationManager.lastLocation?.coordinate.latitude else {
+                return
+            }
+
+            guard let longitude = locationManager.lastLocation?.coordinate.longitude else {
+                return
+            }
+            
+            let formattedLatitude = String(format: "%.3f", latitude)
+            let formattedLongitude = String(format: "%.3f", longitude)
+
+            if let weatherData = try await weatherService.getWeather(latitude: formattedLatitude, longitude: formattedLongitude, unit: settings.unitOfMeasurement) {
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
                 let weatherCode = Int(weatherData.current.weatherCode)
                 let apparentTemperature = String(format: "%.0f", weatherData.current.apparentTemperature.rounded())
@@ -206,13 +205,12 @@ class HomeViewModel: ObservableObject {
         }
         return nil
     }
-    
+
     private func getDateAndTimeFromString(_ dateAsString: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = .current
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
         if let date = dateFormatter.date(from: dateAsString) {
-            print(date)
             return date
         }
         return nil
