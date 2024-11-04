@@ -62,7 +62,6 @@ struct DayDetailView: View {
                 } label: {
                     Image(systemName: "chevron.left.circle")
                         .font(.system(size: 22))
-                        .foregroundStyle(.black)
                 }
             }
         }
