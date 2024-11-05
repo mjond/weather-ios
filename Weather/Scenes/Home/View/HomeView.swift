@@ -100,6 +100,9 @@ struct HomeView: View {
                         .padding()
 
                         Spacer()
+                        
+                        Link("Data Source: Open-Meteo", destination: URL(string: "https://open-meteo.com/")!)
+                            .font(.footnote)
                     } //: VStack
                     .padding(.top, 15)
                     .toolbar {
