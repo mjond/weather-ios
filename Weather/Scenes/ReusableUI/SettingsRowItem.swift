@@ -25,7 +25,7 @@ struct SettingsRowItem: View {
                     .padding(.trailing, 25)
                     .foregroundStyle(Color("TitleColor"))
             }
-                        
+
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.title2)
