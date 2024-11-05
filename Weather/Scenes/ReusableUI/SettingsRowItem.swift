@@ -7,24 +7,22 @@
 
 import SwiftUI
 
-struct TemperatureSettingsRowView: View {
+struct SettingsRowItem: View {
     let title: String
     let subHeading: String
-    @ObservedObject var unitOfMeasurementKey: WeatherSettings
-    let isSelected: Bool
-
-    private var iconName: String {
-        if isSelected {
-            return "checkmark.circle.fill"
-        } else {
-            return "circle"
-        }
-    }
+    @Binding var isSelected: Bool
 
     var body: some View {
         HStack {
-            Image(systemName: iconName)
-                .padding(.trailing, 25)
+            if isSelected == true {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 20))
+                    .padding(.trailing, 25)
+            } else {
+                Image(systemName: "circle")
+                    .font(.system(size: 20))
+                    .padding(.trailing, 25)
+            }
                         
             VStack(alignment: .leading) {
                 Text(title)
@@ -39,8 +37,7 @@ struct TemperatureSettingsRowView: View {
 }
 
 #Preview {
-    TemperatureSettingsRowView(title: "Imperial",
+    SettingsRowItem(title: "Imperial",
                                subHeading: "Miles, Fahrenheit, etc.",
-                               unitOfMeasurementKey: WeatherSettings(),
-                               isSelected: true)
+                               isSelected: .constant(true))
 }

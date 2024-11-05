@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @Binding var settings: WeatherSettings
+    @State var isImperialActive: Bool = true
+    @State var isMetricActive: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,28 +18,30 @@ struct SettingsView: View {
             Text("Settings")
                 .font(.system(size: 42))
                 .padding(.bottom, 20)
-            
+
             Text("Unit of Measurement")
-                .font(.title3)
-            
+                .fontWeight(.medium)
+
             Divider()
 
-            TemperatureSettingsRowView(title: "Imperial",
+            SettingsRowItem(title: "Imperial",
                                        subHeading: "Miles, Fahrenheit, etc.",
-                                       unitOfMeasurementKey: settings,
-                                       isSelected: settings.unitOfMeasurement == .imperial ? true : false)
+                                       isSelected: $isImperialActive)
             .onTapGesture {
                 settings.unitOfMeasurement = .imperial
+                isImperialActive.toggle()
+                isMetricActive.toggle()
             }
 
             Divider()
 
-            TemperatureSettingsRowView(title: "Celsius",
+            SettingsRowItem(title: "Celsius",
                                        subHeading: "Kilometers, Celsius, etc.",
-                                       unitOfMeasurementKey: settings,
-                                       isSelected: settings.unitOfMeasurement == .metric ? true : false)
+                                       isSelected: $isMetricActive)
             .onTapGesture {
                 settings.unitOfMeasurement = .metric
+                isImperialActive.toggle()
+                isMetricActive.toggle()
             }
 
             Divider()
@@ -46,6 +50,15 @@ struct SettingsView: View {
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(25)
+        .onAppear {
+            if settings.unitOfMeasurement == .imperial {
+                isImperialActive = true
+                isMetricActive = false
+            } else {
+                isImperialActive = false
+                isMetricActive = true
+            }
+        }
 //        .navigationBarBackButtonHidden()
 //        .toolbar {
 //            ToolbarItem(placement: .topBarLeading) {
