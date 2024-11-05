@@ -23,33 +23,35 @@ struct DayDetailView: View {
         VStack {
             Text(dayName)
                 .font(.system(size: 36))
-                .padding(.bottom, 10)
+                .padding(.bottom, 20)
 
             VStack {
                 Text("Max: \(maxTemp)°")
-                    .font(.system(size: 24))
+                    .font(.system(size: 22))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
 
                 Text("Min: \(minTemp)°")
-                    .font(.system(size: 24))
+                    .font(.system(size: 22))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
             }
             .padding(.bottom, 10)
 
-            Text("Change of precipitation: \(precipitationProbability)%")
-                .font(.system(size: 22))
+            Text("Chance of precipitation: \(precipitationProbability)%")
+                .font(.system(size: 18))
                 .foregroundStyle(.primary)
-
+            
             Text("Precipitation amount: \(precipitationAmount)")
-                .font(.system(size: 22))
+                .font(.system(size: 18))
                 .foregroundStyle(.primary)
                 .padding(.bottom, 10)
 
             Text("UV Index: \(uvIndex)")
-                .font(.system(size: 22))
+                .font(.system(size: 18))
                 .foregroundStyle(.primary)
+            
+            Spacer()
         } //: VStack
         .padding(.bottom, 35)
         .navigationBarBackButtonHidden()

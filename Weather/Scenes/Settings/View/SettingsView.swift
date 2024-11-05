@@ -25,8 +25,8 @@ struct SettingsView: View {
             Divider()
 
             SettingsRowItem(title: "Imperial",
-                                       subHeading: "Miles, Fahrenheit, etc.",
-                                       isSelected: $isImperialActive)
+                            subHeading: "Miles, Fahrenheit, etc.",
+                            isSelected: $isImperialActive)
             .onTapGesture {
                 settings.unitOfMeasurement = .imperial
                 isImperialActive.toggle()
@@ -36,8 +36,8 @@ struct SettingsView: View {
             Divider()
 
             SettingsRowItem(title: "Celsius",
-                                       subHeading: "Kilometers, Celsius, etc.",
-                                       isSelected: $isMetricActive)
+                            subHeading: "Kilometers, Celsius, etc.",
+                            isSelected: $isMetricActive)
             .onTapGesture {
                 settings.unitOfMeasurement = .metric
                 isImperialActive.toggle()

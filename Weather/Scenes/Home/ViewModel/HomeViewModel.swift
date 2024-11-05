@@ -115,21 +115,26 @@ class HomeViewModel: ObservableObject {
             let minTemp = response.temperature_2m_min[index].rounded()
             let maxTemp = response.temperature_2m_max[index].rounded()
             let weatherCode = Int(response.weather_code[index])
-            let precipitationProbability = String(response.precipitation_probability_mean[index])
-            let precipitationAmount = response.precipitation_sum[index].rounded()
+            let precipitationProbability = Double(response.precipitation_probability_mean[index])
+            var precipitationAmount = response.precipitation_sum[index].rounded()
+            if settings.unitOfMeasurement == .imperial {
+                precipitationAmount = precipitationAmount * 0.0393701
+            }
             let uvIndex = response.uv_index_max[index].rounded()
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
             let formattedMaxTemp = String(format: "%.0f", maxTemp)
             let formattedPrecipitationAmount = String(format: "%.0f", precipitationAmount)
+            let formattedPrecipitationAmountWithUnits = settings.unitOfMeasurement == .imperial ? formattedPrecipitationAmount + " inches" : formattedPrecipitationAmount + " mm"
+            let formattedPrecipitationProbability = String(format: "%.0f", precipitationProbability)
             let formattedUv = String(format: "%.0f", uvIndex)
             
             let dailyWeatherObject = DailyWeatherModel(date: date,
                                                        minimumTemperature: formattedMinTemp,
                                                        maximumTemperature: formattedMaxTemp,
                                                        weatherCode: weatherCode,
-                                                       precipitationProbability: precipitationProbability,
-                                                       precipitationAmount: formattedPrecipitationAmount,
+                                                       precipitationProbability: formattedPrecipitationProbability,
+                                                       precipitationAmount: formattedPrecipitationAmountWithUnits,
                                                        uvIndexMax: formattedUv,
                                                        sunset: sunset,
                                                        sunrise: sunrise)

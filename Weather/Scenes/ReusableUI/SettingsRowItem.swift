@@ -28,7 +28,7 @@ struct SettingsRowItem: View {
                 Text(title)
                     .font(.title2)
                 Text(subHeading)
-                    .font(.subheadline)
+                    .font(.footnote)
             } //: VStack
             
             Spacer()
