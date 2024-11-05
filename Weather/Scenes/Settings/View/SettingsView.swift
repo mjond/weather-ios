@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SettingsView: View {
     @Binding var settings: WeatherSettings
-
+    
     var body: some View {
         VStack(alignment: .leading) {
 
             Text("Settings")
                 .font(.system(size: 42))
-            Text("Current selection: " + settings.unitOfMeasurement.rawValue)
-
+                .padding(.bottom, 20)
+            
             Text("Unit of Measurement")
                 .font(.title3)
             
@@ -24,16 +24,22 @@ struct SettingsView: View {
 
             TemperatureSettingsRowView(title: "Imperial",
                                        subHeading: "Miles, Fahrenheit, etc.",
-                                       unitOfMeasurementKey: .imperial,
+                                       unitOfMeasurementKey: settings,
                                        isSelected: settings.unitOfMeasurement == .imperial ? true : false)
+            .onTapGesture {
+                settings.unitOfMeasurement = .imperial
+            }
 
             Divider()
 
             TemperatureSettingsRowView(title: "Celsius",
                                        subHeading: "Kilometers, Celsius, etc.",
-                                       unitOfMeasurementKey: .metric,
+                                       unitOfMeasurementKey: settings,
                                        isSelected: settings.unitOfMeasurement == .metric ? true : false)
-            
+            .onTapGesture {
+                settings.unitOfMeasurement = .metric
+            }
+
             Divider()
 
             Spacer()

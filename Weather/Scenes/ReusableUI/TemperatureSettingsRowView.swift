@@ -10,8 +10,9 @@ import SwiftUI
 struct TemperatureSettingsRowView: View {
     let title: String
     let subHeading: String
-    let unitOfMeasurementKey: UnitOfMeasurement
+    @ObservedObject var unitOfMeasurementKey: WeatherSettings
     let isSelected: Bool
+
     private var iconName: String {
         if isSelected {
             return "checkmark.circle.fill"
@@ -40,6 +41,6 @@ struct TemperatureSettingsRowView: View {
 #Preview {
     TemperatureSettingsRowView(title: "Imperial",
                                subHeading: "Miles, Fahrenheit, etc.",
-                               unitOfMeasurementKey: .imperial,
+                               unitOfMeasurementKey: WeatherSettings(),
                                isSelected: true)
 }
