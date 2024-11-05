@@ -24,6 +24,7 @@ struct DayDetailView: View {
             Text(dayName)
                 .font(.system(size: 36))
                 .padding(.bottom, 20)
+                .foregroundStyle(Color("TitleColor"))
 
             VStack {
                 Text("Max: \(maxTemp)°")

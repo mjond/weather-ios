@@ -27,7 +27,7 @@ struct SettingsView: View {
             Divider()
 
             SettingsRowItem(title: "Imperial",
-                            subHeading: "Miles, Fahrenheit, etc.",
+                            subHeading: "Miles, Inches, Fahrenheit, etc.",
                             isSelected: $isImperialActive)
             .onTapGesture {
                 settings.unitOfMeasurement = .imperial
@@ -39,7 +39,7 @@ struct SettingsView: View {
                 .foregroundStyle(Color("TitleColor"))
 
             SettingsRowItem(title: "Celsius",
-                            subHeading: "Kilometers, Celsius, etc.",
+                            subHeading: "Kilometers, Millimeters, Celsius, etc.",
                             isSelected: $isMetricActive)
             .onTapGesture {
                 settings.unitOfMeasurement = .metric

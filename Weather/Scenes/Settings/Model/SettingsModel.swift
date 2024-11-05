@@ -28,7 +28,7 @@ final class WeatherSettings: ObservableObject {
 //    }
 //    
 //    func updatePreference(value: UnitOfMeasurement, key: String) {
-//        UserDefaults().set(value, forKey: key)
+//        UserDefaults().set(value.rawValue, forKey: key)
 //    }
 }
 
