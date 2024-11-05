@@ -18,21 +18,27 @@ struct SettingsRowItem: View {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 20))
                     .padding(.trailing, 25)
+                    .foregroundStyle(Color("TitleColor"))
             } else {
                 Image(systemName: "circle")
                     .font(.system(size: 20))
                     .padding(.trailing, 25)
+                    .foregroundStyle(Color("TitleColor"))
             }
                         
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.title2)
+                    .foregroundStyle(Color("TitleColor"))
+                
                 Text(subHeading)
                     .font(.footnote)
+                    .foregroundStyle(Color("SubheadingColor"))
             } //: VStack
             
             Spacer()
         } //: HStack
+        .background(.clear)
     }
 }
 

@@ -32,33 +32,41 @@ struct HomeView: View {
                         VStack {
                             Text(weatherModel.locationName)
                                 .font(.title)
+                                .foregroundStyle(Color("TitleColor"))
                                 .padding(.bottom, 2)
 
                             Text(weatherModel.currentTemperature+"°")
                                 .font(.system(size: 46))
                                 .fontWeight(.bold)
+                                .foregroundStyle(Color("TitleColor"))
                                 .foregroundStyle(.primary)
                             
                             Text("Feels like \(weatherModel.apparentTemperature)°")
+                                .foregroundStyle(Color("SubheadingColor"))
                                 .padding(.bottom, 5)
 
                             Image(systemName: weatherModel.currentWeatherIconName)
                                 .font(.system(size: 80))
+                                .foregroundStyle(Color("TitleColor"))
                                 .padding(.bottom)
                             
                             VStack {
                                 HStack {
                                     Text("Sunrise:")
                                         .fontWeight(.semibold)
+                                        .foregroundStyle(Color("TitleColor"))
                                     let sunriseDate = weatherModel.dailyForecast[0].sunrise
                                     Text(sunriseDate, format: .dateTime.hour().minute())
+                                        .foregroundStyle(Color("TitleColor"))
                                 }
 
                                 HStack {
                                     Text("Sunset:")
                                         .fontWeight(.semibold)
+                                        .foregroundStyle(Color("TitleColor"))
                                     let sunsetDate = weatherModel.dailyForecast[0].sunset
                                     Text(sunsetDate, format: .dateTime.hour().minute())
+                                        .foregroundStyle(Color("TitleColor"))
                                 }
                             }
 
@@ -101,12 +109,13 @@ struct HomeView: View {
                             } label: {
                                 Image(systemName: "gearshape.fill")
                                     .font(.system(size: 18))
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TitleColor"))
                             }
                         }
                     }
                 }
             } //: VStack
+            .background(Color("BackgroundColor"))
             .task {
                 await viewModel.getWeather()
             }

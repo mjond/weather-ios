@@ -17,25 +17,30 @@ struct DayCardView: View {
         VStack(alignment: .center) {
             Text(dayName)
                 .padding()
+                .foregroundStyle(Color("TitleColor"))
             
             Text(maxTemp+"°")
                 .font(.headline)
+                .foregroundStyle(Color("TitleColor"))
             Text(minTemp+"°")
                 .font(.subheadline)
                 .padding(.bottom, 8)
+                .foregroundStyle(Color("SubheadingColor"))
             
             Spacer()
             
             Image(systemName: weatherIconName)
                 .font(.system(size: 32))
+                .foregroundStyle(Color("TitleColor"))
             
             Spacer()
         }
         .frame(width: 75, height: 160, alignment: .center)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(.black, lineWidth: 1)
+                .strokeBorder(Color("TitleColor"), lineWidth: 1)
         )
+        .background(.clear)
     }
 }
 

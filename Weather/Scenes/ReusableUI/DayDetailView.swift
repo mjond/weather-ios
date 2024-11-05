@@ -30,30 +30,37 @@ struct DayDetailView: View {
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
+                    .foregroundStyle(Color("TitleColor"))
 
                 Text("Min: \(minTemp)°")
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                     .foregroundStyle(.primary)
+                    .foregroundStyle(Color("TitleColor"))
             }
             .padding(.bottom, 10)
 
             Text("Chance of precipitation: \(precipitationProbability)%")
                 .font(.system(size: 18))
                 .foregroundStyle(.primary)
+                .foregroundStyle(Color("TitleColor"))
             
             Text("Precipitation amount: \(precipitationAmount)")
                 .font(.system(size: 18))
                 .foregroundStyle(.primary)
                 .padding(.bottom, 10)
+                .foregroundStyle(Color("TitleColor"))
 
             Text("UV Index: \(uvIndex)")
                 .font(.system(size: 18))
                 .foregroundStyle(.primary)
+                .foregroundStyle(Color("TitleColor"))
             
             Spacer()
         } //: VStack
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         .padding(.bottom, 35)
+        .background(Color("BackgroundColor"))
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -64,6 +71,7 @@ struct DayDetailView: View {
                 } label: {
                     Image(systemName: "chevron.left.circle")
                         .font(.system(size: 22))
+                        .foregroundStyle(Color("TitleColor"))
                 }
             }
         }

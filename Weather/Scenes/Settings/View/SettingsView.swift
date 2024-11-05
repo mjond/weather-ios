@@ -18,9 +18,11 @@ struct SettingsView: View {
             Text("Settings")
                 .font(.system(size: 42))
                 .padding(.bottom, 20)
+                .foregroundStyle(Color("TitleColor"))
 
             Text("Unit of Measurement")
                 .fontWeight(.medium)
+                .foregroundStyle(Color("SubheadingColor"))
 
             Divider()
 
@@ -34,6 +36,7 @@ struct SettingsView: View {
             }
 
             Divider()
+                .foregroundStyle(Color("TitleColor"))
 
             SettingsRowItem(title: "Celsius",
                             subHeading: "Kilometers, Celsius, etc.",
@@ -45,11 +48,13 @@ struct SettingsView: View {
             }
 
             Divider()
+                .foregroundStyle(Color("TitleColor"))
 
             Spacer()
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(25)
+        .background(Color("BackgroundColor"))
         .onAppear {
             if settings.unitOfMeasurement == .imperial {
                 isImperialActive = true

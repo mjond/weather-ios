@@ -23,8 +23,10 @@ struct HomeFailureView: View {
             } label: {
                 Text("Try Again")
             }
-
-        }
+        } //: VStack
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .padding()
+        .background(Color("BackgroundColor"))
     }
 }
 
