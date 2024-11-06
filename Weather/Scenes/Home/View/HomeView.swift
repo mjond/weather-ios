@@ -113,9 +113,13 @@ struct HomeView: View {
 
                                 Spacer()
 
-                                Link("Data Source: Open-Meteo", destination: URL(string: "https://open-meteo.com/")!)
-                                    .font(.footnote)
-                                    .fontDesign(.serif)
+                                Link(destination: URL(string: "https://open-meteo.com/")!, label: {
+                                    Text("Data Source: Open Meteo")
+                                        .font(.footnote)
+                                        .fontDesign(.serif)
+                                        .underline()
+                                })
+
                             } //: VStack
                             .padding(.top, 15)
                             .toolbar {
@@ -169,7 +173,9 @@ struct HomeView: View {
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView(settings: $viewModel.settings)
                     }
-                case .denied, .restricted, .notDetermined:
+                case .notDetermined:
+                    LocationPendingView()
+                case .denied, .restricted:
                     LocationDeniedView()
                 default:
                     LocationDeniedView()
