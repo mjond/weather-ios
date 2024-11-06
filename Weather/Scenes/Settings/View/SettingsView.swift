@@ -17,11 +17,13 @@ struct SettingsView: View {
 
             Text("Settings")
                 .font(.system(size: 42))
-                .padding(.bottom, 20)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
+                .padding(.bottom, 20)
 
             Text("Unit of Measurement")
                 .fontWeight(.medium)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
 
             Divider()

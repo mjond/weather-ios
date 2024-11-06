@@ -17,15 +17,18 @@ struct DayCardView: View {
         VStack(alignment: .center) {
             Text(dayName)
                 .padding()
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
             
             Text(maxTemp+"°")
                 .font(.headline)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
             Text(minTemp+"°")
                 .font(.subheadline)
-                .padding(.bottom, 8)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
+                .padding(.bottom, 8)
             
             Spacer()
             

@@ -23,38 +23,39 @@ struct DayDetailView: View {
         VStack {
             Text(dayName)
                 .font(.system(size: 36))
-                .padding(.bottom, 20)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
+                .padding(.bottom, 20)
 
             VStack {
                 Text("Max: \(maxTemp)°")
                     .font(.system(size: 22))
                     .fontWeight(.bold)
-                    .foregroundStyle(.primary)
+                    .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
 
                 Text("Min: \(minTemp)°")
                     .font(.system(size: 22))
                     .fontWeight(.bold)
-                    .foregroundStyle(.primary)
+                    .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
             }
             .padding(.bottom, 10)
 
             Text("Chance of precipitation: \(precipitationProbability)%")
                 .font(.system(size: 18))
-                .foregroundStyle(.primary)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
             
             Text("Precipitation amount: \(precipitationAmount)")
                 .font(.system(size: 18))
-                .foregroundStyle(.primary)
-                .padding(.bottom, 10)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
+                .padding(.bottom, 10)
 
             Text("UV Index: \(uvIndex)")
                 .font(.system(size: 18))
-                .foregroundStyle(.primary)
+                .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
             
             Spacer()

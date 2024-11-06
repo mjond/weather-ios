@@ -29,10 +29,12 @@ struct SettingsRowItem: View {
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.title2)
+                    .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
                 
                 Text(subHeading)
                     .font(.footnote)
+                    .fontDesign(.serif)
                     .foregroundStyle(Color("SubheadingColor"))
             } //: VStack
             
