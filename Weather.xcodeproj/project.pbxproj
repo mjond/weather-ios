@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B516DE672CC81DB9007C52B5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516DE662CC81D7F007C52B5 /* HomeModel.swift */; };
 		B52927592CDA52D7009B6A93 /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52927582CDA52D3009B6A93 /* UserDefaultsConstants.swift */; };
+		B529275B2CDAEDD3009B6A93 /* LocationDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B529275A2CDAEDD3009B6A93 /* LocationDeniedView.swift */; };
 		B52ACD6A2CCD954D00EE07F2 /* HomeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */; };
 		B52ACD6D2CCDBC5200EE07F2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */; };
 		B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		B516DE662CC81D7F007C52B5 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		B52927582CDA52D3009B6A93 /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
+		B529275A2CDAEDD3009B6A93 /* LocationDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeniedView.swift; sourceTree = "<group>"; };
 		B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLoadingView.swift; sourceTree = "<group>"; };
 		B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */,
 				B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */,
 				B59A48CC2CCDBDDE00F2C9FB /* HomeFailureView.swift */,
+				B529275A2CDAEDD3009B6A93 /* LocationDeniedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				B516DE672CC81DB9007C52B5 /* HomeModel.swift in Sources */,
 				B5770FC82AFC20AC007FB34E /* WeatherDataModel.swift in Sources */,
 				B56A06782CC6DD050080DC74 /* HomeViewModel.swift in Sources */,
+				B529275B2CDAEDD3009B6A93 /* LocationDeniedView.swift in Sources */,
 				B59A48D12CCDD56E00F2C9FB /* HourlyCardView.swift in Sources */,
 				B52ACD6A2CCD954D00EE07F2 /* HomeLoadingView.swift in Sources */,
 				B5C1842E2CC883040077B1E9 /* DayCardView.swift in Sources */,
