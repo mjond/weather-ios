@@ -22,8 +22,12 @@ class HomeViewModel: ObservableObject {
         case success(HomeModel)
     }
 
-    func getWeather() async {
-        guard !isAPICallInProgress else { return }
+    func getWeather(lat: CLLocationDegrees?, long: CLLocationDegrees?) async {
+        guard !isAPICallInProgress else {
+            print("getWeather() call already in progress")
+            return
+        }
+
         isAPICallInProgress = true
 
         DispatchQueue.main.async {
@@ -31,16 +35,23 @@ class HomeViewModel: ObservableObject {
         }
 
         do {
-            guard let latitude = locationManager.lastLocation?.coordinate.latitude else {
+            guard let latitude = lat else {
+                isAPICallInProgress = false
+                print("getWeather() no latitude value found")
                 return
             }
 
-            guard let longitude = locationManager.lastLocation?.coordinate.longitude else {
+            guard let longitude = long else {
+                isAPICallInProgress = false
+                print("getWeather() no longitude value found")
                 return
             }
             
             let formattedLatitude = String(format: "%.3f", latitude)
             let formattedLongitude = String(format: "%.3f", longitude)
+            
+            print(formattedLatitude)
+            print(formattedLongitude)
 
             if let weatherData = try await weatherService.getWeather(latitude: formattedLatitude, longitude: formattedLongitude, unit: settings.unitOfMeasurement) {
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
@@ -58,11 +69,13 @@ class HomeViewModel: ObservableObject {
                                           hourlyForecast: hourlyWeather)
 
                 DispatchQueue.main.async {
+                    self.isAPICallInProgress = false
                     self.state = .success(homeModel)
                 }
             }
         } catch {
             DispatchQueue.main.async {
+                self.isAPICallInProgress = false
                 self.state = .failure
             }
             print("HomeViewModel.getWeather() -> failed to get weather data")

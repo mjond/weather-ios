@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var locationManager: LocationManager = LocationManager()
     @State private var goToSettings: Bool = false
 
     var body: some View {
@@ -23,7 +24,8 @@ struct HomeView: View {
                 case .failure:
                     HomeFailureView {
                         Task {
-                            await viewModel.getWeather()
+                            await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
+                                                       long: locationManager.lastLocation?.coordinate.longitude)
                         }
                     }
 
@@ -100,7 +102,7 @@ struct HomeView: View {
                         .padding()
 
                         Spacer()
-                        
+
                         Link("Data Source: Open-Meteo", destination: URL(string: "https://open-meteo.com/")!)
                             .font(.footnote)
                     } //: VStack
@@ -120,7 +122,28 @@ struct HomeView: View {
             } //: VStack
             .background(Color("BackgroundColor"))
             .task {
-                await viewModel.getWeather()
+                if locationManager.lastLocation != nil {
+                    await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
+                                               long: locationManager.lastLocation?.coordinate.longitude)
+                }
+            }
+            .onChange(of: locationManager.lastLocation) {
+                Task {
+                    if locationManager.locationStatus == .authorizedWhenInUse ||
+                        locationManager.locationStatus == .authorizedWhenInUse {
+                        await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
+                                                   long: locationManager.lastLocation?.coordinate.longitude)
+                    }
+                }
+            }
+            .onChange(of: locationManager.locationStatus) {
+                if locationManager.locationStatus == .authorizedWhenInUse ||
+                    locationManager.locationStatus == .authorizedWhenInUse {
+                    Task {
+                        await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
+                                                   long: locationManager.lastLocation?.coordinate.longitude)
+                    }
+                }
             }
             .navigationDestination(for: DailyWeatherModel.self) { day in
                 DayDetailView(dayName: day.fullDayName,
@@ -135,6 +158,7 @@ struct HomeView: View {
             .navigationDestination(isPresented: $goToSettings) {
                 SettingsView(settings: $viewModel.settings)
             }
+
         } //: NavigationStack
         .environmentObject(nav)
     }
