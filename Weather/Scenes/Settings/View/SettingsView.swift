@@ -51,6 +51,12 @@ struct SettingsView: View {
 
             Divider()
                 .foregroundStyle(Color("TitleColor"))
+//                .padding(.bottom, 25)
+//            
+//            Text("Appearance")
+//                .fontWeight(.medium)
+//                .fontDesign(.serif)
+//                .foregroundStyle(Color("SubheadingColor"))
 
             Spacer()
         } //: VStack

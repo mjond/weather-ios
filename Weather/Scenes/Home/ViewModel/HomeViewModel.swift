@@ -131,7 +131,7 @@ class HomeViewModel: ObservableObject {
             let maxTemp = response.temperature_2m_max[index].rounded()
             let weatherCode = Int(response.weather_code[index])
             let precipitationProbability = Double(response.precipitation_probability_mean[index])
-            var precipitationAmount = response.precipitation_sum[index].rounded()
+            let precipitationAmount = response.precipitation_sum[index].rounded()
             let uvIndex = response.uv_index_max[index].rounded()
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
