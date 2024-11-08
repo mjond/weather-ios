@@ -162,7 +162,7 @@ class HomeViewModel: ObservableObject {
         if settings.unitOfMeasurement == .imperial {
             let precipitationAmount = precipitationAmount * 0.0393701
             
-            if precipitationAmount == 0.0 {
+            if precipitationAmount == 0 {
                 formattedPrecipitationWithUnits = "0 inches"
             } else if precipitationAmount < 0.6 {
                 formattedPrecipitationWithUnits = "less than 1 inch"
