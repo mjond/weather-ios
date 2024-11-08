@@ -11,6 +11,7 @@ struct DayDetailView: View {
     @EnvironmentObject var nav: NavigationStateManager
 
     let dayName: String
+    let weatherIconName: String
     let maxTemp: String
     let minTemp: String
     let precipitationProbability: String
@@ -26,6 +27,12 @@ struct DayDetailView: View {
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom, 20)
+            
+            Image(systemName: weatherIconName)
+                .font(.system(size: 80))
+                .fontDesign(.serif)
+                .foregroundStyle(Color("TitleColor"))
+                .padding(.bottom)
 
             VStack {
                 Text("Max: \(maxTemp)°")
@@ -40,7 +47,33 @@ struct DayDetailView: View {
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
             }
-            .padding(.bottom, 10)
+            .padding(.bottom)
+            
+            HStack {
+                HStack {
+                    Text("Sunrise:")
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                    let sunriseDate = sunrise
+                    Text(sunriseDate, format: .dateTime.hour().minute())
+                        .fontDesign(.serif)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color("TitleColor"))
+                }
+                .padding(.trailing, 15)
+
+                HStack {
+                    Text("Sunset:")
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                    let sunsetDate = sunrise
+                    Text(sunsetDate, format: .dateTime.hour().minute())
+                        .fontDesign(.serif)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color("TitleColor"))
+                }
+            }
+            .padding(.bottom)
 
             Text("Chance of precipitation: \(precipitationProbability)%")
                 .font(.system(size: 18))
@@ -82,10 +115,11 @@ struct DayDetailView: View {
 
 #Preview {
     DayDetailView(dayName: "Monday",
+                  weatherIconName: "cloud",
                   maxTemp: "22",
                   minTemp: "12",
                   precipitationProbability: "15",
-                  precipitationAmount: "1",
+                  precipitationAmount: "1 in",
                   uvIndex: "3",
                   sunrise: Date(),
                   sunset: Date())

@@ -132,15 +132,11 @@ class HomeViewModel: ObservableObject {
             let weatherCode = Int(response.weather_code[index])
             let precipitationProbability = Double(response.precipitation_probability_mean[index])
             var precipitationAmount = response.precipitation_sum[index].rounded()
-            if settings.unitOfMeasurement == .imperial {
-                precipitationAmount = precipitationAmount * 0.0393701
-            }
             let uvIndex = response.uv_index_max[index].rounded()
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
             let formattedMaxTemp = String(format: "%.0f", maxTemp)
-            let formattedPrecipitationAmount = String(format: "%.0f", precipitationAmount)
-            let formattedPrecipitationAmountWithUnits = settings.unitOfMeasurement == .imperial ? formattedPrecipitationAmount + " inches" : formattedPrecipitationAmount + " mm"
+            let formattedPrecipitation = getFormattedPrecipitation(precipitationAmount: precipitationAmount)
             let formattedPrecipitationProbability = String(format: "%.0f", precipitationProbability)
             let formattedUv = String(format: "%.0f", uvIndex)
             
@@ -149,7 +145,7 @@ class HomeViewModel: ObservableObject {
                                                        maximumTemperature: formattedMaxTemp,
                                                        weatherCode: weatherCode,
                                                        precipitationProbability: formattedPrecipitationProbability,
-                                                       precipitationAmount: formattedPrecipitationAmountWithUnits,
+                                                       precipitationAmount: formattedPrecipitation,
                                                        uvIndexMax: formattedUv,
                                                        sunset: sunset,
                                                        sunrise: sunrise)
@@ -158,6 +154,36 @@ class HomeViewModel: ObservableObject {
         }
         
         return dailyForecast
+    }
+    
+    private func getFormattedPrecipitation(precipitationAmount: Double) -> String {
+        var formattedPrecipitationWithUnits = ""
+        
+        if settings.unitOfMeasurement == .imperial {
+            let precipitationAmount = precipitationAmount * 0.0393701
+            
+            if precipitationAmount == 0.0 {
+                formattedPrecipitationWithUnits = "0 inches"
+            } else if precipitationAmount < 0.6 {
+                formattedPrecipitationWithUnits = "less than 1 inch"
+                print(formattedPrecipitationWithUnits)
+            } else {
+                let precipatationRounded = precipitationAmount.rounded()
+                
+                if precipatationRounded == 1.0 {
+                    let precipitationAsString = String(format: "%.0f", precipatationRounded)
+                    formattedPrecipitationWithUnits = precipitationAsString + " inch"
+                } else {
+                    let precipitationAsString = String(format: "%.0f", precipatationRounded)
+                    formattedPrecipitationWithUnits = precipitationAsString + " inches"
+                }
+            }
+        } else {
+            let precipitationAsString = String(format: "%.0f", precipitationAmount)
+            formattedPrecipitationWithUnits = precipitationAsString + " mm"
+        }
+
+        return formattedPrecipitationWithUnits
     }
     
     private func parseHourlyWeatherData(with response: HourlyWeatherData) -> [HourlyWeatherModel] {
@@ -196,7 +222,7 @@ class HomeViewModel: ObservableObject {
         }
         return hourlyForecast
     }
-    
+
     private func findStartingHourlyIndex(from hours: HourlyWeatherData) -> Int {
         let currentDate = Date()
 

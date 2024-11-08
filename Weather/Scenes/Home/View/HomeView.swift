@@ -63,7 +63,7 @@ struct HomeView: View {
                                             Text("Sunrise:")
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
-                                            let sunriseDate = weatherModel.currentSunrise
+                                            let sunriseDate = weatherModel.currentSunset
                                             Text(sunriseDate, format: .dateTime.hour().minute())
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)
@@ -163,6 +163,7 @@ struct HomeView: View {
 //                    }
                     .navigationDestination(for: DailyWeatherModel.self) { day in
                         DayDetailView(dayName: day.fullDayName,
+                                      weatherIconName: day.weatherIconName,
                                       maxTemp: day.maximumTemperature,
                                       minTemp: day.minimumTemperature,
                                       precipitationProbability: day.precipitationProbability,
