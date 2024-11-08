@@ -37,3 +37,19 @@ enum UnitOfMeasurement: String {
     case metric
     case imperial
 }
+
+enum Appearance: String, CaseIterable, Identifiable {
+    case system
+    case light
+    case dark
+
+    var id: String { self.rawValue }
+    
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system: return nil // Follow system
+        case .light: return .light
+        case .dark: return .dark
+        }
+    }
+}

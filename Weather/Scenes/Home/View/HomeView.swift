@@ -58,26 +58,27 @@ struct HomeView: View {
                                         .foregroundStyle(Color("TitleColor"))
                                         .padding(.bottom)
                                     
-                                    VStack {
+                                    HStack {
                                         HStack {
                                             Text("Sunrise:")
                                                 .fontDesign(.serif)
-                                                .fontWeight(.semibold)
                                                 .foregroundStyle(Color("TitleColor"))
-                                            let sunriseDate = weatherModel.dailyForecast[0].sunrise
+                                            let sunriseDate = weatherModel.currentSunrise
                                             Text(sunriseDate, format: .dateTime.hour().minute())
                                                 .fontDesign(.serif)
+                                                .fontWeight(.semibold)
                                                 .foregroundStyle(Color("TitleColor"))
                                         }
+                                        .padding(.trailing, 15)
 
                                         HStack {
                                             Text("Sunset:")
                                                 .fontDesign(.serif)
-                                                .fontWeight(.semibold)
                                                 .foregroundStyle(Color("TitleColor"))
-                                            let sunsetDate = weatherModel.dailyForecast[0].sunset
+                                            let sunsetDate = weatherModel.currentSunrise
                                             Text(sunsetDate, format: .dateTime.hour().minute())
                                                 .fontDesign(.serif)
+                                                .fontWeight(.semibold)
                                                 .foregroundStyle(Color("TitleColor"))
                                         }
                                     }

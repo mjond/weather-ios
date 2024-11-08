@@ -24,6 +24,7 @@ struct DayCardView: View {
                 .font(.headline)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
+
             Text(minTemp+"°")
                 .font(.subheadline)
                 .fontDesign(.serif)

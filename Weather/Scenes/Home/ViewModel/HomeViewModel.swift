@@ -24,7 +24,7 @@ class HomeViewModel: ObservableObject {
 
     func getWeather(lat: CLLocationDegrees?, long: CLLocationDegrees?) async {
         guard !isAPICallInProgress else {
-            print("getWeather() call already in progress")
+            print("HomeViewModel.getWeather() call already in progress")
             return
         }
 
@@ -37,21 +37,18 @@ class HomeViewModel: ObservableObject {
         do {
             guard let latitude = lat else {
                 isAPICallInProgress = false
-                print("getWeather() no latitude value found")
+                print("HomeViewModel.getWeather() no latitude value found")
                 return
             }
 
             guard let longitude = long else {
                 isAPICallInProgress = false
-                print("getWeather() no longitude value found")
+                print("HomeViewModel.getWeather() no longitude value found")
                 return
             }
             
             let formattedLatitude = String(format: "%.3f", latitude)
             let formattedLongitude = String(format: "%.3f", longitude)
-            
-            print(formattedLatitude)
-            print(formattedLongitude)
 
             if let weatherData = try await weatherService.getWeather(latitude: formattedLatitude, longitude: formattedLongitude, unit: settings.unitOfMeasurement) {
                 let currentTemperature = String(format: "%.0f", weatherData.current.temperature.rounded())
@@ -60,10 +57,15 @@ class HomeViewModel: ObservableObject {
                 let dailyWeather = parseDailyWeatherData(with: weatherData.daily)
                 let hourlyWeather = parseHourlyWeatherData(with: weatherData.hourly)
                 let locationName = await getLocationName(location: locationManager.lastLocation)
+                
+                let currentSunrise = dailyWeather[0].sunrise
+                let currentSunset = dailyWeather[0].sunset
 
                 let homeModel = HomeModel(locationName: locationName,
                                           currentTemperature: currentTemperature,
                                           apparentTemperature: apparentTemperature,
+                                          currentSunrise: currentSunrise,
+                                          currentSunset: currentSunset,
                                           currentWeatherCode: weatherCode,
                                           dailyForecast: dailyWeather,
                                           hourlyForecast: hourlyWeather)
@@ -89,13 +91,13 @@ class HomeViewModel: ObservableObject {
             if let currentLocation = locationManager.lastLocation {
                 currentLocation.fetchCity(completion: { city, error in
                     guard error == nil else {
-                        print("getLocationName() -> Error when getting location name")
+                        print("HomeViewModel.getLocationName() -> Error when getting location name")
                         continuation.resume(returning: "Current Location")
                         return
                     }
 
                     guard let city = city else {
-                        print("getLocationName() -> No location found")
+                        print("HomeViewModel.getLocationName() -> No location found")
                         continuation.resume(returning: "Current Location")
                         return
                     }
@@ -203,7 +205,6 @@ class HomeViewModel: ObservableObject {
 
             if date < currentDate {
                 guard let nextDate = getDateAndTimeFromString(hours.time[index+1]) else {
-                    print("no other dates to compare ")
                     return 0
                 }
                 

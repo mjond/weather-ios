@@ -11,9 +11,11 @@ struct HomeModel {
     var locationName: String
     var currentTemperature: String
     var apparentTemperature: String
+    var currentSunrise: Date
+    var currentSunset: Date
     var currentWeatherCode: Int
     var currentWeatherIconName: String {
-        WeatherHelper().getWeatherCodeIcon(from: currentWeatherCode)
+        WeatherHelper().getCurrentWeatherCodeIcon(from: currentWeatherCode, sunrise: currentSunrise, sunset: currentSunset)
     }
     var dailyForecast: [DailyWeatherModel]
     var hourlyForecast: [HourlyWeatherModel]
@@ -32,7 +34,7 @@ struct DailyWeatherModel: Identifiable, Hashable {
     var maximumTemperature: String
     var weatherCode: Int
     var weatherIconName: String {
-        WeatherHelper().getWeatherCodeIcon(from: weatherCode)
+        WeatherHelper().getDailyWeatherCodeIcon(from: weatherCode)
     }
     var precipitationProbability: String
     var precipitationAmount: String
