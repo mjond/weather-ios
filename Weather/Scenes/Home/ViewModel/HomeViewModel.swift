@@ -133,12 +133,15 @@ class HomeViewModel: ObservableObject {
             let precipitationProbability = Double(response.precipitation_probability_mean[index])
             let precipitationAmount = response.precipitation_sum[index].rounded()
             let uvIndex = response.uv_index_max[index].rounded()
+            let windSpeed = response.wind_speed_10m_max[index].rounded()
+            let windDirection = response.wind_speed_10m_max[index]
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
             let formattedMaxTemp = String(format: "%.0f", maxTemp)
             let formattedPrecipitation = getFormattedPrecipitation(precipitationAmount: precipitationAmount)
             let formattedPrecipitationProbability = String(format: "%.0f", precipitationProbability)
             let formattedUv = String(format: "%.0f", uvIndex)
+            let formattedWindSpeed = getFormattedWind(from: windDirection)
             
             let dailyWeatherObject = DailyWeatherModel(date: date,
                                                        minimumTemperature: formattedMinTemp,
@@ -148,7 +151,9 @@ class HomeViewModel: ObservableObject {
                                                        precipitationAmount: formattedPrecipitation,
                                                        uvIndexMax: formattedUv,
                                                        sunset: sunset,
-                                                       sunrise: sunrise)
+                                                       sunrise: sunrise,
+                                                       windSpeed: formattedWindSpeed,
+                                                       windDirection: windDirection)
             
             dailyForecast.append(dailyWeatherObject)
         }
@@ -185,7 +190,22 @@ class HomeViewModel: ObservableObject {
 
         return formattedPrecipitationWithUnits
     }
-    
+
+    private func getFormattedWind(from amount: Double) -> String {
+        var formattedWindWithUnits = ""
+        
+        if settings.unitOfMeasurement == .imperial {
+            let amountAsImperial = amount * 0.6214
+            formattedWindWithUnits = String(format: "%.0f", amountAsImperial)
+            formattedWindWithUnits = formattedWindWithUnits + " mph"
+        } else {
+            formattedWindWithUnits = String(format: "%.0f", amount)
+            formattedWindWithUnits = formattedWindWithUnits + " km/h"
+        }
+        
+        return formattedWindWithUnits
+    }
+
     private func parseHourlyWeatherData(with response: HourlyWeatherData) -> [HourlyWeatherModel] {
         var hourlyForecast: [HourlyWeatherModel] = []
         

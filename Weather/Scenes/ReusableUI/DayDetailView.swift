@@ -19,6 +19,7 @@ struct DayDetailView: View {
     let uvIndex: String
     let sunrise: Date
     let sunset: Date
+    let windSpeed: String
 
     var body: some View {
         VStack {
@@ -90,6 +91,12 @@ struct DayDetailView: View {
                 .font(.system(size: 18))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
+                .padding(.bottom, 10)
+            
+            Text("Wind speed: \(windSpeed)")
+                .font(.system(size: 18))
+                .fontDesign(.serif)
+                .foregroundStyle(Color("TitleColor"))
             
             Spacer()
         } //: VStack
@@ -122,5 +129,6 @@ struct DayDetailView: View {
                   precipitationAmount: "1 in",
                   uvIndex: "3",
                   sunrise: Date(),
-                  sunset: Date())
+                  sunset: Date(),
+                  windSpeed: "14")
 }
