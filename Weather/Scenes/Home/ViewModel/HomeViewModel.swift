@@ -171,7 +171,6 @@ class HomeViewModel: ObservableObject {
                 formattedPrecipitationWithUnits = "0 inches"
             } else if precipitationAmount < 0.6 {
                 formattedPrecipitationWithUnits = "less than 1 inch"
-                print(formattedPrecipitationWithUnits)
             } else {
                 let precipatationRounded = precipitationAmount.rounded()
                 

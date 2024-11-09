@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct WeatherApp: App {
+    @AppStorage(UserDefaultsConstants.appearance.rawValue) private var appearance: Appearance = .system
+
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .preferredColorScheme(appearance.colorScheme)
         }
     }
 }
