@@ -66,67 +66,65 @@ struct SettingsView: View {
                 .padding(.bottom, 25)
             
             // MARK: - Appearance
-            Text("Appearance")
-                .fontWeight(.medium)
-                .fontDesign(.serif)
-                .foregroundStyle(Color("SubheadingColor"))
-
-            Divider()
-                .foregroundStyle(Color("TitleColor"))
-
-            SettingsRowItem(title: "Automatic",
-                            subHeading: "Use device settings",
-                            isSelected: $isSystemThemeActive)
-            .onTapGesture {
-                if settings.appearance != .system {
-//                    appearance = .system
-                    settings.appearance = .system
-                    
-                    isSystemThemeActive = true
-                    isLightThemeActive = false
-                    isDarkThemeActive = false
-                }
-            }
-
-            Divider()
-                .foregroundStyle(Color("TitleColor"))
-
-            SettingsRowItem(title: "Light",
-                            subHeading: "Always render in light mode",
-                            isSelected: $isLightThemeActive)
-            .onTapGesture {
-                if settings.appearance != .light {
-//                    appearance = .light
-                    settings.appearance = .light
-                    
-                    isSystemThemeActive = false
-                    isLightThemeActive = true
-                    isDarkThemeActive = false
-                }
-            }
-
-            Divider()
-                .foregroundStyle(Color("TitleColor"))
-
-            SettingsRowItem(title: "Dark",
-                            subHeading: "Always render in dark mode",
-                            isSelected: $isDarkThemeActive)
-            .onTapGesture {
-                if settings.appearance != .dark {
-//                    appearance = .dark
-                    settings.appearance = .dark
-                    
-                    isSystemThemeActive = false
-                    isLightThemeActive = false
-                    isDarkThemeActive = true
-                }
-            }
+//            Text("Appearance")
+//                .fontWeight(.medium)
+//                .fontDesign(.serif)
+//                .foregroundStyle(Color("SubheadingColor"))
+//
+//            Divider()
+//                .foregroundStyle(Color("TitleColor"))
+//
+//            SettingsRowItem(title: "Automatic",
+//                            subHeading: "Use device settings",
+//                            isSelected: $isSystemThemeActive)
+//            .onTapGesture {
+//                if settings.appearance != .system {
+//                    settings.appearance = .system
+//                    
+//                    isSystemThemeActive = true
+//                    isLightThemeActive = false
+//                    isDarkThemeActive = false
+//                }
+//            }
+//
+//            Divider()
+//                .foregroundStyle(Color("TitleColor"))
+//
+//            SettingsRowItem(title: "Light",
+//                            subHeading: "Always render in light mode",
+//                            isSelected: $isLightThemeActive)
+//            .onTapGesture {
+//                if settings.appearance != .light {
+//                    settings.appearance = .light
+//                    
+//                    isSystemThemeActive = false
+//                    isLightThemeActive = true
+//                    isDarkThemeActive = false
+//                }
+//            }
+//
+//            Divider()
+//                .foregroundStyle(Color("TitleColor"))
+//
+//            SettingsRowItem(title: "Dark",
+//                            subHeading: "Always render in dark mode",
+//                            isSelected: $isDarkThemeActive)
+//            .onTapGesture {
+//                if settings.appearance != .dark {
+//                    settings.appearance = .dark
+//                    
+//                    isSystemThemeActive = false
+//                    isLightThemeActive = false
+//                    isDarkThemeActive = true
+//                }
+//            }
 
             Spacer()
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(25)
         .background(Color("BackgroundColor"))
+//        .preferredColorScheme(settings.appearance.colorScheme)
         .onAppear {
             if settings.unitOfMeasurement == .imperial {
                 isImperialActive = true

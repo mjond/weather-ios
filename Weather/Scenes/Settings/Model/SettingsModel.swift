@@ -61,7 +61,7 @@ enum UnitOfMeasurement: String {
     case imperial
 }
 
-enum Appearance: String, CaseIterable, Identifiable {
+enum Appearance: String {
     case system
     case light
     case dark

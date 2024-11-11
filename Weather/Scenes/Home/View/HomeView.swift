@@ -187,6 +187,7 @@ struct HomeView: View {
             
         } //: NavigationStack
         .environmentObject(nav)
+//        .preferredColorScheme(viewModel.settings.appearance.colorScheme)
     }
 }
 
