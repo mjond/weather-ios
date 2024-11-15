@@ -126,6 +126,16 @@ struct HomeView: View {
                             .toolbar {
                                 ToolbarItem(placement: .topBarTrailing) {
                                     Button {
+                                        print("go to search")
+                                    } label: {
+                                        Image(systemName: "magnifyingglass")
+                                            .font(.system(size: 18))
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(Color("TitleColor"))
+                                    }
+                                }
+                                ToolbarItem(placement: .topBarTrailing) {
+                                    Button {
                                         goToSettings.toggle()
                                     } label: {
                                         Image(systemName: "gearshape.fill")

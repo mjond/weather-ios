@@ -16,10 +16,13 @@
 		B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */; };
 		B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56025202CD1B832007BB4F3 /* LocationManager.swift */; };
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
+		B5646B3A2CE5454100FE08B3 /* LocationSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5646B392CE5453B00FE08B3 /* LocationSearchService.swift */; };
+		B5646B3C2CE5523E00FE08B3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5646B3B2CE5523E00FE08B3 /* SearchView.swift */; };
 		B56A06762CC6CE710080DC74 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A06752CC6CE6E0080DC74 /* WeatherService.swift */; };
 		B56A06782CC6DD050080DC74 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A06772CC6DD000080DC74 /* HomeViewModel.swift */; };
 		B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */; };
 		B5770FC82AFC20AC007FB34E /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5770FC72AFC20AC007FB34E /* WeatherDataModel.swift */; };
+		B5789BE02CE7E164005C193F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5789BDF2CE7E161005C193F /* SearchModel.swift */; };
 		B599DA452CD9662500023F5D /* SettingsRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599DA442CD9662500023F5D /* SettingsRowItem.swift */; };
 		B599DA472CD99AB100023F5D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599DA462CD99AAB00023F5D /* SettingsViewModel.swift */; };
 		B59A48CD2CCDBDDE00F2C9FB /* HomeFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A48CC2CCDBDDE00F2C9FB /* HomeFailureView.swift */; };
@@ -45,10 +48,13 @@
 		B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		B56025202CD1B832007BB4F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B5646B392CE5453B00FE08B3 /* LocationSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchService.swift; sourceTree = "<group>"; };
+		B5646B3B2CE5523E00FE08B3 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B56A06752CC6CE6E0080DC74 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		B56A06772CC6DD000080DC74 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStateManager.swift; sourceTree = "<group>"; };
 		B5770FC72AFC20AC007FB34E /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		B5789BDF2CE7E161005C193F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		B59514B02B04318A00B1515D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B599DA442CD9662500023F5D /* SettingsRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowItem.swift; sourceTree = "<group>"; };
 		B599DA462CD99AAB00023F5D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -81,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B56A06702CC6CD8D0080DC74 /* Home */,
+				B577DF4E2CE2A18D0096838F /* Search */,
 				B5C5E1622CD9470B00614DC5 /* Settings */,
 				B5D5ABDE2AFAE07500A1FAC3 /* ReusableUI */,
 			);
@@ -117,6 +124,7 @@
 		B560251F2CD1B82C007BB4F3 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				B5646B392CE5453B00FE08B3 /* LocationSearchService.swift */,
 				B56025202CD1B832007BB4F3 /* LocationManager.swift */,
 			);
 			path = Location;
@@ -176,6 +184,39 @@
 				B56F652B2CB6F52B00256A86 /* NavigationStateManager.swift */,
 			);
 			path = Routing;
+			sourceTree = "<group>";
+		};
+		B577DF4E2CE2A18D0096838F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B577DF4F2CE2A2F80096838F /* Model */,
+				B577DF502CE2A2FE0096838F /* View */,
+				B577DF512CE2A3100096838F /* ViewModel */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		B577DF4F2CE2A2F80096838F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5789BDF2CE7E161005C193F /* SearchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B577DF502CE2A2FE0096838F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5646B3B2CE5523E00FE08B3 /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B577DF512CE2A3100096838F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B5C5E1622CD9470B00614DC5 /* Settings */ = {
@@ -366,17 +407,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5646B3C2CE5523E00FE08B3 /* SearchView.swift in Sources */,
 				B5C5E1672CD948D600614DC5 /* SettingsModel.swift in Sources */,
 				B59DEFC92CC9BDB40061CF31 /* DayDetailView.swift in Sources */,
 				B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */,
 				B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */,
 				B52927642CDBD6F3009B6A93 /* LocationPendingView.swift in Sources */,
 				B59A48CF2CCDD01A00F2C9FB /* WeatherHelper.swift in Sources */,
+				B5646B3A2CE5454100FE08B3 /* LocationSearchService.swift in Sources */,
 				B56F652C2CB6F53300256A86 /* NavigationStateManager.swift in Sources */,
 				B5D5ABD22AFADDFD00A1FAC3 /* HomeView.swift in Sources */,
 				B516DE672CC81DB9007C52B5 /* HomeModel.swift in Sources */,
 				B5770FC82AFC20AC007FB34E /* WeatherDataModel.swift in Sources */,
 				B56A06782CC6DD050080DC74 /* HomeViewModel.swift in Sources */,
+				B5789BE02CE7E164005C193F /* SearchModel.swift in Sources */,
 				B529275B2CDAEDD3009B6A93 /* LocationDeniedView.swift in Sources */,
 				B59A48D12CCDD56E00F2C9FB /* HourlyCardView.swift in Sources */,
 				B52ACD6A2CCD954D00EE07F2 /* HomeLoadingView.swift in Sources */,
