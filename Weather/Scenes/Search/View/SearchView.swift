@@ -9,10 +9,13 @@ import SwiftUI
 
 struct SearchView: View {
     @EnvironmentObject var nav: NavigationStateManager
+    @Environment(\.presentationMode) var presentationMode
+
+    @ObservedObject var locationManager: LocationManager = LocationManager()
+    @ObservedObject var viewModel: SearchViewModel = SearchViewModel()
 
     @State var searchService = LocationSearchService()
-    var cityName: String
-    // add variable for the selected list item,
+    @State var isSearchingForCity: Bool = false
     
     var body: some View {
         VStack {
@@ -35,6 +38,21 @@ struct SearchView: View {
                     .padding(.bottom, 350)
             } else {
                 List(searchService.results) { result in
+//                    Button {
+//                        print("tapped \(result.title)")
+//                    } label: {
+//                        VStack(alignment: .leading) {
+//                            Text(result.title)
+//                                .listRowBackground(Color("BackgroundColor"))
+//                            Text(result.subtitle)
+//                                .font(.caption)
+//                                .foregroundStyle(.secondary)
+//                                .listRowBackground(Color("BackgroundColor"))
+//                        }
+//                        .listRowBackground(Color("BackgroundColor"))
+//                        .background(Color("BackgroundColor"))
+//                    }
+
                     VStack(alignment: .leading) {
                         Text(result.title)
                             .listRowBackground(Color("BackgroundColor"))
@@ -44,6 +62,20 @@ struct SearchView: View {
                             .listRowBackground(Color("BackgroundColor"))
                     }
                     .listRowBackground(Color("BackgroundColor"))
+                    .onTapGesture {
+                        if !isSearchingForCity {
+                            isSearchingForCity = true
+                            viewModel.getLocation(locationName: result.title) { result in
+                                if let newLocation = result {
+                                    locationManager.lastLocation = newLocation
+                                    presentationMode.wrappedValue.dismiss()
+                                    isSearchingForCity = false
+                                } else {
+                                    isSearchingForCity = false
+                                }
+                            }
+                        }
+                    }
                 } //: List
                 .scrollContentBackground(.hidden)
             }
@@ -69,5 +101,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView(cityName: "")
+    SearchView()
 }

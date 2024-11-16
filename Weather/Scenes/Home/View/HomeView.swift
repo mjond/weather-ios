@@ -12,6 +12,7 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     @ObservedObject var locationManager: LocationManager = LocationManager()
     @State private var goToSettings: Bool = false
+    @State private var goToSearch: Bool = false
 
     var body: some View {
         NavigationStack(path: $nav.path) {
@@ -126,7 +127,7 @@ struct HomeView: View {
                             .toolbar {
                                 ToolbarItem(placement: .topBarTrailing) {
                                     Button {
-                                        nav.path.append("")
+                                        goToSearch.toggle()
                                     } label: {
                                         Image(systemName: "magnifyingglass")
                                             .font(.system(size: 18))
@@ -186,8 +187,8 @@ struct HomeView: View {
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView(settings: $viewModel.settings)
                     }
-                    .navigationDestination(for: String.self) { cityName in
-                        SearchView(cityName: cityName)
+                    .navigationDestination(isPresented: $goToSearch) {
+                        SearchView()
                     }
                 case .notDetermined:
                     LocationPendingView()

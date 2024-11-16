@@ -49,7 +49,7 @@ class LocationSearchService: NSObject {
 
 extension LocationSearchService: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        let filteredResults = completer.results.filter({ $0.subtitle != "" })
+        let filteredResults = completer.results.filter({ $0.subtitle != "Search Nearby" && $0.subtitle != "No Results Nearby" })
         self.results = filteredResults.map({ result in
             LocationResult(title: result.title, subtitle: result.subtitle)
         })
