@@ -163,7 +163,8 @@ struct HomeView: View {
                                       uvIndex: day.uvIndexMax,
                                       sunrise: day.sunrise,
                                       sunset: day.sunset,
-                                      windSpeed: day.windSpeed)
+                                      windSpeed: day.windSpeed,
+                                      windGust: day.windGust)
                     }
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView(settings: $viewModel.settings)

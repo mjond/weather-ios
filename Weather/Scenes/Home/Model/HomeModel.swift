@@ -42,7 +42,7 @@ struct DailyWeatherModel: Identifiable, Hashable {
     var sunset: Date
     var sunrise: Date
     var windSpeed: String
-    var windDirection: Double
+    var windGust: String
 }
 
 struct HourlyWeatherModel: Identifiable, Hashable {
