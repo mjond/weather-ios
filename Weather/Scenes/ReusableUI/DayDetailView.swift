@@ -78,6 +78,7 @@ struct DayDetailView: View {
 
             VStack {
                 Divider()
+                    .foregroundStyle(Color("TitleColor"))
                 
                 HStack {
                     Text("Chance of precipitation:")
@@ -110,6 +111,7 @@ struct DayDetailView: View {
                 .padding(.bottom, 10)
                 
                 Divider()
+                    .foregroundStyle(Color("TitleColor"))
                 
                 HStack {
                     Text("UV Index:")
@@ -126,8 +128,8 @@ struct DayDetailView: View {
                 }
                 .padding(.vertical, 10)
 
-                
                 Divider()
+                    .foregroundStyle(Color("TitleColor"))
                 
                 HStack {
                     Text("Wind speed:")
@@ -145,6 +147,7 @@ struct DayDetailView: View {
                 .padding(.vertical, 10)
                 
                 Divider()
+                    .foregroundStyle(Color("TitleColor"))
                 
             }
             .padding(.horizontal, 35)
