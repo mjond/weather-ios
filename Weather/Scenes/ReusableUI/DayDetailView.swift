@@ -76,32 +76,83 @@ struct DayDetailView: View {
             }
             .padding(.bottom)
 
-            Text("Chance of precipitation: \(precipitationProbability)%")
-                .font(.system(size: 18))
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
-            
-            Text("Precipitation amount: \(precipitationAmount)")
-                .font(.system(size: 18))
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
+            VStack {
+                Divider()
+                
+                HStack {
+                    Text("Chance of precipitation:")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                    
+                    Spacer()
+                    
+                    Text("\(precipitationProbability)%")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                }
+                .padding(.top, 10)
+                
+                HStack {
+                    Text("Precipitation amount:")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                    
+                    Spacer()
+                    
+                    Text("\(precipitationAmount)")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                }
                 .padding(.bottom, 10)
+                
+                Divider()
+                
+                HStack {
+                    Text("UV Index:")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                    
+                    Spacer()
+                    
+                    Text("\(uvIndex)")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                }
+                .padding(.vertical, 10)
 
-            Text("UV Index: \(uvIndex)")
-                .font(.system(size: 18))
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
-                .padding(.bottom, 10)
-            
-            Text("Wind speed: \(windSpeed)")
-                .font(.system(size: 18))
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
+                
+                Divider()
+                
+                HStack {
+                    Text("Wind speed:")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                    
+                    Spacer()
+                    
+                    Text("\(windSpeed)")
+                        .font(.system(size: 18))
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                }
+                .padding(.vertical, 10)
+                
+                Divider()
+                
+            }
+            .padding(.horizontal, 35)
             
             Spacer()
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-        .padding(.bottom, 35)
+        .padding()
         .background(Color("BackgroundColor"))
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -130,5 +181,5 @@ struct DayDetailView: View {
                   uvIndex: "3",
                   sunrise: Date(),
                   sunset: Date(),
-                  windSpeed: "14")
+                  windSpeed: "14 km/h")
 }
