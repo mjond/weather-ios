@@ -126,7 +126,7 @@ struct HomeView: View {
                             .toolbar {
                                 ToolbarItem(placement: .topBarTrailing) {
                                     Button {
-                                        print("go to search")
+                                        nav.path.append("")
                                     } label: {
                                         Image(systemName: "magnifyingglass")
                                             .font(.system(size: 18))
@@ -185,6 +185,9 @@ struct HomeView: View {
                     }
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView(settings: $viewModel.settings)
+                    }
+                    .navigationDestination(for: String.self) { cityName in
+                        SearchView(cityName: cityName)
                     }
                 case .notDetermined:
                     LocationPendingView()
