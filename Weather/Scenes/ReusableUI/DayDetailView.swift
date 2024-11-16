@@ -10,40 +10,42 @@ import SwiftUI
 struct DayDetailView: View {
     @EnvironmentObject var nav: NavigationStateManager
 
-    let dayName: String
-    let weatherIconName: String
-    let maxTemp: String
-    let minTemp: String
-    let precipitationProbability: String
-    let precipitationAmount: String
-    let uvIndex: String
-    let sunrise: Date
-    let sunset: Date
-    let windSpeed: String
-    let windGust: String
+    let day: DailyWeatherModel
+    
+//    let dayName: String
+//    let weatherIconName: String
+//    let maxTemp: String
+//    let minTemp: String
+//    let precipitationProbability: String
+//    let precipitationAmount: String
+//    let uvIndex: String
+//    let sunrise: Date
+//    let sunset: Date
+//    let windSpeed: String
+//    let windGust: String
 
     var body: some View {
         VStack {
-            Text(dayName)
+            Text(day.fullDayName)
                 .font(.system(size: 36))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom, 20)
             
-            Image(systemName: weatherIconName)
+            Image(systemName: day.weatherIconName)
                 .font(.system(size: 80))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom)
 
             VStack {
-                Text("Max: \(maxTemp)°")
+                Text("Max: \(day.maximumTemperature)°")
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
 
-                Text("Min: \(minTemp)°")
+                Text("Min: \(day.minimumTemperature)°")
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                     .fontDesign(.serif)
@@ -56,8 +58,7 @@ struct DayDetailView: View {
                     Text("Sunrise:")
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
-                    let sunriseDate = sunrise
-                    Text(sunriseDate, format: .dateTime.hour().minute())
+                    Text(day.sunrise, format: .dateTime.hour().minute())
                         .fontDesign(.serif)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color("TitleColor"))
@@ -68,8 +69,7 @@ struct DayDetailView: View {
                     Text("Sunset:")
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
-                    let sunsetDate = sunrise
-                    Text(sunsetDate, format: .dateTime.hour().minute())
+                    Text(day.sunset, format: .dateTime.hour().minute())
                         .fontDesign(.serif)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color("TitleColor"))
@@ -89,7 +89,7 @@ struct DayDetailView: View {
                     
                     Spacer()
                     
-                    Text("\(precipitationProbability)%")
+                    Text("\(day.precipitationProbability)%")
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -104,7 +104,7 @@ struct DayDetailView: View {
                     
                     Spacer()
                     
-                    Text("\(precipitationAmount)")
+                    Text("\(day.precipitationAmount)")
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -122,7 +122,7 @@ struct DayDetailView: View {
                     
                     Spacer()
                     
-                    Text("\(uvIndex)")
+                    Text("\(day.uvIndexMax)")
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -140,7 +140,7 @@ struct DayDetailView: View {
                     
                     Spacer()
                     
-                    Text("\(windSpeed)")
+                    Text("\(day.windSpeed)")
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -155,7 +155,7 @@ struct DayDetailView: View {
                     
                     Spacer()
                     
-                    Text("\(windGust)")
+                    Text("\(day.windGust)")
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -191,15 +191,15 @@ struct DayDetailView: View {
 }
 
 #Preview {
-    DayDetailView(dayName: "Monday",
-                  weatherIconName: "cloud",
-                  maxTemp: "22",
-                  minTemp: "12",
-                  precipitationProbability: "15",
-                  precipitationAmount: "1 in",
-                  uvIndex: "3",
-                  sunrise: Date(),
-                  sunset: Date(),
-                  windSpeed: "14 km/h",
-                  windGust: "24 km/h")
+    DayDetailView(day: DailyWeatherModel(date: Date(),
+                                         minimumTemperature: "22",
+                                         maximumTemperature: "27",
+                                         weatherCode: 1,
+                                         precipitationProbability: "15%",
+                                         precipitationAmount: "0 mm",
+                                         uvIndexMax: "6",
+                                         sunset: Date(),
+                                         sunrise: Date(),
+                                         windSpeed: "14 km/h",
+                                         windGust: "27 km/h"))
 }

@@ -154,17 +154,7 @@ struct HomeView: View {
                         }
                     }
                     .navigationDestination(for: DailyWeatherModel.self) { day in
-                        DayDetailView(dayName: day.fullDayName,
-                                      weatherIconName: day.weatherIconName,
-                                      maxTemp: day.maximumTemperature,
-                                      minTemp: day.minimumTemperature,
-                                      precipitationProbability: day.precipitationProbability,
-                                      precipitationAmount: day.precipitationAmount,
-                                      uvIndex: day.uvIndexMax,
-                                      sunrise: day.sunrise,
-                                      sunset: day.sunset,
-                                      windSpeed: day.windSpeed,
-                                      windGust: day.windGust)
+                        DayDetailView(day: day)
                     }
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView(settings: $viewModel.settings)
