@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SearchView: View {
     @EnvironmentObject var nav: NavigationStateManager
-    @Environment(\.presentationMode) var presentationMode
+//    @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var locationManager: LocationManager = LocationManager()
     @ObservedObject var viewModel: SearchViewModel = SearchViewModel()
 
+    @State var locationManager: LocationManager
     @State var searchService = LocationSearchService()
     @State var isSearchingForCity: Bool = false
-    
+
     var body: some View {
         VStack {
 //            TextField("Search city name", text: $searchService.query)
@@ -65,10 +65,14 @@ struct SearchView: View {
                     .onTapGesture {
                         if !isSearchingForCity {
                             isSearchingForCity = true
+
                             viewModel.getLocation(locationName: result.title) { result in
                                 if let newLocation = result {
                                     locationManager.lastLocation = newLocation
-                                    presentationMode.wrappedValue.dismiss()
+//                                    presentationMode.wrappedValue.dismiss()
+                                    if nav.path.count > 0 {
+                                        nav.path.removeLast()
+                                    }
                                     isSearchingForCity = false
                                 } else {
                                     isSearchingForCity = false
@@ -87,6 +91,7 @@ struct SearchView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
+//                    presentationMode.wrappedValue.dismiss()
                     if nav.path.count > 0 {
                         nav.path.removeLast()
                     }
@@ -101,5 +106,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    SearchView(locationManager: LocationManager())
 }

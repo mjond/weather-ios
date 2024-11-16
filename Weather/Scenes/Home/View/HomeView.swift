@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
-    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     @ObservedObject var locationManager: LocationManager = LocationManager()
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     @State private var goToSettings: Bool = false
     @State private var goToSearch: Bool = false
 
@@ -28,8 +28,7 @@ struct HomeView: View {
                         case .failure:
                             HomeFailureView {
                                 Task {
-                                    await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
-                                                               long: locationManager.lastLocation?.coordinate.longitude)
+                                    await viewModel.getWeather(location: locationManager.lastLocation)
                                 }
                             }
 
@@ -127,7 +126,8 @@ struct HomeView: View {
                             .toolbar {
                                 ToolbarItem(placement: .topBarTrailing) {
                                     Button {
-                                        goToSearch.toggle()
+//                                        goToSearch.toggle()
+                                        nav.path.append(locationManager)
                                     } label: {
                                         Image(systemName: "magnifyingglass")
                                             .font(.system(size: 18))
@@ -150,19 +150,20 @@ struct HomeView: View {
                     .background(Color("BackgroundColor"))
                     .task {
                         if locationManager.lastLocation != nil {
-                            await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
-                                                       long: locationManager.lastLocation?.coordinate.longitude)
+                            print("on Appear Method -> latitude: \(locationManager.lastLocation?.coordinate.latitude)")
+                            print("on Appear Method -> longitude \(locationManager.lastLocation?.coordinate.longitude)")
+                            await viewModel.getWeather(location: locationManager.lastLocation)
                         }
                     }
-                    .onChange(of: locationManager.lastLocation) {
-                        Task {
-                            if locationManager.locationStatus == .authorizedWhenInUse ||
-                                locationManager.locationStatus == .authorizedWhenInUse {
-                                await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
-                                                           long: locationManager.lastLocation?.coordinate.longitude)
-                            }
-                        }
-                    }
+//                    .onChange(of: locationManager.lastLocation) {
+//                        Task {
+//                            if locationManager.locationStatus == .authorizedWhenInUse ||
+//                                locationManager.locationStatus == .authorizedWhenInUse {
+//                                await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
+//                                                           long: locationManager.lastLocation?.coordinate.longitude)
+//                            }
+//                        }
+//                    }
 //                    .onChange(of: locationManager.locationStatus) {
 //                        if locationManager.locationStatus == .authorizedWhenInUse ||
 //                            locationManager.locationStatus == .authorizedWhenInUse {
@@ -187,8 +188,8 @@ struct HomeView: View {
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView(settings: $viewModel.settings)
                     }
-                    .navigationDestination(isPresented: $goToSearch) {
-                        SearchView()
+                    .navigationDestination(for: LocationManager.self) { locationManager in
+                        SearchView(locationManager: locationManager)
                     }
                 case .notDetermined:
                     LocationPendingView()

@@ -11,7 +11,6 @@ import CoreLocation
 class HomeViewModel: ObservableObject {
     @Published var state = State.loading
     @ObservedObject var settings = WeatherSettings()
-    private var locationManager = LocationManager()
     private var weatherService = WeatherService()
 
     var isAPICallInProgress = false
@@ -22,7 +21,7 @@ class HomeViewModel: ObservableObject {
         case success(HomeModel)
     }
 
-    func getWeather(lat: CLLocationDegrees?, long: CLLocationDegrees?) async {
+    func getWeather(location: CLLocation?) async {
         guard !isAPICallInProgress else {
             print("HomeViewModel.getWeather() call already in progress")
             return
@@ -35,13 +34,13 @@ class HomeViewModel: ObservableObject {
         }
 
         do {
-            guard let latitude = lat else {
+            guard let latitude = location?.coordinate.latitude else {
                 isAPICallInProgress = false
                 print("HomeViewModel.getWeather() no latitude value found")
                 return
             }
 
-            guard let longitude = long else {
+            guard let longitude = location?.coordinate.longitude else {
                 isAPICallInProgress = false
                 print("HomeViewModel.getWeather() no longitude value found")
                 return
@@ -56,7 +55,7 @@ class HomeViewModel: ObservableObject {
                 let apparentTemperature = String(format: "%.0f", weatherData.current.apparentTemperature.rounded())
                 let dailyWeather = parseDailyWeatherData(with: weatherData.daily)
                 let hourlyWeather = parseHourlyWeatherData(with: weatherData.hourly)
-                let locationName = await getLocationName(location: locationManager.lastLocation)
+                let locationName = await getLocationName(location: location)
                 
                 let currentSunrise = dailyWeather[0].sunrise
                 let currentSunset = dailyWeather[0].sunset
@@ -88,7 +87,7 @@ class HomeViewModel: ObservableObject {
 
     private func getLocationName(location: CLLocation?) async -> String {
         return await withCheckedContinuation { continuation in
-            if let currentLocation = locationManager.lastLocation {
+            if let currentLocation = location {
                 currentLocation.fetchCity(completion: { city, error in
                     guard error == nil else {
                         print("HomeViewModel.getLocationName() -> Error when getting location name")
