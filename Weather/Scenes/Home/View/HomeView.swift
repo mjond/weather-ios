@@ -12,7 +12,6 @@ struct HomeView: View {
     @ObservedObject var locationManager: LocationManager = LocationManager()
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     @State private var goToSettings: Bool = false
-    @State private var goToSearch: Bool = false
 
     var body: some View {
         NavigationStack(path: $nav.path) {
@@ -126,7 +125,6 @@ struct HomeView: View {
                             .toolbar {
                                 ToolbarItem(placement: .topBarTrailing) {
                                     Button {
-//                                        goToSearch.toggle()
                                         nav.path.append(locationManager)
                                     } label: {
                                         Image(systemName: "magnifyingglass")
@@ -155,24 +153,6 @@ struct HomeView: View {
                             await viewModel.getWeather(location: locationManager.lastLocation)
                         }
                     }
-//                    .onChange(of: locationManager.lastLocation) {
-//                        Task {
-//                            if locationManager.locationStatus == .authorizedWhenInUse ||
-//                                locationManager.locationStatus == .authorizedWhenInUse {
-//                                await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
-//                                                           long: locationManager.lastLocation?.coordinate.longitude)
-//                            }
-//                        }
-//                    }
-//                    .onChange(of: locationManager.locationStatus) {
-//                        if locationManager.locationStatus == .authorizedWhenInUse ||
-//                            locationManager.locationStatus == .authorizedWhenInUse {
-//                            Task {
-//                                await viewModel.getWeather(lat: locationManager.lastLocation?.coordinate.latitude,
-//                                                           long: locationManager.lastLocation?.coordinate.longitude)
-//                            }
-//                        }
-//                    }
                     .navigationDestination(for: DailyWeatherModel.self) { day in
                         DayDetailView(dayName: day.fullDayName,
                                       weatherIconName: day.weatherIconName,

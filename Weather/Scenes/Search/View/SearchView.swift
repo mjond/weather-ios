@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SearchView: View {
     @EnvironmentObject var nav: NavigationStateManager
-//    @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var viewModel: SearchViewModel = SearchViewModel()
 
@@ -69,7 +68,6 @@ struct SearchView: View {
                             viewModel.getLocation(locationName: result.title) { result in
                                 if let newLocation = result {
                                     locationManager.lastLocation = newLocation
-//                                    presentationMode.wrappedValue.dismiss()
                                     if nav.path.count > 0 {
                                         nav.path.removeLast()
                                     }
@@ -91,7 +89,6 @@ struct SearchView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-//                    presentationMode.wrappedValue.dismiss()
                     if nav.path.count > 0 {
                         nav.path.removeLast()
                     }
