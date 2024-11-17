@@ -39,6 +39,7 @@ struct SettingsView: View {
             SettingsRowItem(title: "Imperial",
                             subHeading: "Miles, Inches, Fahrenheit, etc.",
                             isSelected: $isImperialActive)
+            .contentShape(Rectangle())
             .onTapGesture {
                 if settings.unitOfMeasurement == .metric {
                     settings.unitOfMeasurement = .imperial
@@ -53,6 +54,7 @@ struct SettingsView: View {
             SettingsRowItem(title: "Celsius",
                             subHeading: "Kilometers, Millimeters, Celsius, etc.",
                             isSelected: $isMetricActive)
+            .contentShape(Rectangle())
             .onTapGesture {
                 if settings.unitOfMeasurement == .imperial {
                     settings.unitOfMeasurement = .metric
@@ -77,6 +79,7 @@ struct SettingsView: View {
 //            SettingsRowItem(title: "Automatic",
 //                            subHeading: "Use device settings",
 //                            isSelected: $isSystemThemeActive)
+//            .contentShape(Rectangle())
 //            .onTapGesture {
 //                if settings.appearance != .system {
 //                    settings.appearance = .system
@@ -93,6 +96,7 @@ struct SettingsView: View {
 //            SettingsRowItem(title: "Light",
 //                            subHeading: "Always render in light mode",
 //                            isSelected: $isLightThemeActive)
+//            .contentShape(Rectangle())
 //            .onTapGesture {
 //                if settings.appearance != .light {
 //                    settings.appearance = .light
@@ -109,6 +113,7 @@ struct SettingsView: View {
 //            SettingsRowItem(title: "Dark",
 //                            subHeading: "Always render in dark mode",
 //                            isSelected: $isDarkThemeActive)
+//            .contentShape(Rectangle())
 //            .onTapGesture {
 //                if settings.appearance != .dark {
 //                    settings.appearance = .dark
