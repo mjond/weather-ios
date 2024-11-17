@@ -62,7 +62,7 @@ struct HomeView: View {
                                             Text("Sunrise:")
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
-                                            let sunriseDate = weatherModel.currentSunset
+                                            let sunriseDate = weatherModel.currentSunrise
                                             Text(sunriseDate, format: .dateTime.hour().minute())
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)
@@ -74,7 +74,7 @@ struct HomeView: View {
                                             Text("Sunset:")
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
-                                            let sunsetDate = weatherModel.currentSunrise
+                                            let sunsetDate = weatherModel.currentSunset
                                             Text(sunsetDate, format: .dateTime.hour().minute())
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)

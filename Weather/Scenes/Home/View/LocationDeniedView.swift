@@ -12,12 +12,15 @@ struct LocationDeniedView: View {
         VStack {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 50))
+                .fontDesign(.serif)
                 .padding(.bottom, 20)
             Text("Location Access Denied")
                 .font(.title3)
+                .fontDesign(.serif)
                 .padding(.bottom, 5)
             Text("Go to Settings to approve Location Services for this app.")
                 .multilineTextAlignment(.center)
+                .fontDesign(.serif)
                 .padding()
 
         } //: VStack

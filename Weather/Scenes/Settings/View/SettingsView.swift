@@ -124,7 +124,6 @@ struct SettingsView: View {
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(25)
         .background(Color("BackgroundColor"))
-//        .preferredColorScheme(settings.appearance.colorScheme)
         .onAppear {
             if settings.unitOfMeasurement == .imperial {
                 isImperialActive = true
@@ -148,20 +147,6 @@ struct SettingsView: View {
                 isDarkThemeActive = true
             }
         }
-//        .navigationBarBackButtonHidden()
-//        .toolbar {
-//            ToolbarItem(placement: .topBarLeading) {
-//                Button {
-//                    if nav.path.count > 0 {
-//                        nav.path.removeLast()
-//                    }
-//                } label: {
-//                    Image(systemName: "chevron.left.circle")
-//                        .font(.system(size: 22))
-//                        .foregroundStyle(.black)
-//                }
-//            }
-//        }
     }
 }
 
@@ -169,5 +154,4 @@ struct SettingsView: View {
     @Previewable @State var settings = WeatherSettings()
     SettingsView(settings: $settings)
         .environmentObject(NavigationStateManager())
-//    SettingsView()
 }

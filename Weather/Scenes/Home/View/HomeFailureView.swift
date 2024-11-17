@@ -14,14 +14,18 @@ struct HomeFailureView: View {
         VStack {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 50))
+                .fontDesign(.serif)
                 .padding(.bottom, 2)
             Text("Something went wrong...")
                 .padding(.bottom, 20)
+                .fontDesign(.serif)
 
             Button {
                 tryAgainAction()
             } label: {
                 Text("Try Again")
+                    .fontDesign(.serif)
+                    .underline()
             }
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)

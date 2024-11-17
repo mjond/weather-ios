@@ -11,18 +11,6 @@ struct DayDetailView: View {
     @EnvironmentObject var nav: NavigationStateManager
 
     let day: DailyWeatherModel
-    
-//    let dayName: String
-//    let weatherIconName: String
-//    let maxTemp: String
-//    let minTemp: String
-//    let precipitationProbability: String
-//    let precipitationAmount: String
-//    let uvIndex: String
-//    let sunrise: Date
-//    let sunset: Date
-//    let windSpeed: String
-//    let windGust: String
 
     var body: some View {
         VStack {
