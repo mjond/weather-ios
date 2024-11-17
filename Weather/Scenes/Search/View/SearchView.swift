@@ -18,53 +18,19 @@ struct SearchView: View {
 
     var body: some View {
         VStack {
-//            TextField("Search city name", text: $searchService.query)
-//                .fontDesign(.serif)
-//                .padding()
-//                .frame(width: 325, height: 40)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .strokeBorder(Color("TitleColor"), lineWidth: 1)
-//                )
-//                .background(.clear)
-//                .fontWeight(.bold)
-            
             Spacer()
                                             
             if searchService.results.isEmpty {
                 Text("No location results")
                     .foregroundStyle(Color("TitleColor"))
+                    .fontDesign(.serif)
                     .padding(.bottom, 350)
             } else {
                 List(searchService.results) { result in
-//                    Button {
-//                        print("tapped \(result.title)")
-//                    } label: {
-//                        VStack(alignment: .leading) {
-//                            Text(result.title)
-//                                .listRowBackground(Color("BackgroundColor"))
-//                            Text(result.subtitle)
-//                                .font(.caption)
-//                                .foregroundStyle(.secondary)
-//                                .listRowBackground(Color("BackgroundColor"))
-//                        }
-//                        .listRowBackground(Color("BackgroundColor"))
-//                        .background(Color("BackgroundColor"))
-//                    }
-
-                    VStack(alignment: .leading) {
-                        Text(result.title)
-                            .listRowBackground(Color("BackgroundColor"))
-                        Text(result.subtitle)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .listRowBackground(Color("BackgroundColor"))
-                    }
-                    .listRowBackground(Color("BackgroundColor"))
-                    .onTapGesture {
+                    Button {
                         if !isSearchingForCity {
                             isSearchingForCity = true
-
+                            
                             viewModel.getLocation(locationName: result.title) { result in
                                 if let newLocation = result {
                                     locationManager.lastLocation = newLocation
@@ -77,7 +43,16 @@ struct SearchView: View {
                                 }
                             }
                         }
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text(result.title)
+                                .fontDesign(.serif)
+                            Text(result.subtitle)
+                                .font(.caption)
+                                .fontDesign(.serif)
+                        }
                     }
+                    .listRowBackground(Color("BackgroundColor"))
                 } //: List
                 .scrollContentBackground(.hidden)
             }
