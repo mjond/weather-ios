@@ -9,14 +9,17 @@ import SwiftUI
 
 struct HomeFailureView: View {
     let tryAgainAction: () -> Void
-    
+
     var body: some View {
         VStack {
             Image(systemName: "exclamationmark.triangle")
+                .accessibilityAddTraits(.isImage)
                 .font(.system(size: 50))
                 .fontDesign(.serif)
                 .padding(.bottom, 2)
             Text("Something went wrong...")
+                .accessibilityLabel("Something went wrong with getting weather data")
+                .accessibilityAddTraits(.isStaticText)
                 .padding(.bottom, 20)
                 .fontDesign(.serif)
 
@@ -24,6 +27,8 @@ struct HomeFailureView: View {
                 tryAgainAction()
             } label: {
                 Text("Try Again")
+                    .accessibilityLabel("Try again to get weather data")
+                    .accessibilityAddTraits(.isButton)
                     .fontDesign(.serif)
                     .underline()
             }

@@ -22,6 +22,8 @@ struct SearchView: View {
                                             
             if searchService.results.isEmpty {
                 Text("No location results")
+                    .accessibilityLabel("No location results. Search for a location to see results.")
+                    .accessibilityAddTraits(.isStaticText)
                     .foregroundStyle(Color("TitleColor"))
                     .fontDesign(.serif)
                     .padding(.bottom, 350)
@@ -46,11 +48,14 @@ struct SearchView: View {
                     } label: {
                         VStack(alignment: .leading) {
                             Text(result.title)
+                                .font(.title3)
+                                .bold()
                                 .fontDesign(.serif)
                             Text(result.subtitle)
-                                .font(.caption)
+                                .font(.subheadline)
                                 .fontDesign(.serif)
                         }
+                        .padding(.vertical, 4)
                     }
                     .listRowBackground(Color("BackgroundColor"))
                 } //: List
