@@ -105,7 +105,7 @@ struct HomeView: View {
                                     .padding(.horizontal)
                                     .padding(.bottom, 25)
                                     
-                                    Text("7 day forecast")
+                                    Text("10 day forecast")
                                         .font(.callout)
                                         .fontDesign(.serif)
                                         .bold()
@@ -151,7 +151,7 @@ struct HomeView: View {
                                             .foregroundStyle(Color("TitleColor"))
                                     }
                                 }
-                                ToolbarItem(placement: .topBarTrailing) {
+                                ToolbarItem(placement: .topBarLeading) {
                                     Button {
                                         goToSettings.toggle()
                                     } label: {

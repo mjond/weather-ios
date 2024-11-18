@@ -109,15 +109,15 @@ class HomeViewModel: ObservableObject {
     private func parseDailyWeatherData(with response: DailyWeatherData) -> [DailyWeatherModel] {
         var dailyForecast: [DailyWeatherModel] = []
 
-        guard response.time.count == 7,
-              response.weather_code.count == 7,
-              response.temperature_2m_min.count == 7,
-              response.temperature_2m_max.count == 7,
-              response.sunrise.count == 7,
-              response.sunset.count == 7,
-              response.precipitation_probability_mean.count == 7,
-              response.precipitation_sum.count == 7,
-              response.uv_index_max.count == 7 else {
+        guard response.time.count >= 10,
+              response.weather_code.count >= 10,
+              response.temperature_2m_min.count >= 10,
+              response.temperature_2m_max.count >= 10,
+              response.sunrise.count >= 10,
+              response.sunset.count >= 10,
+              response.precipitation_probability_mean.count >= 10,
+              response.precipitation_sum.count >= 10,
+              response.uv_index_max.count >= 10 else {
             return dailyForecast
         }
 
