@@ -35,7 +35,7 @@ struct HomeView: View {
                             VStack {
                                 VStack {
                                     Text(weatherModel.locationName)
-                                        .font(.title)
+                                        .font(.system(size: 30))
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("TitleColor"))
                                         .padding(.bottom, 2)
@@ -83,33 +83,51 @@ struct HomeView: View {
                                     }
 
                                 } //: VStack
-                                .padding(.bottom, 20)
+                                .padding(.bottom, 30)
                                 
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack {
-                                        ForEach(weatherModel.hourlyForecast) { hour in
-                                            HourlyCardView(date: hour.date,
-                                                           temp: hour.temperature,
-                                                           weatherIconName: hour.weatherIconName)
-                                        }
-                                    }
-                                } //: ScrollView
-                                .padding()
-
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack {
-                                        ForEach(weatherModel.dailyForecast) { day in
-                                            DayCardView(dayName: day.abbreviatedDayName,
-                                                        maxTemp: day.maximumTemperature,
-                                                        minTemp: day.minimumTemperature,
-                                                        weatherIconName: day.weatherIconName)
-                                            .onTapGesture {
-                                                nav.path.append(day)
+                                VStack(alignment: .leading) {
+                                    Text("24 hour forecast")
+                                        .font(.callout)
+                                        .fontDesign(.serif)
+                                        .bold()
+                                        .foregroundStyle(Color("TitleColor"))
+                                        .padding(.leading, 15)
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack {
+                                            ForEach(weatherModel.hourlyForecast) { hour in
+                                                HourlyCardView(date: hour.date,
+                                                               temp: hour.temperature,
+                                                               weatherIconName: hour.weatherIconName)
                                             }
                                         }
-                                    }
-                                } //: ScrollView
-                                .padding()
+                                    } //: ScrollView
+                                    .padding(.horizontal)
+                                    .padding(.bottom, 25)
+                                    
+                                    Text("7 day forecast")
+                                        .font(.callout)
+                                        .fontDesign(.serif)
+                                        .bold()
+                                        .foregroundStyle(Color("TitleColor"))
+                                        .padding(.leading, 15)
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack {
+                                            ForEach(weatherModel.dailyForecast) { day in
+                                                DayCardView(dayName: day.abbreviatedDayName,
+                                                            maxTemp: day.maximumTemperature,
+                                                            minTemp: day.minimumTemperature,
+                                                            weatherIconName: day.weatherIconName)
+                                                .onTapGesture {
+                                                    nav.path.append(day)
+                                                }
+                                            }
+                                        }
+                                    } //: ScrollView
+                                    .padding(.horizontal)
+                                    .padding(.bottom, 10)
+                                }
 
                                 Spacer()
 
