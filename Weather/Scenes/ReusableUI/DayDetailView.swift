@@ -15,12 +15,16 @@ struct DayDetailView: View {
     var body: some View {
         VStack {
             Text(day.fullDayName)
+                .accessibilityLabel("\(day.fullDayName)")
+                .accessibilityAddTraits(.isStaticText)
                 .font(.system(size: 36))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom, 20)
             
             Image(systemName: day.weatherIconName)
+                .accessibilityLabel("\(day.weatherIconName)")
+                .accessibilityAddTraits(.isImage)
                 .font(.system(size: 80))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
@@ -28,12 +32,16 @@ struct DayDetailView: View {
 
             VStack {
                 Text("Max: \(day.maximumTemperature)°")
+                    .accessibilityLabel("Maximum temperature is \(day.maximumTemperature)")
+                    .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
 
                 Text("Min: \(day.minimumTemperature)°")
+                    .accessibilityLabel("Minimum temperature is \(day.minimumTemperature)")
+                    .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 22))
                     .fontWeight(.bold)
                     .fontDesign(.serif)
@@ -44,9 +52,13 @@ struct DayDetailView: View {
             HStack {
                 HStack {
                     Text("Sunrise:")
+                        .accessibilityLabel("Sunrise")
+                        .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
                     Text(day.sunrise, format: .dateTime.hour().minute())
+                        .accessibilityLabel("\(day.sunrise)")
+                        .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color("TitleColor"))
@@ -55,9 +67,13 @@ struct DayDetailView: View {
 
                 HStack {
                     Text("Sunset:")
+                        .accessibilityLabel("Sunset")
+                        .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
                     Text(day.sunset, format: .dateTime.hour().minute())
+                        .accessibilityLabel("\(day.sunset)")
+                        .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color("TitleColor"))
@@ -71,6 +87,8 @@ struct DayDetailView: View {
                 
                 HStack {
                     Text("Chance of precipitation:")
+                        .accessibilityLabel("Chance of precipitation:")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -78,6 +96,8 @@ struct DayDetailView: View {
                     Spacer()
                     
                     Text("\(day.precipitationProbability)%")
+                        .accessibilityLabel("\(day.precipitationProbability)")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -86,6 +106,8 @@ struct DayDetailView: View {
                 
                 HStack {
                     Text("Precipitation amount:")
+                        .accessibilityLabel("Precipitation amount:")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -93,6 +115,8 @@ struct DayDetailView: View {
                     Spacer()
                     
                     Text("\(day.precipitationAmount)")
+                        .accessibilityLabel("\(day.precipitationAmount)")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -104,6 +128,8 @@ struct DayDetailView: View {
                 
                 HStack {
                     Text("UV index:")
+                        .accessibilityLabel("UV index:")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -111,6 +137,8 @@ struct DayDetailView: View {
                     Spacer()
                     
                     Text("\(day.uvIndexMax)")
+                        .accessibilityLabel("\(day.uvIndexMax)")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -122,6 +150,8 @@ struct DayDetailView: View {
                 
                 HStack {
                     Text("Wind speed:")
+                        .accessibilityLabel("Wind speed:")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -129,6 +159,8 @@ struct DayDetailView: View {
                     Spacer()
                     
                     Text("\(day.windSpeed)")
+                        .accessibilityLabel("\(day.windSpeed)")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -137,6 +169,8 @@ struct DayDetailView: View {
                 
                 HStack {
                     Text("Wind gusts:")
+                        .accessibilityLabel("Wind gusts:")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -144,6 +178,8 @@ struct DayDetailView: View {
                     Spacer()
                     
                     Text("\(day.windGust)")
+                        .accessibilityLabel("\(day.windGust)")
+                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
@@ -172,6 +208,9 @@ struct DayDetailView: View {
                     Image(systemName: "chevron.left.circle")
                         .font(.system(size: 22))
                         .foregroundStyle(Color("TitleColor"))
+                        .accessibilityLabel("Back button")
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityHint("This button will take you back to the home view")
                 }
             }
         }

@@ -15,12 +15,16 @@ struct HourlyCardView: View {
     var body: some View {
         VStack(alignment: .center) {
             Text(date, format: .dateTime.hour())
+                .accessibilityLabel("\(date)")
+                .accessibilityAddTraits(.isStaticText)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
                 .padding(.top, 10)
                 .padding(.bottom, 1)
             
             Text(temp+"°")
+                .accessibilityLabel("\(temp)")
+                .accessibilityAddTraits(.isStaticText)
                 .fontWeight(.semibold)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
@@ -28,6 +32,8 @@ struct HourlyCardView: View {
             Spacer()
             
             Image(systemName: weatherIconName)
+                .accessibilityLabel("\(weatherIconName)")
+                .accessibilityAddTraits(.isImage)
                 .font(.system(size: 22))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))

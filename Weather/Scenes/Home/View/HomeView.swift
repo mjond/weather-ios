@@ -59,7 +59,7 @@ struct HomeView: View {
 
                                     Image(systemName: weatherModel.currentWeatherIconName)
                                         .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
-                                        .accessibilityAddTraits(.isStaticText)
+                                        .accessibilityAddTraits(.isImage)
                                         .font(.system(size: 80))
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("TitleColor"))
@@ -139,6 +139,8 @@ struct HomeView: View {
                                                             maxTemp: day.maximumTemperature,
                                                             minTemp: day.minimumTemperature,
                                                             weatherIconName: day.weatherIconName)
+                                                .accessibilityAddTraits(.isButton)
+                                                .accessibilityHint("This button will take you to this day's detail view")
                                                 .onTapGesture {
                                                     nav.path.append(day)
                                                 }
@@ -192,8 +194,6 @@ struct HomeView: View {
                     .background(Color("BackgroundColor"))
                     .task {
                         if locationManager.lastLocation != nil {
-                            print("on Appear Method -> latitude: \(locationManager.lastLocation?.coordinate.latitude)")
-                            print("on Appear Method -> longitude \(locationManager.lastLocation?.coordinate.longitude)")
                             await viewModel.getWeather(location: locationManager.lastLocation)
                         }
                     }
