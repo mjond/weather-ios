@@ -43,7 +43,7 @@ struct HomeView: View {
                                         .padding(.bottom, 2)
 
                                     Text(weatherModel.currentTemperature+"°")
-                                        .accessibilityLabel("\(weatherModel.currentTemperature)")
+                                        .accessibilityLabel("\(weatherModel.currentTemperature) degrees")
                                         .accessibilityAddTraits(.isStaticText)
                                         .font(.system(size: 46))
                                         .fontWeight(.bold)
@@ -51,7 +51,7 @@ struct HomeView: View {
                                         .foregroundStyle(Color("TitleColor"))
                                     
                                     Text("Feels like \(weatherModel.apparentTemperature)°")
-                                        .accessibilityLabel("Feels like \(weatherModel.apparentTemperature)")
+                                        .accessibilityLabel("Feels like \(weatherModel.apparentTemperature) degrees")
                                         .accessibilityAddTraits(.isStaticText)
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("SubheadingColor"))
@@ -72,9 +72,12 @@ struct HomeView: View {
                                                 .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
+                                            
                                             let sunriseDate = weatherModel.currentSunrise
+                                            let sunriseTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunriseDate)
+
                                             Text(sunriseDate, format: .dateTime.hour().minute())
-                                                .accessibilityLabel("\(weatherModel.currentSunrise)")
+                                                .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunriseTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunrise)")
                                                 .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)
@@ -88,9 +91,12 @@ struct HomeView: View {
                                                 .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
+                                            
                                             let sunsetDate = weatherModel.currentSunset
+                                            let sunsetTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunsetDate)
+                                            
                                             Text(sunsetDate, format: .dateTime.hour().minute())
-                                                .accessibilityLabel("\(weatherModel.currentSunset)")
+                                                .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunsetTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunset)")
                                                 .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)

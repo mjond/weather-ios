@@ -32,7 +32,7 @@ struct DayDetailView: View {
 
             VStack {
                 Text("Max: \(day.maximumTemperature)°")
-                    .accessibilityLabel("Maximum temperature is \(day.maximumTemperature)")
+                    .accessibilityLabel("Maximum temperature is \(day.maximumTemperature) degrees")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 22))
                     .fontWeight(.bold)
@@ -40,7 +40,7 @@ struct DayDetailView: View {
                     .foregroundStyle(Color("TitleColor"))
 
                 Text("Min: \(day.minimumTemperature)°")
-                    .accessibilityLabel("Minimum temperature is \(day.minimumTemperature)")
+                    .accessibilityLabel("Minimum temperature is \(day.minimumTemperature) degrees")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 22))
                     .fontWeight(.bold)
@@ -56,8 +56,11 @@ struct DayDetailView: View {
                         .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
+                    
+                    let sunriseTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: day.sunrise)
+                    
                     Text(day.sunrise, format: .dateTime.hour().minute())
-                        .accessibilityLabel("\(day.sunrise)")
+                        .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunriseTimeComponent, unitsStyle: .spellOut) ?? "\(day.sunrise)")
                         .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .fontWeight(.semibold)
@@ -71,8 +74,11 @@ struct DayDetailView: View {
                         .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
+                    
+                    let sunsetTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: day.sunrise)
+
                     Text(day.sunset, format: .dateTime.hour().minute())
-                        .accessibilityLabel("\(day.sunset)")
+                        .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunsetTimeComponent, unitsStyle: .spellOut) ?? "\(day.sunset)")
                         .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .fontWeight(.semibold)

@@ -14,8 +14,9 @@ struct HourlyCardView: View {
 
     var body: some View {
         VStack(alignment: .center) {
+            let hourComponent = Calendar.current.dateComponents([.hour], from: date)
             Text(date, format: .dateTime.hour())
-                .accessibilityLabel("\(date)")
+                .accessibilityLabel(DateComponentsFormatter.localizedString(from: hourComponent, unitsStyle: .spellOut) ?? "\(date)")
                 .accessibilityAddTraits(.isStaticText)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
@@ -23,7 +24,7 @@ struct HourlyCardView: View {
                 .padding(.bottom, 1)
             
             Text(temp+"°")
-                .accessibilityLabel("\(temp)")
+                .accessibilityLabel("\(temp) degrees")
                 .accessibilityAddTraits(.isStaticText)
                 .fontWeight(.semibold)
                 .fontDesign(.serif)
