@@ -55,6 +55,8 @@ struct SearchView: View {
                                 .font(.subheadline)
                                 .fontDesign(.serif)
                         }
+                        .accessibilityLabel("\(result.title)\(result.subtitle)")
+                        .accessibilityAddTraits(.isButton)
                         .padding(.vertical, 4)
                     }
                     .listRowBackground(Color("BackgroundColor"))
@@ -74,6 +76,8 @@ struct SearchView: View {
                     }
                 } label: {
                     Image(systemName: "chevron.left.circle")
+                        .accessibilityLabel("Back button")
+                        .accessibilityAddTraits(.isButton)
                         .font(.system(size: 22))
                         .foregroundStyle(Color("TitleColor"))
                 }

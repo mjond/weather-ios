@@ -23,6 +23,8 @@ struct SettingsView: View {
         VStack(alignment: .leading) {
 
             Text("Settings")
+                .accessibilityLabel("Settings")
+                .accessibilityAddTraits(.isStaticText)
                 .font(.system(size: 42))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
@@ -30,6 +32,8 @@ struct SettingsView: View {
 
             // MARK: - Unit of Measurement
             Text("Unit of Measurement")
+                .accessibilityLabel("Unit of Measurement")
+                .accessibilityAddTraits(.isStaticText)
                 .fontWeight(.medium)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
@@ -39,6 +43,8 @@ struct SettingsView: View {
             SettingsRowItem(title: "Imperial",
                             subHeading: "Miles, Inches, Fahrenheit, etc.",
                             isSelected: $isImperialActive)
+            .accessibilityLabel("Imperial: Miles, Inches, Fahrenheit, etc.")
+            .accessibilityAddTraits(.isButton)
             .contentShape(Rectangle())
             .onTapGesture {
                 if settings.unitOfMeasurement == .metric {
@@ -54,6 +60,8 @@ struct SettingsView: View {
             SettingsRowItem(title: "Celsius",
                             subHeading: "Kilometers, Millimeters, Celsius, etc.",
                             isSelected: $isMetricActive)
+            .accessibilityLabel("Celsius: Kilometers, Millimeters, Celsius, etc.")
+            .accessibilityAddTraits(.isButton)
             .contentShape(Rectangle())
             .onTapGesture {
                 if settings.unitOfMeasurement == .imperial {
@@ -138,19 +146,19 @@ struct SettingsView: View {
                 isMetricActive = true
             }
             
-            if settings.appearance == .system {
-                isSystemThemeActive = true
-                isLightThemeActive = false
-                isDarkThemeActive = false
-            } else if settings.appearance == .light {
-                isSystemThemeActive = false
-                isLightThemeActive = true
-                isDarkThemeActive = false
-            } else if settings.appearance == .dark {
-                isSystemThemeActive = false
-                isLightThemeActive = false
-                isDarkThemeActive = true
-            }
+//            if settings.appearance == .system {
+//                isSystemThemeActive = true
+//                isLightThemeActive = false
+//                isDarkThemeActive = false
+//            } else if settings.appearance == .light {
+//                isSystemThemeActive = false
+//                isLightThemeActive = true
+//                isDarkThemeActive = false
+//            } else if settings.appearance == .dark {
+//                isSystemThemeActive = false
+//                isLightThemeActive = false
+//                isDarkThemeActive = true
+//            }
         }
     }
 }

@@ -35,23 +35,31 @@ struct HomeView: View {
                             VStack {
                                 VStack {
                                     Text(weatherModel.locationName)
+                                        .accessibilityLabel("\(weatherModel.locationName)")
+                                        .accessibilityAddTraits(.isStaticText)
                                         .font(.system(size: 30))
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("TitleColor"))
                                         .padding(.bottom, 2)
 
                                     Text(weatherModel.currentTemperature+"°")
+                                        .accessibilityLabel("\(weatherModel.currentTemperature)")
+                                        .accessibilityAddTraits(.isStaticText)
                                         .font(.system(size: 46))
                                         .fontWeight(.bold)
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("TitleColor"))
                                     
                                     Text("Feels like \(weatherModel.apparentTemperature)°")
+                                        .accessibilityLabel("Feels like \(weatherModel.apparentTemperature)")
+                                        .accessibilityAddTraits(.isStaticText)
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("SubheadingColor"))
                                         .padding(.bottom, 5)
 
                                     Image(systemName: weatherModel.currentWeatherIconName)
+                                        .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
+                                        .accessibilityAddTraits(.isStaticText)
                                         .font(.system(size: 80))
                                         .fontDesign(.serif)
                                         .foregroundStyle(Color("TitleColor"))
@@ -60,10 +68,14 @@ struct HomeView: View {
                                     HStack {
                                         HStack {
                                             Text("Sunrise:")
+                                                .accessibilityLabel("Sunrise")
+                                                .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
                                             let sunriseDate = weatherModel.currentSunrise
                                             Text(sunriseDate, format: .dateTime.hour().minute())
+                                                .accessibilityLabel("\(weatherModel.currentSunrise)")
+                                                .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)
                                                 .foregroundStyle(Color("TitleColor"))
@@ -72,10 +84,14 @@ struct HomeView: View {
 
                                         HStack {
                                             Text("Sunset:")
+                                                .accessibilityLabel("Sunset")
+                                                .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .foregroundStyle(Color("TitleColor"))
                                             let sunsetDate = weatherModel.currentSunset
                                             Text(sunsetDate, format: .dateTime.hour().minute())
+                                                .accessibilityLabel("\(weatherModel.currentSunset)")
+                                                .accessibilityAddTraits(.isStaticText)
                                                 .fontDesign(.serif)
                                                 .fontWeight(.semibold)
                                                 .foregroundStyle(Color("TitleColor"))
@@ -87,6 +103,8 @@ struct HomeView: View {
                                 
                                 VStack(alignment: .leading) {
                                     Text("24 hour forecast")
+                                        .accessibilityLabel("24 hour forecast")
+                                        .accessibilityAddTraits(.isStaticText)
                                         .font(.callout)
                                         .fontDesign(.serif)
                                         .bold()
@@ -106,6 +124,8 @@ struct HomeView: View {
                                     .padding(.bottom, 25)
                                     
                                     Text("10 day forecast")
+                                        .accessibilityLabel("10 day forecast")
+                                        .accessibilityAddTraits(.isStaticText)
                                         .font(.callout)
                                         .fontDesign(.serif)
                                         .bold()
@@ -133,6 +153,8 @@ struct HomeView: View {
 
                                 Link(destination: URL(string: "https://open-meteo.com/")!, label: {
                                     Text("Data Source: Open Meteo")
+                                        .accessibilityLabel("Data Source: Open Meteo")
+                                        .accessibilityAddTraits(.isButton)
                                         .font(.footnote)
                                         .fontDesign(.serif)
                                         .underline()
@@ -141,22 +163,26 @@ struct HomeView: View {
                             } //: VStack
                             .padding(.top, 15)
                             .toolbar {
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button {
-                                        nav.path.append(locationManager)
-                                    } label: {
-                                        Image(systemName: "magnifyingglass")
-                                            .font(.system(size: 18))
-                                            .fontWeight(.bold)
-                                            .foregroundStyle(Color("TitleColor"))
-                                    }
-                                }
                                 ToolbarItem(placement: .topBarLeading) {
                                     Button {
                                         goToSettings.toggle()
                                     } label: {
                                         Image(systemName: "gearshape.fill")
+                                            .accessibilityLabel("Settings")
+                                            .accessibilityAddTraits(.isButton)
                                             .font(.system(size: 18))
+                                            .foregroundStyle(Color("TitleColor"))
+                                    }
+                                }
+                                ToolbarItem(placement: .topBarTrailing) {
+                                    Button {
+                                        nav.path.append(locationManager)
+                                    } label: {
+                                        Image(systemName: "magnifyingglass")
+                                            .accessibilityLabel("Search")
+                                            .accessibilityAddTraits(.isButton)
+                                            .font(.system(size: 18))
+                                            .fontWeight(.bold)
                                             .foregroundStyle(Color("TitleColor"))
                                     }
                                 }
