@@ -11,6 +11,7 @@ struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
     @ObservedObject var locationManager: LocationManager = LocationManager()
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @Environment(\.scenePhase) var scenePhase
     @State private var goToSettings: Bool = false
 
     var body: some View {
@@ -32,166 +33,178 @@ struct HomeView: View {
                             }
 
                         case let .success(weatherModel):
-                            VStack {
+                            ScrollView {
                                 VStack {
-                                    Text(weatherModel.locationName)
-                                        .accessibilityLabel("\(weatherModel.locationName)")
-                                        .accessibilityAddTraits(.isStaticText)
-                                        .font(.system(size: 30))
-                                        .fontDesign(.serif)
-                                        .foregroundStyle(Color("TitleColor"))
-                                        .padding(.bottom, 2)
-
-                                    Text(weatherModel.currentTemperature+"°")
-                                        .accessibilityLabel("\(weatherModel.currentTemperature) degrees")
-                                        .accessibilityAddTraits(.isStaticText)
-                                        .font(.system(size: 46))
-                                        .fontWeight(.bold)
-                                        .fontDesign(.serif)
-                                        .foregroundStyle(Color("TitleColor"))
-                                    
-                                    Text("Feels like \(weatherModel.apparentTemperature)°")
-                                        .accessibilityLabel("Feels like \(weatherModel.apparentTemperature) degrees")
-                                        .accessibilityAddTraits(.isStaticText)
-                                        .fontDesign(.serif)
-                                        .foregroundStyle(Color("SubheadingColor"))
-                                        .padding(.bottom, 5)
-
-                                    Image(systemName: weatherModel.currentWeatherIconName)
-                                        .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
-                                        .accessibilityAddTraits(.isImage)
-                                        .font(.system(size: 80))
-                                        .fontDesign(.serif)
-                                        .foregroundStyle(Color("TitleColor"))
-                                        .padding(.bottom)
-                                    
-                                    HStack {
+                                    VStack {
+                                        Text(weatherModel.locationName)
+                                            .accessibilityLabel("\(weatherModel.locationName)")
+                                            .accessibilityAddTraits(.isStaticText)
+                                            .font(.system(size: 30))
+                                            .fontDesign(.serif)
+                                            .foregroundStyle(Color("TitleColor"))
+                                            .padding(.bottom, 2)
+                                        
+                                        Text(weatherModel.currentTemperature+"°")
+                                            .accessibilityLabel("\(weatherModel.currentTemperature) degrees")
+                                            .accessibilityAddTraits(.isStaticText)
+                                            .font(.system(size: 46))
+                                            .fontWeight(.bold)
+                                            .fontDesign(.serif)
+                                            .foregroundStyle(Color("TitleColor"))
+                                        
+                                        Text("Feels like \(weatherModel.apparentTemperature)°")
+                                            .accessibilityLabel("Feels like \(weatherModel.apparentTemperature) degrees")
+                                            .accessibilityAddTraits(.isStaticText)
+                                            .fontDesign(.serif)
+                                            .foregroundStyle(Color("SubheadingColor"))
+                                            .padding(.bottom, 5)
+                                        
+                                        Image(systemName: weatherModel.currentWeatherIconName)
+                                            .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
+                                            .accessibilityAddTraits(.isImage)
+                                            .font(.system(size: 80))
+                                            .fontDesign(.serif)
+                                            .foregroundStyle(Color("TitleColor"))
+                                            .padding(.bottom)
+                                        
                                         HStack {
-                                            Text("Sunrise:")
-                                                .accessibilityLabel("Sunrise")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .foregroundStyle(Color("TitleColor"))
+                                            HStack {
+                                                Text("Sunrise:")
+                                                    .accessibilityLabel("Sunrise")
+                                                    .accessibilityAddTraits(.isStaticText)
+                                                    .fontDesign(.serif)
+                                                    .foregroundStyle(Color("TitleColor"))
+                                                
+                                                let sunriseDate = weatherModel.currentSunrise
+                                                let sunriseTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunriseDate)
+                                                
+                                                Text(sunriseDate, format: .dateTime.hour().minute())
+                                                    .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunriseTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunrise)")
+                                                    .accessibilityAddTraits(.isStaticText)
+                                                    .fontDesign(.serif)
+                                                    .fontWeight(.semibold)
+                                                    .foregroundStyle(Color("TitleColor"))
+                                            }
+                                            .padding(.trailing, 15)
                                             
-                                            let sunriseDate = weatherModel.currentSunrise
-                                            let sunriseTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunriseDate)
-
-                                            Text(sunriseDate, format: .dateTime.hour().minute())
-                                                .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunriseTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunrise)")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .fontWeight(.semibold)
-                                                .foregroundStyle(Color("TitleColor"))
-                                        }
-                                        .padding(.trailing, 15)
-
-                                        HStack {
-                                            Text("Sunset:")
-                                                .accessibilityLabel("Sunset")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .foregroundStyle(Color("TitleColor"))
-                                            
-                                            let sunsetDate = weatherModel.currentSunset
-                                            let sunsetTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunsetDate)
-                                            
-                                            Text(sunsetDate, format: .dateTime.hour().minute())
-                                                .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunsetTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunset)")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .fontWeight(.semibold)
-                                                .foregroundStyle(Color("TitleColor"))
-                                        }
-                                    }
-
-                                } //: VStack
-                                .padding(.bottom, 30)
-                                
-                                VStack(alignment: .leading) {
-                                    Text("24 hour forecast")
-                                        .accessibilityLabel("24 hour forecast")
-                                        .accessibilityAddTraits(.isStaticText)
-                                        .font(.callout)
-                                        .fontDesign(.serif)
-                                        .bold()
-                                        .foregroundStyle(Color("TitleColor"))
-                                        .padding(.leading, 15)
-                                    
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack {
-                                            ForEach(weatherModel.hourlyForecast) { hour in
-                                                HourlyCardView(date: hour.date,
-                                                               temp: hour.temperature,
-                                                               weatherIconName: hour.weatherIconName)
+                                            HStack {
+                                                Text("Sunset:")
+                                                    .accessibilityLabel("Sunset")
+                                                    .accessibilityAddTraits(.isStaticText)
+                                                    .fontDesign(.serif)
+                                                    .foregroundStyle(Color("TitleColor"))
+                                                
+                                                let sunsetDate = weatherModel.currentSunset
+                                                let sunsetTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunsetDate)
+                                                
+                                                Text(sunsetDate, format: .dateTime.hour().minute())
+                                                    .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunsetTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunset)")
+                                                    .accessibilityAddTraits(.isStaticText)
+                                                    .fontDesign(.serif)
+                                                    .fontWeight(.semibold)
+                                                    .foregroundStyle(Color("TitleColor"))
                                             }
                                         }
-                                    } //: ScrollView
-                                    .padding(.horizontal)
-                                    .padding(.bottom, 25)
+                                        
+                                    } //: VStack
+                                    .padding(.bottom, 30)
                                     
-                                    Text("10 day forecast")
-                                        .accessibilityLabel("10 day forecast")
-                                        .accessibilityAddTraits(.isStaticText)
-                                        .font(.callout)
-                                        .fontDesign(.serif)
-                                        .bold()
-                                        .foregroundStyle(Color("TitleColor"))
-                                        .padding(.leading, 15)
-                                    
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack {
-                                            ForEach(weatherModel.dailyForecast) { day in
-                                                DayCardView(dayName: day.abbreviatedDayName,
-                                                            maxTemp: day.maximumTemperature,
-                                                            minTemp: day.minimumTemperature,
-                                                            weatherIconName: day.weatherIconName)
-                                                .accessibilityAddTraits(.isButton)
-                                                .accessibilityHint("This button will take you to this day's detail view")
-                                                .onTapGesture {
-                                                    nav.path.append(day)
+                                    VStack(alignment: .leading) {
+                                        Text("24 hour forecast")
+                                            .accessibilityLabel("24 hour forecast")
+                                            .accessibilityAddTraits(.isStaticText)
+                                            .font(.callout)
+                                            .fontDesign(.serif)
+                                            .bold()
+                                            .foregroundStyle(Color("TitleColor"))
+                                            .padding(.leading, 15)
+                                        
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            HStack {
+                                                ForEach(weatherModel.hourlyForecast) { hour in
+                                                    HourlyCardView(date: hour.date,
+                                                                   temp: hour.temperature,
+                                                                   weatherIconName: hour.weatherIconName)
                                                 }
                                             }
-                                        }
-                                    } //: ScrollView
-                                    .padding(.horizontal)
-                                    .padding(.bottom, 10)
-                                }
-
-                                Spacer()
-
-                                Link(destination: URL(string: "https://open-meteo.com/")!, label: {
-                                    Text("Data Source: Open Meteo")
-                                        .accessibilityLabel("Data Source: Open Meteo")
-                                        .accessibilityAddTraits(.isButton)
-                                        .font(.footnote)
-                                        .fontDesign(.serif)
-                                        .underline()
-                                })
-
-                            } //: VStack
-                            .padding(.top, 15)
-                            .toolbar {
-                                ToolbarItem(placement: .topBarLeading) {
-                                    Button {
-                                        goToSettings.toggle()
-                                    } label: {
-                                        Image(systemName: "gearshape.fill")
-                                            .accessibilityLabel("Settings")
-                                            .accessibilityAddTraits(.isButton)
-                                            .font(.system(size: 18))
+                                        } //: ScrollView
+                                        .padding(.horizontal)
+                                        .padding(.bottom, 25)
+                                        
+                                        Text("10 day forecast")
+                                            .accessibilityLabel("10 day forecast")
+                                            .accessibilityAddTraits(.isStaticText)
+                                            .font(.callout)
+                                            .fontDesign(.serif)
+                                            .bold()
                                             .foregroundStyle(Color("TitleColor"))
+                                            .padding(.leading, 15)
+                                        
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            HStack {
+                                                ForEach(weatherModel.dailyForecast) { day in
+                                                    DayCardView(dayName: day.abbreviatedDayName,
+                                                                maxTemp: day.maximumTemperature,
+                                                                minTemp: day.minimumTemperature,
+                                                                weatherIconName: day.weatherIconName)
+                                                    .accessibilityAddTraits(.isButton)
+                                                    .accessibilityHint("This button will take you to this day's detail view")
+                                                    .onTapGesture {
+                                                        nav.path.append(day)
+                                                    }
+                                                }
+                                            }
+                                        } //: ScrollView
+                                        .padding(.horizontal)
+                                        .padding(.bottom, 10)
+                                        
+//                                    List {
+//                                        ForEach(weatherModel.dailyForecast) { day in
+//                                            VStack {
+//                                                Text(day.abbreviatedDayName)
+//                                            }
+//                                        }
+//                                    }
+//                                    .listStyle(.insetGrouped)
+//                                    .scrollContentBackground(.hidden)
                                     }
-                                }
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button {
-                                        nav.path.append(locationManager)
-                                    } label: {
-                                        Image(systemName: "magnifyingglass")
-                                            .accessibilityLabel("Search")
+                                    
+                                    Spacer()
+                                    
+                                    Link(destination: URL(string: "https://open-meteo.com/")!, label: {
+                                        Text("Data Source: Open Meteo")
+                                            .accessibilityLabel("Data Source: Open Meteo")
                                             .accessibilityAddTraits(.isButton)
-                                            .font(.system(size: 18))
-                                            .fontWeight(.bold)
-                                            .foregroundStyle(Color("TitleColor"))
+                                            .font(.footnote)
+                                            .fontDesign(.serif)
+                                            .underline()
+                                    })
+                                    
+                                } //: VStack
+                                .padding(.top, 15)
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        Button {
+                                            goToSettings.toggle()
+                                        } label: {
+                                            Image(systemName: "gearshape.fill")
+                                                .accessibilityLabel("Settings")
+                                                .accessibilityAddTraits(.isButton)
+                                                .font(.system(size: 18))
+                                                .foregroundStyle(Color("TitleColor"))
+                                        }
+                                    }
+                                    ToolbarItem(placement: .topBarTrailing) {
+                                        Button {
+                                            nav.path.append(locationManager)
+                                        } label: {
+                                            Image(systemName: "magnifyingglass")
+                                                .accessibilityLabel("Search")
+                                                .accessibilityAddTraits(.isButton)
+                                                .font(.system(size: 18))
+                                                .fontWeight(.bold)
+                                                .foregroundStyle(Color("TitleColor"))
+                                        }
                                     }
                                 }
                             }
@@ -201,6 +214,15 @@ struct HomeView: View {
                     .task {
                         if locationManager.lastLocation != nil {
                             await viewModel.getWeather(location: locationManager.lastLocation)
+                        }
+                    }
+                    .onChange(of: scenePhase) { oldPhase, newPhase in
+                        if newPhase == .active {
+                            if locationManager.lastLocation != nil {
+                                Task {
+                                    await viewModel.getWeather(location: locationManager.lastLocation)
+                                }
+                            }
                         }
                     }
                     .navigationDestination(for: DailyWeatherModel.self) { day in
