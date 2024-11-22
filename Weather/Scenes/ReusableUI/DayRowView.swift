@@ -30,21 +30,28 @@ struct DayRowView: View {
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.trailing, 50)
             
-            Text(minTemp+"°")
-                .accessibilityLabel("\(minTemp) degrees")
-                .accessibilityAddTraits(.isStaticText)
-                .fontWeight(.light)
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
-            
-            Text(" ----- ")
-            
-            Text(maxTemp+"°")
-                .accessibilityLabel("\(maxTemp) degrees")
-                .accessibilityAddTraits(.isStaticText)
-                .fontWeight(.bold)
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
+            HStack {
+                Text(minTemp+"°")
+                    .accessibilityLabel("\(minTemp) degrees")
+                    .accessibilityAddTraits(.isStaticText)
+                    .font(.system(size: 20))
+                    .fontWeight(.light)
+                    .fontDesign(.serif)
+                    .foregroundStyle(Color("TitleColor"))
+                    .frame(minWidth: 30)
+                
+                Text(" ----- ")
+                
+                Text(maxTemp+"°")
+                    .accessibilityLabel("\(maxTemp) degrees")
+                    .accessibilityAddTraits(.isStaticText)
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .fontDesign(.serif)
+                    .foregroundStyle(Color("TitleColor"))
+                    .frame(minWidth: 30)
+            } //: HStack
+            .frame(minWidth: 110)
         } //: HStack
         .background(.clear)
     }

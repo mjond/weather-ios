@@ -125,7 +125,7 @@ struct HomeView: View {
                                                     HourlyCardView(date: hour.date,
                                                                    temp: hour.temperature,
                                                                    weatherIconName: hour.weatherIconName)
-                                                    .padding(.trailing, 3)
+                                                    .padding(.horizontal, 3)
                                                 }
                                             }
                                         } //: ScrollView
@@ -174,7 +174,7 @@ struct HomeView: View {
                                                     .accessibilityAddTraits(.isButton)
                                                     .accessibilityHint("This button will take you to this day's detail view")
                                                     .frame(minHeight: 40)
-                                                    .padding(.horizontal, 5)
+                                                    .padding(.leading, 5)
                                                 }
                                             }
                                             Divider()
@@ -224,7 +224,8 @@ struct HomeView: View {
                                         }
                                     }
                                 }
-                            }
+                            } //: ScrollView
+                            .scrollIndicators(.hidden)
                         }
                     } //: VStack
                     .background(Color("BackgroundColor"))
