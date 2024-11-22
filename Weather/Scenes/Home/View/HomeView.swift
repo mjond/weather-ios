@@ -125,11 +125,12 @@ struct HomeView: View {
                                                     HourlyCardView(date: hour.date,
                                                                    temp: hour.temperature,
                                                                    weatherIconName: hour.weatherIconName)
+                                                    .padding(.trailing, 3)
                                                 }
                                             }
                                         } //: ScrollView
                                         .padding(.horizontal)
-                                        .padding(.bottom, 25)
+                                        .padding(.bottom, 30)
                                         
                                         Text("10 day forecast")
                                             .accessibilityLabel("10 day forecast")
@@ -140,33 +141,43 @@ struct HomeView: View {
                                             .foregroundStyle(Color("TitleColor"))
                                             .padding(.leading, 15)
                                         
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack {
-                                                ForEach(weatherModel.dailyForecast) { day in
-                                                    DayCardView(dayName: day.abbreviatedDayName,
-                                                                maxTemp: day.maximumTemperature,
-                                                                minTemp: day.minimumTemperature,
-                                                                weatherIconName: day.weatherIconName)
+//                                        ScrollView(.horizontal, showsIndicators: false) {
+//                                            HStack {
+//                                                ForEach(weatherModel.dailyForecast) { day in
+//                                                    DayCardView(dayName: day.abbreviatedDayName,
+//                                                                maxTemp: day.maximumTemperature,
+//                                                                minTemp: day.minimumTemperature,
+//                                                                weatherIconName: day.weatherIconName)
+//                                                    .accessibilityAddTraits(.isButton)
+//                                                    .accessibilityHint("This button will take you to this day's detail view")
+//                                                    .onTapGesture {
+//                                                        nav.path.append(day)
+//                                                    }
+//                                                }
+//                                            }
+//                                        } //: ScrollView
+//                                        .padding(.horizontal)
+//                                        .padding(.bottom, 10)
+                                        
+                                        VStack {
+                                            ForEach(weatherModel.dailyForecast) { day in
+                                                Divider()
+                                                
+                                                Button {
+                                                    nav.path.append(day)
+                                                } label: {
+                                                    DayRowView(dayName: day.fullDayName,
+                                                               maxTemp: day.maximumTemperature,
+                                                               minTemp: day.minimumTemperature,
+                                                               weatherIconName: day.weatherIconName)
                                                     .accessibilityAddTraits(.isButton)
                                                     .accessibilityHint("This button will take you to this day's detail view")
-                                                    .onTapGesture {
-                                                        nav.path.append(day)
-                                                    }
+                                                    .frame(minHeight: 40)
                                                 }
                                             }
-                                        } //: ScrollView
-                                        .padding(.horizontal)
-                                        .padding(.bottom, 10)
-                                        
-//                                    List {
-//                                        ForEach(weatherModel.dailyForecast) { day in
-//                                            VStack {
-//                                                Text(day.abbreviatedDayName)
-//                                            }
-//                                        }
-//                                    }
-//                                    .listStyle(.insetGrouped)
-//                                    .scrollContentBackground(.hidden)
+                                            Divider()
+                                        }
+                                        .padding(.horizontal, 20)
                                     }
                                     
                                     Spacer()
@@ -182,6 +193,7 @@ struct HomeView: View {
                                     
                                 } //: VStack
                                 .padding(.top, 15)
+                                .toolbarBackground(Color("BackgroundColor"))
                                 .toolbar {
                                     ToolbarItem(placement: .topBarLeading) {
                                         Button {
