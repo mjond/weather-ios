@@ -173,6 +173,7 @@ struct HomeView: View {
                                                     .accessibilityAddTraits(.isButton)
                                                     .accessibilityHint("This button will take you to this day's detail view")
                                                     .frame(minHeight: 40)
+                                                    .padding(.horizontal, 5)
                                                 }
                                             }
                                             Divider()
