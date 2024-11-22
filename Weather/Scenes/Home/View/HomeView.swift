@@ -162,6 +162,7 @@ struct HomeView: View {
                                         VStack {
                                             ForEach(weatherModel.dailyForecast) { day in
                                                 Divider()
+                                                    .foregroundStyle(Color("TitleColor"))
                                                 
                                                 Button {
                                                     nav.path.append(day)
@@ -177,8 +178,11 @@ struct HomeView: View {
                                                 }
                                             }
                                             Divider()
-                                        }
+                                                .foregroundStyle(Color("TitleColor"))
+
+                                        } //: VStack
                                         .padding(.horizontal, 20)
+                                        .padding(.bottom, 25)
                                     }
                                     
                                     Spacer()
