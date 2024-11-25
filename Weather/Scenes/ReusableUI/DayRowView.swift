@@ -28,7 +28,7 @@ struct DayRowView: View {
                 .accessibilityAddTraits(.isImage)
                 .font(.system(size: 26))
                 .foregroundStyle(Color("TitleColor"))
-                .padding(.trailing, 50)
+                .padding(.trailing, 35)
             
             HStack {
                 Text(minTemp+"°")
@@ -38,9 +38,10 @@ struct DayRowView: View {
                     .fontWeight(.light)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                    .frame(minWidth: 30)
+                    .frame(minWidth: 35)
                 
                 Text(" ----- ")
+                    .frame(minWidth: 40)
                 
                 Text(maxTemp+"°")
                     .accessibilityLabel("\(maxTemp) degrees")
@@ -49,7 +50,7 @@ struct DayRowView: View {
                     .fontWeight(.bold)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                    .frame(minWidth: 30)
+                    .frame(minWidth: 35)
             } //: HStack
             .frame(minWidth: 110)
         } //: HStack
