@@ -16,11 +16,13 @@ struct HomeFailureView: View {
                 .accessibilityAddTraits(.isImage)
                 .font(.system(size: 50))
                 .fontDesign(.serif)
+                .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom, 2)
             Text("Something went wrong...")
                 .accessibilityLabel("Something went wrong with getting weather data")
                 .accessibilityAddTraits(.isStaticText)
                 .padding(.bottom, 20)
+                .foregroundStyle(Color("TitleColor"))
                 .fontDesign(.serif)
 
             Button {
@@ -30,6 +32,7 @@ struct HomeFailureView: View {
                     .accessibilityLabel("Try again to get weather data")
                     .accessibilityAddTraits(.isButton)
                     .fontDesign(.serif)
+                    .foregroundStyle(Color("TitleColor"))
                     .underline()
             }
         } //: VStack

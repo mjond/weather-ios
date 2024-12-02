@@ -18,6 +18,7 @@ struct HourlyCardView: View {
             Text(date, format: .dateTime.hour())
                 .accessibilityLabel(DateComponentsFormatter.localizedString(from: hourComponent, unitsStyle: .spellOut) ?? "\(date)")
                 .accessibilityAddTraits(.isStaticText)
+                .font(.subheadline)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
                 .padding(.top, 10)
@@ -26,7 +27,7 @@ struct HourlyCardView: View {
             Text(temp+"°")
                 .accessibilityLabel("\(temp) degrees")
                 .accessibilityAddTraits(.isStaticText)
-                .fontWeight(.semibold)
+                .fontWeight(.bold)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
             
