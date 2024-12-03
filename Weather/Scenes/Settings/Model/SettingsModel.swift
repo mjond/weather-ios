@@ -14,12 +14,12 @@ final class WeatherSettings: ObservableObject {
             print("Set unit of measurement to: \(unitOfMeasurement)")
         }
     }
-    @Published var appearance: Appearance {
-        didSet {
-            updatePreference(value: appearance, key: UserDefaultsConstants.appearance.rawValue)
-            print("Set appearance to: \(appearance)")
-        }
-    }
+//    @Published var appearance: Appearance {
+//        didSet {
+//            updatePreference(value: appearance, key: UserDefaultsConstants.appearance.rawValue)
+//            print("Set appearance to: \(appearance)")
+//        }
+//    }
 
     init() {
         if let storedUnits = UserDefaults().value(forKey: UserDefaultsConstants.unitOfMeasurementSetting.rawValue) as? String {
@@ -33,18 +33,18 @@ final class WeatherSettings: ObservableObject {
             unitOfMeasurement = .imperial            
         }
         
-        if let storedAppearance = UserDefaults().value(forKey: UserDefaultsConstants.appearance.rawValue) as? String {
-            if storedAppearance == Appearance.system.rawValue {
-                appearance = .system
-            } else if storedAppearance == Appearance.light.rawValue {
-                appearance = .light
-            } else {
-                appearance = .dark
-            }
-        } else {
-            // if there isn't a stored setting, then default to system appearance settings
-            appearance = .system
-        }
+//        if let storedAppearance = UserDefaults().value(forKey: UserDefaultsConstants.appearance.rawValue) as? String {
+//            if storedAppearance == Appearance.system.rawValue {
+//                appearance = .system
+//            } else if storedAppearance == Appearance.light.rawValue {
+//                appearance = .light
+//            } else {
+//                appearance = .dark
+//            }
+//        } else {
+//            // if there isn't a stored setting, then default to system appearance settings
+//            appearance = .system
+//        }
     }
     
     func updatePreference(value: UnitOfMeasurement, key: String) {

@@ -1,6 +1,6 @@
 # iOS Weather App
 
-This is a sample SwiftUI app to showcase API fetching, parsing the data, and then displaying the data to the user. This project uses an MVVM architecture.
+This is a sample SwiftUI app to show current weather and forecasted weather. This project uses an MVVM architecture.
 
 This app uses Core Location and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols and dark mode is supported. Voice Over accessibility is supported.
 
@@ -12,6 +12,11 @@ This app uses Core Location and MapKit to search for locations. No third-party S
 ## Data Fetching
 This app uses data from [Open-Meteo](https://open-meteo.com/), an organization giving free weather data at the personal project tier. The data is fetched using the `WeatherService` class which utilizes `URLSession` and `JSONDecoder`.
 
+To see a sample weather response from Open-Meteo like this project uses, enter this call into Postman:
+```
+https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code,apparent_temperature,&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset,precipitation_probability_mean,precipitation_sum,uv_index_max,wind_speed_10m_max,wind_direction_10m_dominant,wind_gusts_10m_max&timezone=auto&latitude=42.96&longitude=-85.67&forecast_days=7&hourly=temperature_2m,is_day,weather_code&temperature_unit=celsius
+```
+
 ## Navigation
 
 This app uses `NavigationStack` with `NavigationPath` for navigation.
@@ -19,7 +24,7 @@ This app uses `NavigationStack` with `NavigationPath` for navigation.
 ## Features
 
 ### Home
-This is the main view of the application. It displays the current weather, 24 hourly forecase, and 10 day forcast.
+This is the main view of the application. It displays the current weather, 24 hourly forecase, and 10 day forcast. This view defaults to the user's current location.
 
 <p float="left">
     <img src="Screenshots/home.PNG" alt="drawing" width="250"/>
@@ -42,6 +47,6 @@ Tapping on the gear icon from the Home screen's navigation bar will bring the us
 <img src="Screenshots/settings.PNG" alt="drawing" width="250"/>
 
 ### Location
-If a user denies location services, or turns it off at a later time, then the user is prompted to turn location services back on.
+If a user denies location services, or turns it off at a later time, then the user is prompted to allow location services.
 
 <img src="Screenshots/location_denied.PNG" alt="drawing" width="250"/>
