@@ -59,7 +59,7 @@ struct HomeHeaderView: View {
                 
                 HStack {
                     Text(weatherModel.currentTemperature + "°" + " | " + "Feels like \(weatherModel.apparentTemperature)°")
-                        .accessibilityLabel("\(weatherModel.currentTemperature) degrees")
+                        .accessibilityLabel("\(weatherModel.currentTemperature) degrees, feelsl like \(weatherModel.apparentTemperature) degrees")
                         .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))

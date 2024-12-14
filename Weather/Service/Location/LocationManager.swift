@@ -30,6 +30,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         default: return "unknown"
         }
     }
+    
+    func requestCurrentLocation() {
+        locationManager.requestLocation()
+    }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationStatus = status
