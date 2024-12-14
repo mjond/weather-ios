@@ -37,14 +37,15 @@ struct HomeHeaderView: View {
                     .fontDesign(.serif)
                     .foregroundStyle(Color("SubheadingColor"))
                     .padding(.bottom, 5)
-                
+                    
                 Image(systemName: weatherModel.currentWeatherIconName)
                     .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
                     .accessibilityAddTraits(.isImage)
-                    .font(.system(size: 80))
+                    .font(.system(size: 65))
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
                     .padding(.bottom)
+
             } //: VStack
         } else {
             VStack {
