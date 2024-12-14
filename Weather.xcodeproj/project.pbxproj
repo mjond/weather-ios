@@ -37,6 +37,7 @@
 		B5D5ABD22AFADDFD00A1FAC3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */; };
 		B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */; };
 		B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */; };
+		B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */; };
 		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,9 +158,10 @@
 		B56A06722CC6CDF40080DC74 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */,
-				B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */,
 				B59A48CC2CCDBDDE00F2C9FB /* HomeFailureView.swift */,
+				B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */,
+				B52ACD692CCD954D00EE07F2 /* HomeLoadingView.swift */,
+				B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */,
 				B529275A2CDAEDD3009B6A93 /* LocationDeniedView.swift */,
 				B52927632CDBD6F3009B6A93 /* LocationPendingView.swift */,
 			);
@@ -415,6 +418,7 @@
 			files = (
 				B5646B3C2CE5523E00FE08B3 /* SearchView.swift in Sources */,
 				B5C5E1672CD948D600614DC5 /* SettingsModel.swift in Sources */,
+				B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */,
 				B59DEFC92CC9BDB40061CF31 /* DayDetailView.swift in Sources */,
 				B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */,
 				B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */,
