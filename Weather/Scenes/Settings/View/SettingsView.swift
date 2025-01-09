@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-//    @AppStorage(UserDefaultsConstants.appearance.rawValue) private var appearance: Appearance = .system
-
-    @Binding var settings: WeatherSettings
+    private var settings = WeatherSettings.shared
 
     @State var isImperialActive: Bool = true
     @State var isMetricActive: Bool = false
@@ -74,63 +72,6 @@ struct SettingsView: View {
             Divider()
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom, 25)
-            
-            // MARK: - Appearance
-//            Text("Appearance")
-//                .fontWeight(.medium)
-//                .fontDesign(.serif)
-//                .foregroundStyle(Color("SubheadingColor"))
-//
-//            Divider()
-//                .foregroundStyle(Color("TitleColor"))
-//
-//            SettingsRowItem(title: "Automatic",
-//                            subHeading: "Use device settings",
-//                            isSelected: $isSystemThemeActive)
-//            .contentShape(Rectangle())
-//            .onTapGesture {
-//                if settings.appearance != .system {
-//                    settings.appearance = .system
-//                    
-//                    isSystemThemeActive = true
-//                    isLightThemeActive = false
-//                    isDarkThemeActive = false
-//                }
-//            }
-//
-//            Divider()
-//                .foregroundStyle(Color("TitleColor"))
-//
-//            SettingsRowItem(title: "Light",
-//                            subHeading: "Always render in light mode",
-//                            isSelected: $isLightThemeActive)
-//            .contentShape(Rectangle())
-//            .onTapGesture {
-//                if settings.appearance != .light {
-//                    settings.appearance = .light
-//                    
-//                    isSystemThemeActive = false
-//                    isLightThemeActive = true
-//                    isDarkThemeActive = false
-//                }
-//            }
-//
-//            Divider()
-//                .foregroundStyle(Color("TitleColor"))
-//
-//            SettingsRowItem(title: "Dark",
-//                            subHeading: "Always render in dark mode",
-//                            isSelected: $isDarkThemeActive)
-//            .contentShape(Rectangle())
-//            .onTapGesture {
-//                if settings.appearance != .dark {
-//                    settings.appearance = .dark
-//                    
-//                    isSystemThemeActive = false
-//                    isLightThemeActive = false
-//                    isDarkThemeActive = true
-//                }
-//            }
 
             Spacer()
         } //: VStack
@@ -145,26 +86,11 @@ struct SettingsView: View {
                 isImperialActive = false
                 isMetricActive = true
             }
-            
-//            if settings.appearance == .system {
-//                isSystemThemeActive = true
-//                isLightThemeActive = false
-//                isDarkThemeActive = false
-//            } else if settings.appearance == .light {
-//                isSystemThemeActive = false
-//                isLightThemeActive = true
-//                isDarkThemeActive = false
-//            } else if settings.appearance == .dark {
-//                isSystemThemeActive = false
-//                isLightThemeActive = false
-//                isDarkThemeActive = true
-//            }
         }
     }
 }
 
 #Preview {
-    @Previewable @State var settings = WeatherSettings()
-    SettingsView(settings: $settings)
+    SettingsView()
         .environmentObject(NavigationStateManager())
 }

@@ -7,19 +7,20 @@
 
 import SwiftUI
 
-final class WeatherSettings: ObservableObject {
+protocol WeatherSettingsProtocol {
+    var unitOfMeasurement: UnitOfMeasurement { get set }
+    func updatePreference(value: UnitOfMeasurement, key: String)
+}
+
+final class WeatherSettings: WeatherSettingsProtocol {
+    static let shared = WeatherSettings()
+
     @Published var unitOfMeasurement: UnitOfMeasurement {
         didSet {
             updatePreference(value: unitOfMeasurement, key: UserDefaultsConstants.unitOfMeasurementSetting.rawValue)
             print("Set unit of measurement to: \(unitOfMeasurement)")
         }
     }
-//    @Published var appearance: Appearance {
-//        didSet {
-//            updatePreference(value: appearance, key: UserDefaultsConstants.appearance.rawValue)
-//            print("Set appearance to: \(appearance)")
-//        }
-//    }
 
     init() {
         if let storedUnits = UserDefaults().value(forKey: UserDefaultsConstants.unitOfMeasurementSetting.rawValue) as? String {
@@ -32,26 +33,9 @@ final class WeatherSettings: ObservableObject {
             // if there isn't a stored setting, then default to imperial
             unitOfMeasurement = .imperial            
         }
-        
-//        if let storedAppearance = UserDefaults().value(forKey: UserDefaultsConstants.appearance.rawValue) as? String {
-//            if storedAppearance == Appearance.system.rawValue {
-//                appearance = .system
-//            } else if storedAppearance == Appearance.light.rawValue {
-//                appearance = .light
-//            } else {
-//                appearance = .dark
-//            }
-//        } else {
-//            // if there isn't a stored setting, then default to system appearance settings
-//            appearance = .system
-//        }
     }
     
     func updatePreference(value: UnitOfMeasurement, key: String) {
-        UserDefaults().set(value.rawValue, forKey: key)
-    }
-    
-    func updatePreference(value: Appearance, key: String) {
         UserDefaults().set(value.rawValue, forKey: key)
     }
 }
@@ -59,20 +43,4 @@ final class WeatherSettings: ObservableObject {
 enum UnitOfMeasurement: String {
     case metric
     case imperial
-}
-
-enum Appearance: String {
-    case system
-    case light
-    case dark
-
-    var id: String { self.rawValue }
-    
-    var colorScheme: ColorScheme? {
-        switch self {
-        case .system: return nil // Follow system
-        case .light: return .light
-        case .dark: return .dark
-        }
-    }
 }

@@ -10,10 +10,14 @@ import CoreLocation
 
 class HomeViewModel: ObservableObject {
     @Published var state = State.loading
-    @ObservedObject var settings = WeatherSettings()
-    private var weatherService = WeatherService()
+    private var settings: WeatherSettingsProtocol
+    private var weatherService: WeatherServiceProtocol
+    private var isAPICallInProgress = false
 
-    var isAPICallInProgress = false
+    init(settings: any WeatherSettingsProtocol = WeatherSettings.shared, weatherService: WeatherServiceProtocol = WeatherService()) {
+        self.settings = settings
+        self.weatherService = weatherService
+    }
 
     enum State {
         case loading

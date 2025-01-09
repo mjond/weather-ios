@@ -209,7 +209,7 @@ struct HomeView: View {
                         DayDetailView(day: day)
                     }
                     .navigationDestination(isPresented: $goToSettings) {
-                        SettingsView(settings: $viewModel.settings)
+                        SettingsView()
                     }
                     .navigationDestination(for: LocationManager.self) { locationManager in
                         SearchView(locationManager: locationManager)
