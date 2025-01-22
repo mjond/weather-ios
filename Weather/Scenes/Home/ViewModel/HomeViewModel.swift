@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 class HomeViewModel: ObservableObject {
-    @Published var state = State.loading
+    @Published var state = ViewState.loading
     private var settings: WeatherSettingsProtocol
     private var weatherService: WeatherServiceProtocol
     private var isAPICallInProgress = false
@@ -19,7 +19,7 @@ class HomeViewModel: ObservableObject {
         self.weatherService = weatherService
     }
 
-    enum State {
+    enum ViewState: Equatable {
         case loading
         case failure
         case success(HomeModel)

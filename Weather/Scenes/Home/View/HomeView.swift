@@ -177,7 +177,6 @@ struct HomeView: View {
                                 }
                                 .background(GeometryReader { geometry in
                                     Color.clear.onChange(of: geometry.frame(in: .global).minY) { value in
-                                        // Track scroll position
                                         scrollOffset = value
                                         DispatchQueue.main.async {
                                             withAnimation {

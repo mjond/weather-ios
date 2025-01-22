@@ -7,5 +7,4 @@
 
 enum UserDefaultsConstants: String {
     case unitOfMeasurementSetting
-    case appearance
 }

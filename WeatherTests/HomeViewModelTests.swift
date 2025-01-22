@@ -6,6 +6,7 @@
 //
 
 @testable import Weather
+import CoreLocation
 import XCTest
 
 final class HomeViewModelTests: XCTestCase {
@@ -27,12 +28,38 @@ final class HomeViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() async {
-        // make a mock HomeModel with the mockWeatherData
-//        let data = mockWeatherService.mockWeatherData
-//        let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
-//
-//        await viewModel.getWeather(location: location)
-//        XCTAssertEqual(viewModel.state, .success(data))
+    func testHomeViewModelSuccess() async {
+        let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
+
+        await viewModel.getWeather(location: location)
+        
+        sleep(1)
+        
+        if case let .success(homeModel) = viewModel.state {
+            print(homeModel)
+            XCTAssertEqual(homeModel.currentTemperature, "24")
+            XCTAssertEqual(homeModel.currentWeatherCode, 1)
+            XCTAssertEqual(homeModel.apparentTemperature, "25")
+        } else {
+            XCTFail("Expected state to be success, but was \(viewModel.state)")
+        }
     }
+    
+    func testLoadingState() async {
+        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
+        mockWeatherService.mockWeatherData = nil
+
+        await viewModel.getWeather(location: mockLocation)
+
+        XCTAssertEqual(viewModel.state, .loading)
+    }
+    
+//    func testFailureState() async {
+//        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
+//        mockWeatherService.shouldReturnError = true
+//
+//        await viewModel.getWeather(location: mockLocation)
+//
+//        XCTAssertEqual(viewModel.state, .failure)
+//    }
 }

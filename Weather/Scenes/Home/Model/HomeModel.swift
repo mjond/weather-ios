@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HomeModel {
+struct HomeModel: Equatable {
     var locationName: String
     var currentTemperature: String
     var apparentTemperature: String
