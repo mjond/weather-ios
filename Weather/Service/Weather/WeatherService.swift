@@ -7,14 +7,20 @@
 
 import Foundation
 
+protocol URLSessionProtocol {
+    func data(from url: URL) async throws -> (Data, URLResponse)
+}
+
+extension URLSession: URLSessionProtocol {}
+
 protocol WeatherServiceProtocol {
     func getWeather(latitude: String, longitude: String, unit: UnitOfMeasurement) async throws -> WeatherDataModel?
 }
 
 struct WeatherService: WeatherServiceProtocol {
-    private let urlSession: URLSession
+    private let urlSession: URLSessionProtocol
     
-    init(urlSession: URLSession = URLSession.shared) {
+    init(urlSession: URLSessionProtocol = URLSession.shared) {
         self.urlSession = urlSession
     }
     
@@ -31,20 +37,20 @@ struct WeatherService: WeatherServiceProtocol {
                 let response = try JSONDecoder().decode(WeatherDataModel.self, from: data)
                 return response
             } catch let error as DecodingError {
-                switch error {
-                case .keyNotFound(let key, let context):
-                    print("getWeather() -> Key '\(key)' not found:", context.debugDescription)
-                case .typeMismatch(let type, let context):
-                    print("getWeather() -> Type mismatch:", type, context.debugDescription)
-                case .valueNotFound(let type, let context):
-                    print("getWeather() -> Value not found:", type, context.debugDescription)
-                case .dataCorrupted(let context):
-                    print("getWeather() -> Data corrupted:", context.debugDescription)
-                @unknown default:
-                    print("getWeather() -> Unknown error when decoding weather response")
-                }
-                
-                print("WeatherService.getWeather() -> failed to fetch weather data")
+//                switch error {
+//                case .keyNotFound(let key, let context):
+//                    print("getWeather() -> Key '\(key)' not found:", context.debugDescription)
+//                case .typeMismatch(let type, let context):
+//                    print("getWeather() -> Type mismatch:", type, context.debugDescription)
+//                case .valueNotFound(let type, let context):
+//                    print("getWeather() -> Value not found:", type, context.debugDescription)
+//                case .dataCorrupted(let context):
+//                    print("getWeather() -> Data corrupted:", context.debugDescription)
+//                @unknown default:
+//                    print("getWeather() -> Unknown error when decoding weather response")
+//                }
+//                
+                print("WeatherService.getWeather() -> failed to fetch weather data with error: \(error)")
             }
         }
         return nil
