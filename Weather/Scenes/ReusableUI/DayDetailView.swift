@@ -48,44 +48,26 @@ struct DayDetailView: View {
                     .foregroundStyle(Color("TitleColor"))
             }
             .padding(.bottom)
+
+            HStack {
+                PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: day.sunrise)
+                                               
+                Spacer()
+                
+                PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: day.sunset)
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 5)
             
             HStack {
-                HStack {
-                    Text("Sunrise:")
-                        .accessibilityLabel("Sunrise")
-                        .accessibilityAddTraits(.isStaticText)
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                    
-                    let sunriseTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: day.sunrise)
-                    
-                    Text(day.sunrise, format: .dateTime.hour().minute())
-                        .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunriseTimeComponent, unitsStyle: .spellOut) ?? "\(day.sunrise)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .fontDesign(.serif)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(Color("TitleColor"))
-                }
-                .padding(.trailing, 15)
-
-                HStack {
-                    Text("Sunset:")
-                        .accessibilityLabel("Sunset")
-                        .accessibilityAddTraits(.isStaticText)
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                    
-                    let sunsetTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: day.sunrise)
-
-                    Text(day.sunset, format: .dateTime.hour().minute())
-                        .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunsetTimeComponent, unitsStyle: .spellOut) ?? "\(day.sunset)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .fontDesign(.serif)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(Color("TitleColor"))
-                }
+                PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: day.precipitationAmount)
+                                               
+                Spacer()
+                
+                PropertyCardView(title: "UV Index", iconName: "sun.max", value: day.uvIndexMax)
             }
-            .padding(.bottom)
+            .padding(.horizontal)
+            .padding(.vertical, 5)
 
             VStack {
                 Divider()
@@ -101,7 +83,7 @@ struct DayDetailView: View {
                     
                     Spacer()
                     
-                    Text("\(day.precipitationProbability)%")
+                    Text("\(day.precipitationProbability)")
                         .accessibilityLabel("\(day.precipitationProbability)")
                         .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 18))
@@ -109,47 +91,6 @@ struct DayDetailView: View {
                         .foregroundStyle(Color("TitleColor"))
                 }
                 .padding(.top, 10)
-                
-                HStack {
-                    Text("Precipitation amount:")
-                        .accessibilityLabel("Precipitation amount:")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                    
-                    Spacer()
-                    
-                    Text("\(day.precipitationAmount)")
-                        .accessibilityLabel("\(day.precipitationAmount)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                }
-                .padding(.bottom, 10)
-                
-                Divider()
-                    .foregroundStyle(Color("TitleColor"))
-                
-                HStack {
-                    Text("UV index:")
-                        .accessibilityLabel("UV index:")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                    
-                    Spacer()
-                    
-                    Text("\(day.uvIndexMax)")
-                        .accessibilityLabel("\(day.uvIndexMax)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                }
-                .padding(.vertical, 10)
 
                 Divider()
                     .foregroundStyle(Color("TitleColor"))
