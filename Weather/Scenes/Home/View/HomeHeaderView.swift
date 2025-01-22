@@ -38,13 +38,13 @@ struct HomeHeaderView: View {
                     .foregroundStyle(Color("SubheadingColor"))
                     .padding(.bottom, 5)
                     
-                Image(systemName: weatherModel.currentWeatherIconName)
-                    .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
-                    .accessibilityAddTraits(.isImage)
-                    .font(.system(size: 65))
-                    .fontDesign(.serif)
-                    .foregroundStyle(Color("TitleColor"))
-                    .padding(.bottom)
+//                Image(systemName: weatherModel.currentWeatherIconName)
+//                    .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
+//                    .accessibilityAddTraits(.isImage)
+//                    .font(.system(size: 65))
+//                    .fontDesign(.serif)
+//                    .foregroundStyle(Color("TitleColor"))
+//                    .padding(.bottom)
 
             } //: VStack
         } else {
@@ -59,7 +59,7 @@ struct HomeHeaderView: View {
                 
                 HStack {
                     Text(weatherModel.currentTemperature + "°" + " | " + "Feels like \(weatherModel.apparentTemperature)°")
-                        .accessibilityLabel("\(weatherModel.currentTemperature) degrees, feelsl like \(weatherModel.apparentTemperature) degrees")
+                        .accessibilityLabel("\(weatherModel.currentTemperature) degrees, feels like \(weatherModel.apparentTemperature) degrees")
                         .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))

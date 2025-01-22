@@ -39,46 +39,6 @@ struct HomeView: View {
 
                             ScrollView {
                                 VStack {
-                                    HStack {
-                                        HStack {
-                                            Text("Sunrise:")
-                                                .accessibilityLabel("Sunrise")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .foregroundStyle(Color("TitleColor"))
-                                            
-                                            let sunriseDate = weatherModel.currentSunrise
-                                            let sunriseTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunriseDate)
-                                            
-                                            Text(sunriseDate, format: .dateTime.hour().minute())
-                                                .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunriseTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunrise)")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .fontWeight(.semibold)
-                                                .foregroundStyle(Color("TitleColor"))
-                                        }
-                                        .padding(.trailing, 15)
-                                        
-                                        HStack {
-                                            Text("Sunset:")
-                                                .accessibilityLabel("Sunset")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .foregroundStyle(Color("TitleColor"))
-                                            
-                                            let sunsetDate = weatherModel.currentSunset
-                                            let sunsetTimeComponent = Calendar.current.dateComponents([.hour, .minute], from: sunsetDate)
-                                            
-                                            Text(sunsetDate, format: .dateTime.hour().minute())
-                                                .accessibilityLabel(DateComponentsFormatter.localizedString(from: sunsetTimeComponent, unitsStyle: .spellOut) ?? "\(weatherModel.currentSunset)")
-                                                .accessibilityAddTraits(.isStaticText)
-                                                .fontDesign(.serif)
-                                                .fontWeight(.semibold)
-                                                .foregroundStyle(Color("TitleColor"))
-                                        }
-                                    }
-                                    .padding(.bottom, 20)
-                                    
                                     VStack(alignment: .leading) {
                                         Text("24 hour forecast")
                                             .accessibilityLabel("24 hour forecast")
@@ -134,8 +94,17 @@ struct HomeView: View {
                                             
                                         } //: VStack
                                         .padding(.horizontal, 20)
-                                        .padding(.bottom, 25)
+                                        .padding(.bottom, 10)
+                                    } //: VStack
+                                    
+                                    HStack {                                     
+                                        PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: weatherModel.currentSunrise)
+                                                                                
+                                        Spacer()
+                                        
+                                        PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: weatherModel.currentSunset)
                                     }
+                                    .padding()
                                     
                                     Spacer()
                                     
