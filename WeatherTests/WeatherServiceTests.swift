@@ -9,7 +9,7 @@
 import XCTest
 
 final class WeatherServiceTests: XCTestCase {
-    func testExample() async throws {
+    func testGetWeatherSuccessfulResponse() async throws {
         let mockURLSession = MockURLSession()
         let weatherService = WeatherService(urlSession: mockURLSession)
         let mockData = mockSuccessfulJsonData
