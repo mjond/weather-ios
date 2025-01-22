@@ -63,6 +63,8 @@ class HomeViewModel: ObservableObject {
                 
                 let currentSunrise = dailyWeather[0].sunrise
                 let currentSunset = dailyWeather[0].sunset
+                let currentWindSpeed = dailyWeather[0].windSpeed
+                let currentUvIndex = dailyWeather[0].uvIndexMax
 
                 let homeModel = HomeModel(locationName: locationName,
                                           currentTemperature: currentTemperature,
@@ -70,6 +72,8 @@ class HomeViewModel: ObservableObject {
                                           currentSunrise: currentSunrise,
                                           currentSunset: currentSunset,
                                           currentWeatherCode: weatherCode,
+                                          currentWindSpeed: currentWindSpeed,
+                                          currentUvIndex: currentUvIndex,
                                           dailyForecast: dailyWeather,
                                           hourlyForecast: hourlyWeather)
 

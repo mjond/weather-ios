@@ -17,6 +17,8 @@ struct HomeModel: Equatable {
     var currentWeatherIconName: String {
         WeatherHelper().getCurrentWeatherCodeIcon(from: currentWeatherCode, sunrise: currentSunrise, sunset: currentSunset)
     }
+    var currentWindSpeed: String
+    var currentUvIndex: String
     var dailyForecast: [DailyWeatherModel]
     var hourlyForecast: [HourlyWeatherModel]
 }

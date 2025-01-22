@@ -99,12 +99,23 @@ struct HomeView: View {
                                     
                                     HStack {                                     
                                         PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: weatherModel.currentSunrise)
-                                                                                
+                                                                       
                                         Spacer()
                                         
                                         PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: weatherModel.currentSunset)
                                     }
-                                    .padding()
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
+                                    
+                                    HStack {
+                                        PropertyCardView(title: "Windspeed", iconName: "wind", value: weatherModel.currentWindSpeed)
+                                                                     
+                                        Spacer()
+                                        
+                                        PropertyCardView(title: "UV Index", iconName: "sun.max", value: weatherModel.currentUvIndex)
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
                                     
                                     Spacer()
                                     
