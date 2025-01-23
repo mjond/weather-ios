@@ -25,7 +25,7 @@ struct DayDetailView: View {
             Image(systemName: day.weatherIconName)
                 .accessibilityLabel("\(day.weatherIconName)")
                 .accessibilityAddTraits(.isImage)
-                .font(.system(size: 80))
+                .font(.system(size: 70))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom)
@@ -48,36 +48,30 @@ struct DayDetailView: View {
                     .foregroundStyle(Color("TitleColor"))
             }
             .padding(.bottom)
-
-            HStack {
-                PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: day.sunrise)
-                                               
-                Spacer()
-                
-                PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: day.sunset)
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 5)
             
-            HStack {
-                PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: day.precipitationAmount)
-                                               
-                Spacer()
+            VStack {
+                HStack {
+                    PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: day.sunrise)
+                    
+                    Spacer()
+                    
+                    PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: day.sunset)
+                }
+                .padding(.vertical, 5)
                 
-                PropertyCardView(title: "UV Index", iconName: "sun.max", value: day.uvIndexMax)
+                HStack {
+                    PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: day.precipitationAmount)
+                    
+                    Spacer()
+                    
+                    PropertyCardView(title: "UV Index", iconName: "sun.max", value: day.uvIndexMax)
+                }
+                .padding(.vertical, 5)
+                
+                WindCardView(windSpeed: day.windSpeed, windGust: day.windGust, windDirectinoDegrees: day.windDirectionDegrees)
+                    .padding(.vertical, 5)
             }
             .padding(.horizontal)
-            .padding(.vertical, 5)
-            
-            HStack {
-                PropertyCardView(title: "Wind Speed", iconName: "wind", value: day.windSpeed)
-                                               
-                Spacer()
-                
-                PropertyCardView(title: "Wind Gusts", iconName: "wind.circle", value: day.windGust)
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 5)
 
             VStack {
                 Divider()
@@ -144,5 +138,6 @@ struct DayDetailView: View {
                                          sunset: Date(),
                                          sunrise: Date(),
                                          windSpeed: "14 km/h",
-                                         windGust: "27 km/h"))
+                                         windGust: "27 km/h",
+                                         windDirectionDegrees: "125"))
 }

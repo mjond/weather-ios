@@ -54,6 +54,7 @@ struct DailyWeatherData: Codable {
     let uv_index_max: [Double]
     let wind_speed_10m_max: [Double]
     let wind_gusts_10m_max: [Double]
+    let wind_direction_10m_dominant: [Double]
 }
 
 struct HourlyWeatherData: Codable {

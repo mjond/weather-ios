@@ -97,25 +97,29 @@ struct HomeView: View {
                                         .padding(.bottom, 10)
                                     } //: VStack
                                     
-                                    HStack {                                     
-                                        PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: weatherModel.currentSunrise)
-                                                                       
-                                        Spacer()
+                                    VStack {
+                                        HStack {
+                                            PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: weatherModel.currentSunrise)
+                                            
+                                            Spacer()
+                                            
+                                            PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: weatherModel.currentSunset)
+                                        }
+                                        .padding(.vertical, 5)
                                         
-                                        PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: weatherModel.currentSunset)
+                                        WindCardView(windSpeed: weatherModel.currentWindSpeed, windGust: weatherModel.currentWindGust, windDirectinoDegrees: weatherModel.currentWindDirectionDegrees)
+                                            .padding(.vertical, 5)
+                                        
+                                        HStack {
+                                            PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: weatherModel.currentPrecipitationAmount)
+                                            
+                                            Spacer()
+                                            
+                                            PropertyCardView(title: "UV Index", iconName: "sun.max", value: weatherModel.currentUvIndex)
+                                        }
+                                        .padding(.vertical, 5)
                                     }
                                     .padding(.horizontal)
-                                    .padding(.vertical, 5)
-                                    
-                                    HStack {
-                                        PropertyCardView(title: "Windspeed", iconName: "wind", value: weatherModel.currentWindSpeed)
-                                                                     
-                                        Spacer()
-                                        
-                                        PropertyCardView(title: "UV Index", iconName: "sun.max", value: weatherModel.currentUvIndex)
-                                    }
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 5)
                                     .padding(.bottom, 20)
                                     
                                     Spacer()

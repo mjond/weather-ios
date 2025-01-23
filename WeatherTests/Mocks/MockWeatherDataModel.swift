@@ -65,6 +65,18 @@ public var mockData = WeatherDataModel(
         ],
         wind_gusts_10m_max: [
             20.0, 15.0, 18.0, 18.0, 18.0, 18.0, 18.0, 18.0, 18.0, 18.0
+        ],
+        wind_direction_10m_dominant: [
+            184,
+            275,
+            215,
+            230,
+            269,
+            249,
+            305,
+            242,
+            314,
+            308
         ]
     ),
     hourly: HourlyWeatherData(

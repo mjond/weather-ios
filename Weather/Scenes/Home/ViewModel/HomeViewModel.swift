@@ -64,7 +64,10 @@ class HomeViewModel: ObservableObject {
                 let currentSunrise = dailyWeather[0].sunrise
                 let currentSunset = dailyWeather[0].sunset
                 let currentWindSpeed = dailyWeather[0].windSpeed
+                let currentWindGust = dailyWeather[0].windGust
+                let currentWindDirectionDegrees = dailyWeather[0].windDirectionDegrees
                 let currentUvIndex = dailyWeather[0].uvIndexMax
+                let currentPrecipitationAmount = dailyWeather[0].precipitationAmount
 
                 let homeModel = HomeModel(locationName: locationName,
                                           currentTemperature: currentTemperature,
@@ -73,7 +76,10 @@ class HomeViewModel: ObservableObject {
                                           currentSunset: currentSunset,
                                           currentWeatherCode: weatherCode,
                                           currentWindSpeed: currentWindSpeed,
+                                          currentWindGust: currentWindGust,
+                                          currentWindDirectionDegrees: currentWindDirectionDegrees,
                                           currentUvIndex: currentUvIndex,
+                                          currentPrecipitationAmount: currentPrecipitationAmount,
                                           dailyForecast: dailyWeather,
                                           hourlyForecast: hourlyWeather)
 
@@ -142,6 +148,7 @@ class HomeViewModel: ObservableObject {
             let uvIndex = response.uv_index_max[index].rounded()
             let windSpeed = response.wind_speed_10m_max[index].rounded()
             let windGusts = response.wind_gusts_10m_max[index].rounded()
+            let windDirectionDegrees = response.wind_direction_10m_dominant[index]
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
             let formattedMaxTemp = String(format: "%.0f", maxTemp)
@@ -150,6 +157,7 @@ class HomeViewModel: ObservableObject {
             let formattedUv = String(format: "%.0f", uvIndex)
             let formattedWindSpeed = getFormattedWind(from: windSpeed)
             let formattedWindGusts = getFormattedWind(from: windGusts)
+            let formattedWindDirectionDegrees = String(format: "%.0f", windDirectionDegrees)
             
             let dailyWeatherObject = DailyWeatherModel(date: date,
                                                        minimumTemperature: formattedMinTemp,
@@ -161,7 +169,8 @@ class HomeViewModel: ObservableObject {
                                                        sunset: sunset,
                                                        sunrise: sunrise,
                                                        windSpeed: formattedWindSpeed,
-                                                       windGust: formattedWindGusts)
+                                                       windGust: formattedWindGusts,
+                                                       windDirectionDegrees: formattedWindDirectionDegrees)
             
             dailyForecast.append(dailyWeatherObject)
         }
