@@ -17,6 +17,11 @@ struct PropertyCardView: View {
     var body: some View {
         VStack {
             HStack {
+                Image(systemName: iconName)
+                    .accessibilityLabel("\(iconName)")
+                    .accessibilityAddTraits(.isImage)
+                    .foregroundStyle(Color("TitleColor"))
+                
                 Text(title)
                     .accessibilityLabel("\(title)")
                     .accessibilityAddTraits(.isStaticText)
@@ -25,18 +30,11 @@ struct PropertyCardView: View {
                     .foregroundStyle(Color("TitleColor"))
                 
                 Spacer()
-                
-                Image(systemName: iconName)
-                    .accessibilityLabel("\(iconName)")
-                    .accessibilityAddTraits(.isImage)
-                    .foregroundStyle(Color("TitleColor"))
             } //: HStack
             
             Spacer()
 
             HStack {
-                Spacer()
-
                 if isTimeBased {
                     if let unwrappedDate = date {
                         let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: unwrappedDate)
@@ -58,6 +56,9 @@ struct PropertyCardView: View {
                             .foregroundStyle(Color("TitleColor"))
                     }
                 }
+
+                Spacer()
+
             } //: HStack
         }
         .padding()

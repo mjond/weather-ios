@@ -116,6 +116,7 @@ struct HomeView: View {
                                     }
                                     .padding(.horizontal)
                                     .padding(.vertical, 5)
+                                    .padding(.bottom, 20)
                                     
                                     Spacer()
                                     

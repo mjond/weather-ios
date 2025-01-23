@@ -20,7 +20,7 @@ struct DayDetailView: View {
                 .font(.system(size: 36))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
             
             Image(systemName: day.weatherIconName)
                 .accessibilityLabel("\(day.weatherIconName)")
@@ -68,6 +68,16 @@ struct DayDetailView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
+            
+            HStack {
+                PropertyCardView(title: "Wind Speed", iconName: "wind", value: day.windSpeed)
+                                               
+                Spacer()
+                
+                PropertyCardView(title: "Wind Gusts", iconName: "wind.circle", value: day.windGust)
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 5)
 
             VStack {
                 Divider()
@@ -91,47 +101,6 @@ struct DayDetailView: View {
                         .foregroundStyle(Color("TitleColor"))
                 }
                 .padding(.top, 10)
-
-                Divider()
-                    .foregroundStyle(Color("TitleColor"))
-                
-                HStack {
-                    Text("Wind speed:")
-                        .accessibilityLabel("Wind speed:")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                    
-                    Spacer()
-                    
-                    Text("\(day.windSpeed)")
-                        .accessibilityLabel("\(day.windSpeed)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                }
-                .padding(.top, 10)
-                
-                HStack {
-                    Text("Wind gusts:")
-                        .accessibilityLabel("Wind gusts:")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                    
-                    Spacer()
-                    
-                    Text("\(day.windGust)")
-                        .accessibilityLabel("\(day.windGust)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
-                        .foregroundStyle(Color("TitleColor"))
-                }
-                .padding(.bottom, 10)
                 
                 Divider()
                     .foregroundStyle(Color("TitleColor"))
