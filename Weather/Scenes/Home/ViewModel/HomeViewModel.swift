@@ -12,11 +12,15 @@ class HomeViewModel: ObservableObject {
     @Published var state = ViewState.loading
     private var settings: WeatherSettingsProtocol
     private var weatherService: WeatherServiceProtocol
+    private var dateProvider: DateProviderProtocol
     private var isAPICallInProgress = false
 
-    init(settings: any WeatherSettingsProtocol = WeatherSettings.shared, weatherService: WeatherServiceProtocol = WeatherService()) {
+    init(settings: any WeatherSettingsProtocol = WeatherSettings.shared,
+         weatherService: WeatherServiceProtocol = WeatherService(),
+         dateProvider: DateProviderProtocol = DateProvider()) {
         self.settings = settings
         self.weatherService = weatherService
+        self.dateProvider = dateProvider
     }
 
     enum ViewState: Equatable {
@@ -260,7 +264,7 @@ class HomeViewModel: ObservableObject {
     }
 
     private func findStartingHourlyIndex(from hours: HourlyWeatherData) -> Int {
-        let currentDate = Date()
+        let currentDate = dateProvider.currentDate()
 
         for (index, dateStamp) in hours.time.enumerated() {
             guard let date = getDateAndTimeFromString(dateStamp) else { return 0 }

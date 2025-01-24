@@ -12,13 +12,20 @@ import XCTest
 final class HomeViewModelTests: XCTestCase {
     var mockWeatherService: MockWeatherService!
     var mockSettings: MockWeatherSettings!
+    var mockDateProvider: MockDateProvider!
     var viewModel: HomeViewModel!
 
     override func setUp() {
         super.setUp()
         mockWeatherService = MockWeatherService()
         mockSettings = MockWeatherSettings()
-        viewModel = HomeViewModel(settings: mockSettings, weatherService: mockWeatherService)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+        if let fixedDate = dateFormatter.date(from: "2025-01-15T05:23") {
+            mockDateProvider = MockDateProvider(fixedDate: fixedDate)
+            viewModel = HomeViewModel(settings: mockSettings, weatherService: mockWeatherService, dateProvider: mockDateProvider)
+        }
     }
 
     override func tearDown() {
