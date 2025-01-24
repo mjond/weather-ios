@@ -165,12 +165,17 @@ struct HomeView: View {
                                         scrollOffset = value
                                         DispatchQueue.main.async {
                                             withAnimation {
-                                                showCollapsedView = value < 185
+                                                if !showCollapsedView {
+                                                    showCollapsedView = value < 230
+                                                } else {
+                                                    showCollapsedView = value < 165
+                                                }
                                             }
                                         }
                                     }
                                 })
                             } //: ScrollView
+                            .padding(.top, 25)
                             .scrollIndicators(.hidden)
                         }
                     } //: VStack
