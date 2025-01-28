@@ -152,7 +152,9 @@ class HomeViewModel: ObservableObject {
             let uvIndex = response.uv_index_max[index].rounded()
             let windSpeed = response.wind_speed_10m_max[index].rounded()
             let windGusts = response.wind_gusts_10m_max[index].rounded()
-            let windDirectionDegrees = response.wind_direction_10m_dominant[index]
+            let windDegrees = response.wind_direction_10m_dominant[index]
+            
+            let windDirectionWithDegrees = DirectionHelper.getDirectionWithDegrees(from: windDegrees)
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
             let formattedMaxTemp = String(format: "%.0f", maxTemp)
@@ -161,7 +163,7 @@ class HomeViewModel: ObservableObject {
             let formattedUv = String(format: "%.0f", uvIndex)
             let formattedWindSpeed = getFormattedWind(from: windSpeed)
             let formattedWindGusts = getFormattedWind(from: windGusts)
-            let formattedWindDirectionDegrees = String(format: "%.0f", windDirectionDegrees)
+            let formattedWindDirectionDegrees = windDirectionWithDegrees
             
             let dailyWeatherObject = DailyWeatherModel(date: date,
                                                        minimumTemperature: formattedMinTemp,
@@ -300,5 +302,4 @@ class HomeViewModel: ObservableObject {
         }
         return nil
     }
-
 }

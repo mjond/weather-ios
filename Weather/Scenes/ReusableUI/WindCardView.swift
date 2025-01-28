@@ -83,7 +83,7 @@ struct WindCardView: View {
                 
                 Spacer()
                 
-                Text("\(windDirectinoDegrees)°")
+                Text("\(windDirectinoDegrees)")
                     .accessibilityLabel(windDirectinoDegrees)
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
