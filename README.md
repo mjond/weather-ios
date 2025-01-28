@@ -14,7 +14,7 @@ This app uses data from [Open-Meteo](https://open-meteo.com/), an organization g
 
 To see a sample weather response from Open-Meteo like this project uses, enter this call into Postman:
 ```
-https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code,apparent_temperature,&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset,precipitation_probability_mean,precipitation_sum,uv_index_max,wind_speed_10m_max,wind_direction_10m_dominant,wind_gusts_10m_max&timezone=auto&latitude=42.96&longitude=-85.67&forecast_days=7&hourly=temperature_2m,is_day,weather_code&temperature_unit=celsius
+https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code,apparent_temperature,&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset,precipitation_probability_mean,precipitation_sum,uv_index_max,wind_speed_10m_max,wind_direction_10m_dominant,wind_gusts_10m_max&timezone=auto&latitude=40.73&longitude=-73.93&forecast_days=10&hourly=temperature_2m,is_day,weather_code&temperature_unit=fahrenheit
 ```
 
 ## Navigation
@@ -35,6 +35,7 @@ This is the main view of the application. It displays the current weather, 24 ho
 Tapping on a day from the Home screen will bring the user to the Day Detail View.
 
 <img src="Screenshots/day_detail.PNG" alt="drawing" width="250"/>
+<img src="Screenshots/day_detail_dark_mode.PNG" alt="drawing" width="250"/>
 
 ### Location Search
 Tapping on the magnifying glass icon from the Home screen's navigation bar will bring the user here. This view utilizes the `MKLocalSearchCompleter` from MapKit to search for locations.
