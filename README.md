@@ -1,6 +1,6 @@
 # iOS Weather App
 
-This is a sample SwiftUI app to show current weather and forecasted weather. This project uses an MVVM architecture.
+This is a simple SwiftUI app to show current weather and forecasted weather. This project uses an MVVM architecture. Please keep in mind the purpose of this isn't to show UI/UX design but rather architecture patterns, data handling, and testing :)
 
 This app uses Core Location and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols and dark mode is supported. Voice Over accessibility is supported.
 
