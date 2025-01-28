@@ -52,6 +52,7 @@
 		B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */; };
 		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
 		B5FEE09E2D492FE100B13F4B /* DirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */; };
+		B5FEE0A22D49377F00B13F4B /* DirectionHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FEE0A12D49377F00B13F4B /* DirectionHelperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionHelper.swift; sourceTree = "<group>"; };
+		B5FEE0A12D49377F00B13F4B /* DirectionHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionHelperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				B573CC592D30695000925D4B /* HomeViewModelTests.swift */,
 				B5187DFE2D407A670020BDDB /* WeatherDataModelTests.swift */,
 				B5187E022D4080630020BDDB /* WeatherServiceTests.swift */,
+				B5FEE0A12D49377F00B13F4B /* DirectionHelperTests.swift */,
 			);
 			path = WeatherTests;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				B5187DFB2D4078EA0020BDDB /* MockWeatherDataModel.swift in Sources */,
 				B583641B2D441EFC007175D2 /* MockDateProvider.swift in Sources */,
 				B573CC5B2D30695000925D4B /* MockWeatherService.swift in Sources */,
+				B5FEE0A22D49377F00B13F4B /* DirectionHelperTests.swift in Sources */,
 				B573CC5C2D30695000925D4B /* MockWeatherSettings.swift in Sources */,
 				B5187E012D407DE80020BDDB /* MockURLSession.swift in Sources */,
 				B573CC5D2D30695000925D4B /* HomeViewModelTests.swift in Sources */,
