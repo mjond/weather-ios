@@ -118,7 +118,7 @@ struct HomeView: View {
                                             PropertyCardView(title: "UV Index", iconName: "sun.max", value: weatherModel.currentUvIndex)
                                         }
                                         .padding(.vertical, 5)
-                                    }
+                                    } //: VStack
                                     .padding(.horizontal)
                                     .padding(.bottom, 20)
                                     
@@ -134,6 +134,7 @@ struct HomeView: View {
                                     })
                                     
                                 } //: VStack
+                                .padding(.top, 25)
                                 .toolbarBackground(Color("BackgroundColor"))
                                 .toolbar {
                                     ToolbarItem(placement: .topBarLeading) {
@@ -165,8 +166,9 @@ struct HomeView: View {
                                         scrollOffset = value
                                         DispatchQueue.main.async {
                                             withAnimation {
+                                                print(value)
                                                 if !showCollapsedView {
-                                                    showCollapsedView = value < 230
+                                                    showCollapsedView = value < 240
                                                 } else {
                                                     showCollapsedView = value < 165
                                                 }
@@ -175,7 +177,7 @@ struct HomeView: View {
                                     }
                                 })
                             } //: ScrollView
-                            .padding(.top, 25)
+                            .padding(.top, 20)
                             .scrollIndicators(.hidden)
                         }
                     } //: VStack
@@ -184,6 +186,7 @@ struct HomeView: View {
                         if locationManager.lastLocation != nil {
                             await viewModel.getWeather(location: locationManager.lastLocation)
                         }
+                        showCollapsedView = false
                     }
                     .onChange(of: scenePhase) { oldPhase, newPhase in
                         if newPhase == .active {
