@@ -8,14 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    private var settings = WeatherSettings.shared
-
-    @State var isImperialActive: Bool = true
-    @State var isMetricActive: Bool = false
-    
-    @State var isSystemThemeActive: Bool = true
-    @State var isLightThemeActive: Bool = false
-    @State var isDarkThemeActive: Bool = false
+    @ObservedObject private var viewModel = SettingsViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -40,16 +33,12 @@ struct SettingsView: View {
 
             SettingsRowItem(title: "Imperial",
                             subHeading: "Miles, Inches, Fahrenheit, etc.",
-                            isSelected: $isImperialActive)
+                            isSelected: $viewModel.isImperialActive)
             .accessibilityLabel("Imperial: Miles, Inches, Fahrenheit, etc.")
             .accessibilityAddTraits(.isButton)
             .contentShape(Rectangle())
             .onTapGesture {
-                if settings.unitOfMeasurement == .metric {
-                    settings.unitOfMeasurement = .imperial
-                    isImperialActive.toggle()
-                    isMetricActive.toggle()
-                }
+                viewModel.selectImperial()
             }
 
             Divider()
@@ -57,16 +46,12 @@ struct SettingsView: View {
 
             SettingsRowItem(title: "Celsius",
                             subHeading: "Kilometers, Millimeters, Celsius, etc.",
-                            isSelected: $isMetricActive)
+                            isSelected: $viewModel.isMetricActive)
             .accessibilityLabel("Celsius: Kilometers, Millimeters, Celsius, etc.")
             .accessibilityAddTraits(.isButton)
             .contentShape(Rectangle())
             .onTapGesture {
-                if settings.unitOfMeasurement == .imperial {
-                    settings.unitOfMeasurement = .metric
-                    isImperialActive.toggle()
-                    isMetricActive.toggle()
-                }
+                viewModel.selectMetric()
             }
 
             Divider()
@@ -78,15 +63,6 @@ struct SettingsView: View {
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(25)
         .background(Color("BackgroundColor"))
-        .onAppear {
-            if settings.unitOfMeasurement == .imperial {
-                isImperialActive = true
-                isMetricActive = false
-            } else {
-                isImperialActive = false
-                isMetricActive = true
-            }
-        }
     }
 }
 
