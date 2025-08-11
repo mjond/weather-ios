@@ -162,14 +162,15 @@ struct HomeView: View {
                                     }
                                 }
                                 .background(GeometryReader { geometry in
-                                    Color.clear.onChange(of: geometry.frame(in: .global).minY) { value in
-                                        scrollOffset = value
+                                    Color.clear.onChange(of: geometry.frame(in: .global).minY) { oldValue, newValue in
+                                        scrollOffset = newValue
+                                        print(newValue)
                                         DispatchQueue.main.async {
                                             withAnimation {
                                                 if !showCollapsedView {
-                                                    showCollapsedView = value < 225
+                                                    showCollapsedView = newValue < 225
                                                 } else {
-                                                    showCollapsedView = value < 175
+                                                    showCollapsedView = newValue < 170
                                                 }
                                             }
                                         }
