@@ -166,11 +166,10 @@ struct HomeView: View {
                                         scrollOffset = value
                                         DispatchQueue.main.async {
                                             withAnimation {
-                                                print(value)
                                                 if !showCollapsedView {
-                                                    showCollapsedView = value < 240
+                                                    showCollapsedView = value < 225
                                                 } else {
-                                                    showCollapsedView = value < 165
+                                                    showCollapsedView = value < 175
                                                 }
                                             }
                                         }
