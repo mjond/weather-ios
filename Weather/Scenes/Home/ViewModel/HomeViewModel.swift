@@ -37,7 +37,7 @@ class HomeViewModel: ObservableObject {
 
         isAPICallInProgress = true
 
-        DispatchQueue.main.async {
+        await MainActor.run {
             self.state = .loading
         }
 
@@ -87,13 +87,13 @@ class HomeViewModel: ObservableObject {
                                           dailyForecast: dailyWeather,
                                           hourlyForecast: hourlyWeather)
 
-                DispatchQueue.main.async {
+                await MainActor.run {
                     self.isAPICallInProgress = false
                     self.state = .success(homeModel)
                 }
             }
         } catch {
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.isAPICallInProgress = false
                 self.state = .failure
             }
