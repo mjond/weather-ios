@@ -164,7 +164,6 @@ struct HomeView: View {
                                 .background(GeometryReader { geometry in
                                     Color.clear.onChange(of: geometry.frame(in: .global).minY) { oldValue, newValue in
                                         scrollOffset = newValue
-                                        print(newValue)
                                         DispatchQueue.main.async {
                                             withAnimation {
                                                 if !showCollapsedView {

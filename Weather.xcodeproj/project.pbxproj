@@ -52,6 +52,7 @@
 		B5D5ABD22AFADDFD00A1FAC3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */; };
 		B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */; };
 		B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */; };
+		B5DB9E512E4CE9B20023A41D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E502E4CE9AF0023A41D /* PersistenceController.swift */; };
 		B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */; };
 		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
 		B5FEE09E2D492FE100B13F4B /* DirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */; };
@@ -117,6 +118,7 @@
 		B5D5ABD12AFADDFD00A1FAC3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5DB9E502E4CE9AF0023A41D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionHelper.swift; sourceTree = "<group>"; };
@@ -155,7 +157,8 @@
 		B52927572CDA52A9009B6A93 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				B52927582CDA52D3009B6A93 /* UserDefaultsConstants.swift */,
+				B5DB9E4F2E4CE8DF0023A41D /* CoreData */,
+				B5DB9E4E2E4CE8D90023A41D /* UserDefaults */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -407,6 +410,22 @@
 			path = ReusableUI;
 			sourceTree = "<group>";
 		};
+		B5DB9E4E2E4CE8D90023A41D /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				B52927582CDA52D3009B6A93 /* UserDefaultsConstants.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		B5DB9E4F2E4CE8DF0023A41D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B5DB9E502E4CE9AF0023A41D /* PersistenceController.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -581,6 +600,7 @@
 				B599DA452CD9662500023F5D /* SettingsRowItem.swift in Sources */,
 				B562C51A2CF0D74F00BC7042 /* DayRowView.swift in Sources */,
 				B52927592CDA52D7009B6A93 /* UserDefaultsConstants.swift in Sources */,
+				B5DB9E512E4CE9B20023A41D /* PersistenceController.swift in Sources */,
 				B599DA472CD99AB100023F5D /* SettingsViewModel.swift in Sources */,
 				B52ACD6D2CCDBC5200EE07F2 /* View+Extension.swift in Sources */,
 				B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */,
