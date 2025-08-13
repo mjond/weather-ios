@@ -13,7 +13,6 @@ final class PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        // Must match your .xcdatamodeld file name
         container = NSPersistentContainer(name: "Weather")
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")

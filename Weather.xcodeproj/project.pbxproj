@@ -53,6 +53,7 @@
 		B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */; };
 		B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */; };
 		B5DB9E512E4CE9B20023A41D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E502E4CE9AF0023A41D /* PersistenceController.swift */; };
+		B5DB9E562E4CEA610023A41D /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E542E4CEA610023A41D /* Weather.xcdatamodeld */; };
 		B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */; };
 		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
 		B5FEE09E2D492FE100B13F4B /* DirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */; };
@@ -119,6 +120,7 @@
 		B5D5ABD32AFADDFE00A1FAC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D5ABD62AFADDFE00A1FAC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5DB9E502E4CE9AF0023A41D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		B5DB9E552E4CEA610023A41D /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionHelper.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				B5DB9E502E4CE9AF0023A41D /* PersistenceController.swift */,
+				B5DB9E542E4CEA610023A41D /* Weather.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 			files = (
 				B5FEE09E2D492FE100B13F4B /* DirectionHelper.swift in Sources */,
 				B5646B3C2CE5523E00FE08B3 /* SearchView.swift in Sources */,
+				B5DB9E562E4CEA610023A41D /* Weather.xcdatamodeld in Sources */,
 				B5C5E1672CD948D600614DC5 /* SettingsModel.swift in Sources */,
 				B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */,
 				B59DEFC92CC9BDB40061CF31 /* DayDetailView.swift in Sources */,
@@ -877,6 +881,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B5DB9E542E4CEA610023A41D /* Weather.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B5DB9E552E4CEA610023A41D /* Weather.xcdatamodel */,
+			);
+			currentVersion = B5DB9E552E4CEA610023A41D /* Weather.xcdatamodel */;
+			path = Weather.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B5D5ABC42AFADDFD00A1FAC3 /* Project object */;
 }
