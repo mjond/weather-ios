@@ -23,7 +23,7 @@
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherData" inverseName="dailyweather" inverseEntity="WeatherData"/>
     </entity>
     <entity name="HourlyWeather" representedClassName="HourlyWeather" syncable="YES">
-        <attribute name="isDay" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="isDay" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="weatherCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

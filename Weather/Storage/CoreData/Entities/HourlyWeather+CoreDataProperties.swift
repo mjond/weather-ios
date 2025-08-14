@@ -18,7 +18,7 @@ extension HourlyWeather {
 
     @NSManaged public var time: String?
     @NSManaged public var temperature: Double
-    @NSManaged public var isDay: Int16
+    @NSManaged public var isDay: Bool
     @NSManaged public var weatherCode: Int16
     @NSManaged public var origin: WeatherData?
 
