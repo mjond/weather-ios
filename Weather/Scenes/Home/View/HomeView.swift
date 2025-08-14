@@ -9,9 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.scenePhase) var scenePhase
     @ObservedObject var locationManager: LocationManager = LocationManager()
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
-    @Environment(\.scenePhase) var scenePhase
     @State private var goToSettings: Bool = false
     @State private var scrollOffset: CGFloat = 0
     @State var showCollapsedView: Bool = false
@@ -182,6 +183,8 @@ struct HomeView: View {
                     } //: VStack
                     .background(Color("BackgroundColor"))
                     .task {
+                        viewModel.configureCacheManager(context: viewContext)
+                        
                         if locationManager.lastLocation != nil {
                             await viewModel.getWeather(location: locationManager.lastLocation)
                         }

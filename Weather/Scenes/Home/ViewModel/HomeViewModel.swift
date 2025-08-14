@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import CoreData
 
 class HomeViewModel: ObservableObject {
     @Published var state = ViewState.loading
@@ -21,6 +22,11 @@ class HomeViewModel: ObservableObject {
         self.settings = settings
         self.weatherService = weatherService
         self.dateProvider = dateProvider
+    }
+    
+    func configureCacheManager(context: NSManagedObjectContext) {
+        let cacheManager = WeatherCacheManager(context: context)
+        weatherService.setCacheManager(cacheManager)
     }
 
     enum ViewState: Equatable {

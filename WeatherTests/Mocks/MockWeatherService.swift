@@ -19,4 +19,8 @@ struct MockWeatherService: WeatherServiceProtocol {
         
         return mockWeatherData
     }
+    
+    mutating func setCacheManager(_ cacheManager: Weather.WeatherCacheManager) {
+        // not needed for unit tests
+    }
 }
