@@ -19,14 +19,14 @@ https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code,appar
 
 The response for each location is cached for 10 minutes using this storage schema:
 <p float="left">
-    <img src="Screenshots/coreDataSchema.PNG" alt="drawing" width="500"/>
+    <img src="Screenshots/core_date_schema.PNG" alt="drawing" width="500"/>
 </p>
 
 For more details, see `Weather > Storage > CoreData > WeatherCacheManager.swift` for details.
 
 Here is a screenshot from CoreDataLab showing the stored objects:
 <p float="left">
-    <img src="Screenshots/coreDataStorage.PNG" alt="drawing" width="750"/>
+    <img src="Screenshots/core_date_storage.PNG" alt="drawing" width="750"/>
 </p>
 
 ## Navigation
