@@ -15,7 +15,7 @@ class WeatherCacheManager {
     init(context: NSManagedObjectContext) {
         self.context = context
     }
-    
+
     func getCachedWeather(latitude: Double, longitude: Double, unit: UnitOfMeasurement) -> WeatherDataModel? {
         do {
             try clearExpiredCache()

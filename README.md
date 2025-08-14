@@ -2,7 +2,7 @@
 
 This is a simple SwiftUI app to show current weather and forecasted weather. This project uses an MVVM architecture. Please keep in mind the purpose of this isn't to show UI/UX design but rather architecture patterns, data handling, and testing :)
 
-This app uses Core Location and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols and dark mode is supported. Voice Over accessibility is supported.
+This app uses CoreLocation and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols and dark mode is supported. Voice Over accessibility is supported.
 
 ## Requirements
 - Xcode 16.x
@@ -17,9 +17,21 @@ To see a sample weather response from Open-Meteo like this project uses, enter t
 https://api.open-meteo.com/v1/forecast?current=temperature_2m,weather_code,apparent_temperature,&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset,precipitation_probability_mean,precipitation_sum,uv_index_max,wind_speed_10m_max,wind_direction_10m_dominant,wind_gusts_10m_max&timezone=auto&latitude=40.73&longitude=-73.93&forecast_days=10&hourly=temperature_2m,is_day,weather_code&temperature_unit=fahrenheit
 ```
 
+The response for each location is cached for 10 minutes using this storage schema:
+<p float="left">
+    <img src="Screenshots/coreDataSchema.PNG" alt="drawing" width="500"/>
+</p>
+
+For more details, see `Weather > Storage > CoreData > WeatherCacheManager.swift` for details.
+
+Here is a screenshot from CoreDataLab showing the stored objects:
+<p float="left">
+    <img src="Screenshots/coreDataStorage.PNG" alt="drawing" width="750"/>
+</p>
+
 ## Navigation
 
-This app uses `NavigationStack` with `NavigationPath` for navigation.
+This app uses `NavigationStack` with `NavigationPath` for navigation. See `NavigationStateManager.swift`.
 
 ## Features
 
