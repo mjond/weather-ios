@@ -1,4 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="WeatherData" representedClassName="WeatherData" syncable="YES" codeGenerationType="class"/>
+    <entity name="CurrentWeather" representedClassName="CurrentWeather" syncable="YES">
+        <attribute name="apparentTemperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="weatherCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherData" inverseName="currentweather" inverseEntity="WeatherData"/>
+    </entity>
+    <entity name="DailyWeather" representedClassName="DailyWeather" syncable="YES">
+        <attribute name="maxTemperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minTemperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="precipitationProbabilityMean" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="precipitationSum" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sunrise" optional="YES" attributeType="String"/>
+        <attribute name="sunset" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="uvIndexMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weatherCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="windDirectionDominant" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="windGustsMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="windSpeedMax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherData" inverseName="dailyweather" inverseEntity="WeatherData"/>
+    </entity>
+    <entity name="HourlyWeather" representedClassName="HourlyWeather" syncable="YES">
+        <attribute name="isDay" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="weatherCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherData" inverseName="hourlyweather" inverseEntity="WeatherData"/>
+    </entity>
+    <entity name="WeatherData" representedClassName="WeatherData" syncable="YES">
+        <attribute name="cachedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="unitOfMeasurement" optional="YES" attributeType="String"/>
+        <relationship name="currentweather" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CurrentWeather" inverseName="origin" inverseEntity="CurrentWeather"/>
+        <relationship name="dailyweather" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DailyWeather" inverseName="origin" inverseEntity="DailyWeather"/>
+        <relationship name="hourlyweather" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HourlyWeather" inverseName="origin" inverseEntity="HourlyWeather"/>
+    </entity>
 </model>
