@@ -23,9 +23,10 @@ This app uses CoreLocation and MapKit to search for locations. No third-party SD
 ## Getting Started
 
 1. Clone the repository
-2. Install SwiftLint: `brew install swiftlint`
-3. Open `Weather.xcodeproj` in Xcode 16+
-4. Build and run (Cmd+R)
+2. Install SwiftFormat: `brew install swiftformat`
+3. Install SwiftLint: `brew install swiftlint`
+4. Open `Weather.xcodeproj` in Xcode 16+
+5. Build and run (Cmd+R)
 
 ## Data Fetching
 

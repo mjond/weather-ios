@@ -491,10 +491,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5D5ABDA2AFADDFE00A1FAC3 /* Build configuration list for PBXNativeTarget "Weather" */;
 			buildPhases = (
+				B5DB9E7B2E4FC1020023A41D /* Swift Format */,
+				B516DE692CC832B2007C52B5 /* Swift Lint */,
 				B5D5ABC82AFADDFD00A1FAC3 /* Sources */,
 				B5D5ABC92AFADDFD00A1FAC3 /* Frameworks */,
 				B5D5ABCA2AFADDFD00A1FAC3 /* Resources */,
-				B516DE692CC832B2007C52B5 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -583,6 +584,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ `uname -m` == 'arm64' ]]; then\n  echo \"** Running on Apple Silicon\"\n  PATH=${PATH}:/opt/homebrew/bin:/opt/homebrew/sbin\nelse\n  echo \"** Running on a Apple x86\"\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint lint --config .swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		B5DB9E7B2E4FC1020023A41D /* Swift Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftformat > /dev/null; then\n  swiftformat . --swiftversion 5\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
