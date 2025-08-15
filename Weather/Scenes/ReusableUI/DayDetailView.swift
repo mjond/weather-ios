@@ -110,7 +110,7 @@ struct DayDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    if nav.path.count > 0 {
+                    if !nav.path.isEmpty {
                         nav.path.removeLast()
                     }
                 } label: {

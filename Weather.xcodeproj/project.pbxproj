@@ -63,6 +63,7 @@
 		B5DB9E762E4E23110023A41D /* WeatherData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E6E2E4E23110023A41D /* WeatherData+CoreDataClass.swift */; };
 		B5DB9E772E4E23110023A41D /* WeatherData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E6F2E4E23110023A41D /* WeatherData+CoreDataProperties.swift */; };
 		B5DB9E7A2E4E5D0D0023A41D /* WeatherCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E792E4E5D090023A41D /* WeatherCacheManager.swift */; };
+		B5DB9E7D2E4FC2680023A41D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB9E7C2E4FC2600023A41D /* Array+Extension.swift */; };
 		B5E104B52D0E0D5900005B86 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */; };
 		B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */; };
 		B5FEE09E2D492FE100B13F4B /* DirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */; };
@@ -139,6 +140,7 @@
 		B5DB9E6E2E4E23110023A41D /* WeatherData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B5DB9E6F2E4E23110023A41D /* WeatherData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B5DB9E792E4E5D090023A41D /* WeatherCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCacheManager.swift; sourceTree = "<group>"; };
+		B5DB9E7C2E4FC2600023A41D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		B5E104B42D0E0D5900005B86 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B5E4C4982CC2C9C000FEDB57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B5FEE09D2D492FD600B13F4B /* DirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionHelper.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		B52ACD6B2CCDBC1A00EE07F2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B5DB9E7C2E4FC2600023A41D /* Array+Extension.swift */,
 				B58364182D441E86007175D2 /* DateProvider.swift */,
 				B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */,
 				B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */,
@@ -651,6 +654,7 @@
 				B529275B2CDAEDD3009B6A93 /* LocationDeniedView.swift in Sources */,
 				B59A48D12CCDD56E00F2C9FB /* HourlyCardView.swift in Sources */,
 				B52ACD6A2CCD954D00EE07F2 /* HomeLoadingView.swift in Sources */,
+				B5DB9E7D2E4FC2680023A41D /* Array+Extension.swift in Sources */,
 				B5258B532D41DA4E00096953 /* WindCardView.swift in Sources */,
 				B5C1842E2CC883040077B1E9 /* DayCardView.swift in Sources */,
 				B5E4C4992CC2C9C000FEDB57 /* SettingsView.swift in Sources */,

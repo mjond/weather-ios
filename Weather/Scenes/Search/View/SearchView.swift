@@ -36,7 +36,7 @@ struct SearchView: View {
                             viewModel.getLocation(locationName: result.title) { result in
                                 if let newLocation = result {
                                     locationManager.lastLocation = newLocation
-                                    if nav.path.count > 0 {
+                                    if !nav.path.isEmpty {
                                         nav.path.removeLast()
                                     }
                                     isSearchingForCity = false
@@ -71,7 +71,7 @@ struct SearchView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    if nav.path.count > 0 {
+                    if !nav.path.isEmpty {
                         nav.path.removeLast()
                     }
                 } label: {

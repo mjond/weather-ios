@@ -239,10 +239,10 @@ class HomeViewModel: ObservableObject {
     private func parseHourlyWeatherData(with response: HourlyWeatherData) -> [HourlyWeatherModel] {
         var hourlyForecast: [HourlyWeatherModel] = []
 
-        guard response.time.count > 0,
-              response.temperature_2m.count > 0,
-              response.weather_code.count > 0,
-              response.is_day.count > 0
+        guard response.time.isNotEmpty,
+              response.temperature_2m.isNotEmpty,
+              response.weather_code.isNotEmpty,
+              response.is_day.isNotEmpty
         else {
             return hourlyForecast
         }
