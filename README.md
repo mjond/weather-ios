@@ -1,8 +1,18 @@
 # iOS Weather App
 
-This is a simple SwiftUI app to show current weather and forecasted weather. This project uses an MVVM architecture. Please keep in mind the purpose of this isn't to show UI/UX design but rather architecture patterns, data handling, and testing :)
+This is a simple SwiftUI app to show current weather and forecasted weather. Please keep in mind the purpose of this isn't to show UI/UX design but rather architecture patterns, data handling, dependency injection, and testing :)
 
-This app uses CoreLocation and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols and dark mode is supported. Voice Over accessibility is supported.
+This app uses CoreLocation and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols.
+
+## Technical Highlights
+
+- **Architecture**: MVVM pattern with SwiftUI
+- **Dependency Injection**: Clean separation of concerns with protocol-based services
+- **Async/Await**: Modern concurrency patterns throughout the project
+- **Core Data Integration**: Efficient caching with background contexts
+- **Error Handling**: Graceful fallbacks and user-friendly error states
+- **Accessibility**: Full VoiceOver support
+- **Dark Mode**: System-wide dark mode support
 
 ## Requirements
 
@@ -10,9 +20,16 @@ This app uses CoreLocation and MapKit to search for locations. No third-party SD
 - Swift 5
 - Minimum iOS: 17.0
 
+## Getting Started
+
+1. Clone the repository
+2. Install SwiftLint: `brew install swiftlint`
+3. Open `Weather.xcodeproj` in Xcode 16+
+4. Build and run (Cmd+R)
+
 ## Data Fetching
 
-This app uses data from [Open-Meteo](https://open-meteo.com/), an organization giving free weather data at the personal project tier. The data is fetched using the `WeatherService` class which utilizes `URLSession` and `JSONDecoder`.
+This app uses data from [Open-Meteo](https://open-meteo.com/), an organization providing free weather data at the personal project tier. The data is fetched using the `WeatherService` class which utilizes `URLSession` and `JSONDecoder`.
 
 To see a sample weather response from Open-Meteo like this project uses, enter this call into Postman:
 
@@ -75,3 +92,7 @@ Tapping on the gear icon from the Home screen's navigation bar will bring the us
 If a user denies location services, or turns it off at a later time, then the user is prompted to allow location services.
 
 <img src="Screenshots/location_denied.PNG" alt="drawing" width="250"/>
+
+## Unit Testing
+
+Coverage is currently at 73%. See `WeatherTests/` for details.
