@@ -1,6 +1,7 @@
 excluded:
   - DerivedData
   - Package.swift
+  - WeatherTests/Mocks
 
 disabled_rules:
   - opening_brace
