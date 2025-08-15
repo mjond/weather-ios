@@ -13,12 +13,12 @@ struct Shimmer: ViewModifier {
     func body(content: Content) -> some View {
         content
             .mask(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.white, Color.clear]), startPoint: .leading, endPoint: .trailing)
-                .animation(Animation.linear(duration: 1.5).repeatForever(autoreverses: false))
                 .offset(x: isAnimating ? UIScreen.main.bounds.width : -UIScreen.main.bounds.width)
+                .animation(.linear(duration: 1.5).repeatForever(autoreverses: false), value: isAnimating)
             )
             .onAppear {
                 DispatchQueue.main.async {
-                    withAnimation(Animation.linear(duration: 1.5).repeatForever(autoreverses: false)) {
+                    withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
                         self.isAnimating = true
                     }
                 }
