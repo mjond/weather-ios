@@ -8,7 +8,7 @@
 import CoreLocation
 
 extension CLLocation {
-    func fetchCity(completion: @escaping (_ city: String?, _ error: Error?) -> ()) {
+    func fetchCity(completion: @escaping (_ city: String?, _ error: Error?) -> Void) {
         CLGeocoder().reverseGeocodeLocation(self) { completion($0?.first?.locality, $1) }
     }
 }

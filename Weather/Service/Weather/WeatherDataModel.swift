@@ -1,5 +1,5 @@
 //
-//  WeatherModel.swift
+//  WeatherDataModel.swift
 //  Weather
 //
 //  Created by Mark Davis on 11/8/23.

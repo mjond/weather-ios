@@ -17,6 +17,7 @@ struct HomeModel: Equatable {
     var currentWeatherIconName: String {
         WeatherHelper().getCurrentWeatherCodeIcon(from: currentWeatherCode, sunrise: currentSunrise, sunset: currentSunset)
     }
+
     var currentWindSpeed: String
     var currentWindGust: String
     var currentWindDirectionDegrees: String
@@ -32,15 +33,18 @@ struct DailyWeatherModel: Identifiable, Hashable {
     var abbreviatedDayName: String {
         return date.formatted(Date.FormatStyle().weekday(.abbreviated))
     }
+
     var fullDayName: String {
         return date.formatted(Date.FormatStyle().weekday(.wide))
     }
+
     var minimumTemperature: String
     var maximumTemperature: String
     var weatherCode: Int
     var weatherIconName: String {
         WeatherHelper().getDailyWeatherCodeIcon(from: weatherCode)
     }
+
     var precipitationProbability: String
     var precipitationAmount: String
     var uvIndexMax: String

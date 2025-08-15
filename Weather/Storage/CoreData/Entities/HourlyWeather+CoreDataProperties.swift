@@ -6,24 +6,19 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-
-extension HourlyWeather {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<HourlyWeather> {
+public extension HourlyWeather {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<HourlyWeather> {
         return NSFetchRequest<HourlyWeather>(entityName: "HourlyWeather")
     }
 
-    @NSManaged public var time: String?
-    @NSManaged public var temperature: Double
-    @NSManaged public var isDay: Bool
-    @NSManaged public var weatherCode: Int16
-    @NSManaged public var origin: WeatherData?
-
+    @NSManaged var time: String?
+    @NSManaged var temperature: Double
+    @NSManaged var isDay: Bool
+    @NSManaged var weatherCode: Int16
+    @NSManaged var origin: WeatherData?
 }
 
-extension HourlyWeather : Identifiable {
-
-}
+extension HourlyWeather: Identifiable {}

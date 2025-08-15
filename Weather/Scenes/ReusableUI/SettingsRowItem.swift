@@ -1,5 +1,5 @@
 //
-//  TemperatureSettingsRowView.swift
+//  SettingsRowItem.swift
 //  Weather
 //
 //  Created by Mark Davis on 11/4/24.
@@ -31,13 +31,13 @@ struct SettingsRowItem: View {
                     .font(.title2)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Text(subHeading)
                     .font(.footnote)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("SubheadingColor"))
             } //: VStack
-            
+
             Spacer()
         } //: HStack
         .background(.clear)
@@ -46,6 +46,6 @@ struct SettingsRowItem: View {
 
 #Preview {
     SettingsRowItem(title: "Imperial",
-                               subHeading: "Miles, Fahrenheit, etc.",
-                               isSelected: .constant(true))
+                    subHeading: "Miles, Fahrenheit, etc.",
+                    isSelected: .constant(true))
 }

@@ -30,7 +30,7 @@ struct LocationDeniedView: View {
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding()
-            
+
             Button {
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             } label: {
@@ -41,7 +41,6 @@ struct LocationDeniedView: View {
                     .underline()
                     .foregroundStyle(Color("TitleColor"))
             }
-
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         .padding()

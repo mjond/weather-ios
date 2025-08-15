@@ -11,7 +11,7 @@ import XCTest
 final class WeatherDataModelTests: XCTestCase {
     func testSuccessfulJsonResponse() throws {
         let json = mockSuccessfulJsonData
-        
+
         let decodedModel = try JSONDecoder().decode(WeatherDataModel.self, from: json)
 
         XCTAssertEqual(decodedModel.current.time, "2025-01-21T19:45")
@@ -21,10 +21,10 @@ final class WeatherDataModelTests: XCTestCase {
         XCTAssertEqual(decodedModel.daily.time.count, 10)
         XCTAssertEqual(decodedModel.hourly.time.count, 240)
     }
-    
+
     func testDecodingWithEmptyData() throws {
         let json = mockJsonDataWithEmptyValues
-        
+
         let decodedModel = try JSONDecoder().decode(WeatherDataModel.self, from: json)
 
         XCTAssertEqual(decodedModel.current.time, "")

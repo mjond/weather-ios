@@ -5,8 +5,8 @@
 //  Created by Mark Davis on 1/21/25.
 //
 
-@testable import Weather
 import Foundation
+@testable import Weather
 
 class MockURLSession: URLSessionProtocol {
     var data: Data?

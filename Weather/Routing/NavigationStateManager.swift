@@ -8,9 +8,8 @@
 import SwiftUI
 
 class NavigationStateManager: ObservableObject {
-
     @Published var path = NavigationPath()
-    
+
     func popToRoot() {
         path = NavigationPath()
     }

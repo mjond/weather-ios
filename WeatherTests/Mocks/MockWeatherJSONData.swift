@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable file_length
 public var mockSuccessfulJsonData = """
 {
     "latitude": 42.954132,

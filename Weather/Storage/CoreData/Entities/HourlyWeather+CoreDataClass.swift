@@ -6,10 +6,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(HourlyWeather)
-public class HourlyWeather: NSManagedObject {
-
-}
+public class HourlyWeather: NSManagedObject {}

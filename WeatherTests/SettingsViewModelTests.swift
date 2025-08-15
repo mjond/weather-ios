@@ -5,12 +5,11 @@
 //  Created by Mark Davis on 2/8/25.
 //
 
-import XCTest
 import Combine
 @testable import Weather
+import XCTest
 
 final class SettingsViewModelTests: XCTestCase {
-    
     var viewModel: SettingsViewModel!
     var mockSettings: WeatherSettingsProtocol!
 
@@ -45,7 +44,7 @@ final class SettingsViewModelTests: XCTestCase {
     func testSelectingImperial_ShouldUpdateUnitOfMeasurement() {
         mockSettings.unitOfMeasurement = .metric
         viewModel.selectImperial()
-        
+
         XCTAssertEqual(mockSettings.unitOfMeasurement, .imperial)
         XCTAssertTrue(viewModel.isImperialActive)
         XCTAssertFalse(viewModel.isMetricActive)
@@ -54,7 +53,7 @@ final class SettingsViewModelTests: XCTestCase {
     func testSelectingMetric_ShouldUpdateUnitOfMeasurement() {
         mockSettings.unitOfMeasurement = .imperial
         viewModel.selectMetric()
-        
+
         XCTAssertEqual(mockSettings.unitOfMeasurement, .metric)
         XCTAssertFalse(viewModel.isImperialActive)
         XCTAssertTrue(viewModel.isMetricActive)

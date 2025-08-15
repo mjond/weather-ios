@@ -9,10 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject private var viewModel = SettingsViewModel()
-    
+
     var body: some View {
         VStack(alignment: .leading) {
-
             Text("Settings")
                 .accessibilityLabel("Settings")
                 .accessibilityAddTraits(.isStaticText)
@@ -22,6 +21,7 @@ struct SettingsView: View {
                 .padding(.bottom, 20)
 
             // MARK: - Unit of Measurement
+
             Text("Unit of Measurement")
                 .accessibilityLabel("Unit of Measurement")
                 .accessibilityAddTraits(.isStaticText)
@@ -34,12 +34,12 @@ struct SettingsView: View {
             SettingsRowItem(title: "Imperial",
                             subHeading: "Miles, Inches, Fahrenheit, etc.",
                             isSelected: $viewModel.isImperialActive)
-            .accessibilityLabel("Imperial: Miles, Inches, Fahrenheit, etc.")
-            .accessibilityAddTraits(.isButton)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                viewModel.selectImperial()
-            }
+                .accessibilityLabel("Imperial: Miles, Inches, Fahrenheit, etc.")
+                .accessibilityAddTraits(.isButton)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    viewModel.selectImperial()
+                }
 
             Divider()
                 .foregroundStyle(Color("TitleColor"))
@@ -47,12 +47,12 @@ struct SettingsView: View {
             SettingsRowItem(title: "Celsius",
                             subHeading: "Kilometers, Millimeters, Celsius, etc.",
                             isSelected: $viewModel.isMetricActive)
-            .accessibilityLabel("Celsius: Kilometers, Millimeters, Celsius, etc.")
-            .accessibilityAddTraits(.isButton)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                viewModel.selectMetric()
-            }
+                .accessibilityLabel("Celsius: Kilometers, Millimeters, Celsius, etc.")
+                .accessibilityAddTraits(.isButton)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    viewModel.selectMetric()
+                }
 
             Divider()
                 .foregroundStyle(Color("TitleColor"))

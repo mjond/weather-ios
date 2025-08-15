@@ -21,7 +21,7 @@ struct DayDetailView: View {
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.bottom, 10)
-            
+
             Image(systemName: day.weatherIconName)
                 .accessibilityLabel("\(day.weatherIconName)")
                 .accessibilityAddTraits(.isImage)
@@ -48,26 +48,26 @@ struct DayDetailView: View {
                     .foregroundStyle(Color("TitleColor"))
             }
             .padding(.bottom)
-            
+
             VStack {
                 HStack {
                     PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: day.sunrise)
-                    
+
                     Spacer()
-                    
+
                     PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: day.sunset)
                 }
                 .padding(.vertical, 5)
-                
+
                 HStack {
                     PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: day.precipitationAmount)
-                    
+
                     Spacer()
-                    
+
                     PropertyCardView(title: "UV Index", iconName: "sun.max", value: day.uvIndexMax)
                 }
                 .padding(.vertical, 5)
-                
+
                 WindCardView(windSpeed: day.windSpeed, windGust: day.windGust, windDirectinoDegrees: day.windDirectionDegrees)
                     .padding(.vertical, 5)
             }
@@ -76,7 +76,7 @@ struct DayDetailView: View {
             VStack {
                 Divider()
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 HStack {
                     Text("Chance of precipitation:")
                         .accessibilityLabel("Chance of precipitation:")
@@ -84,9 +84,9 @@ struct DayDetailView: View {
                         .font(.system(size: 18))
                         .fontDesign(.serif)
                         .foregroundStyle(Color("TitleColor"))
-                    
+
                     Spacer()
-                    
+
                     Text("\(day.precipitationProbability)")
                         .accessibilityLabel("\(day.precipitationProbability)")
                         .accessibilityAddTraits(.isStaticText)
@@ -95,13 +95,12 @@ struct DayDetailView: View {
                         .foregroundStyle(Color("TitleColor"))
                 }
                 .padding(.top, 10)
-                
+
                 Divider()
                     .foregroundStyle(Color("TitleColor"))
-                
             }
             .padding(.horizontal, 35)
-            
+
             Spacer()
         } //: VStack
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)

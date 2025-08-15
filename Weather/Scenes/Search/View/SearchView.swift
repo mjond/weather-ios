@@ -1,5 +1,5 @@
 //
-//  LocationSearchView.swift
+//  SearchView.swift
 //  Weather
 //
 //  Created by Mark Davis on 11/13/24.
@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @EnvironmentObject var nav: NavigationStateManager
 
-    @ObservedObject var viewModel: SearchViewModel = SearchViewModel()
+    @ObservedObject var viewModel: SearchViewModel = .init()
 
     @State var locationManager: LocationManager
     @State var searchService = LocationSearchService()
@@ -19,7 +19,7 @@ struct SearchView: View {
     var body: some View {
         VStack {
             Spacer()
-                                            
+
             if searchService.results.isEmpty {
                 Text("No location results")
                     .accessibilityLabel("No location results. Search for a location to see results.")
@@ -32,7 +32,7 @@ struct SearchView: View {
                     Button {
                         if !isSearchingForCity {
                             isSearchingForCity = true
-                            
+
                             viewModel.getLocation(locationName: result.title) { result in
                                 if let newLocation = result {
                                     locationManager.lastLocation = newLocation

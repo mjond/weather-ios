@@ -582,7 +582,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint lint --config .swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [[ `uname -m` == 'arm64' ]]; then\n  echo \"** Running on Apple Silicon\"\n  PATH=${PATH}:/opt/homebrew/bin:/opt/homebrew/sbin\nelse\n  echo \"** Running on a Apple x86\"\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint lint --config .swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

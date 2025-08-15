@@ -5,9 +5,9 @@
 //  Created by Mark Davis on 10/21/24.
 //
 
-import SwiftUI
-import CoreLocation
 import CoreData
+import CoreLocation
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
     @Published var state = ViewState.loading
@@ -18,12 +18,13 @@ class HomeViewModel: ObservableObject {
 
     init(settings: any WeatherSettingsProtocol = WeatherSettings.shared,
          weatherService: WeatherServiceProtocol = WeatherService(),
-         dateProvider: DateProviderProtocol = DateProvider()) {
+         dateProvider: DateProviderProtocol = DateProvider())
+    {
         self.settings = settings
         self.weatherService = weatherService
         self.dateProvider = dateProvider
     }
-    
+
     func configureCacheManager(context: NSManagedObjectContext) {
         let cacheManager = WeatherCacheManager(context: context)
         weatherService.setCacheManager(cacheManager)
@@ -59,7 +60,7 @@ class HomeViewModel: ObservableObject {
                 print("HomeViewModel.getWeather() no longitude value found")
                 return
             }
-            
+
             let formattedLatitude = String(format: "%.3f", latitude)
             let formattedLongitude = String(format: "%.3f", longitude)
 
@@ -70,7 +71,7 @@ class HomeViewModel: ObservableObject {
                 let dailyWeather = parseDailyWeatherData(with: weatherData.daily)
                 let hourlyWeather = parseHourlyWeatherData(with: weatherData.hourly)
                 let locationName = await getLocationName(location: location)
-                
+
                 let currentSunrise = dailyWeather[0].sunrise
                 let currentSunset = dailyWeather[0].sunset
                 let currentWindSpeed = dailyWeather[0].windSpeed
@@ -105,7 +106,7 @@ class HomeViewModel: ObservableObject {
             }
             print("HomeViewModel.getWeather() -> failed to get weather data")
         }
-        
+
         isAPICallInProgress = false
     }
 
@@ -129,7 +130,7 @@ class HomeViewModel: ObservableObject {
             }
         }
     }
-    
+
     private func parseDailyWeatherData(with response: DailyWeatherData) -> [DailyWeatherModel] {
         var dailyForecast: [DailyWeatherModel] = []
 
@@ -141,7 +142,8 @@ class HomeViewModel: ObservableObject {
               response.sunset.count >= 10,
               response.precipitation_probability_mean.count >= 10,
               response.precipitation_sum.count >= 10,
-              response.uv_index_max.count >= 10 else {
+              response.uv_index_max.count >= 10
+        else {
             return dailyForecast
         }
 
@@ -159,7 +161,7 @@ class HomeViewModel: ObservableObject {
             let windSpeed = response.wind_speed_10m_max[index].rounded()
             let windGusts = response.wind_gusts_10m_max[index].rounded()
             let windDegrees = response.wind_direction_10m_dominant[index]
-            
+
             let windDirectionWithDegrees = DirectionHelper.getDirectionWithDegrees(from: windDegrees)
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
@@ -170,7 +172,7 @@ class HomeViewModel: ObservableObject {
             let formattedWindSpeed = getFormattedWind(from: windSpeed)
             let formattedWindGusts = getFormattedWind(from: windGusts)
             let formattedWindDirectionDegrees = windDirectionWithDegrees
-            
+
             let dailyWeatherObject = DailyWeatherModel(date: date,
                                                        minimumTemperature: formattedMinTemp,
                                                        maximumTemperature: formattedMaxTemp,
@@ -183,26 +185,26 @@ class HomeViewModel: ObservableObject {
                                                        windSpeed: formattedWindSpeed,
                                                        windGust: formattedWindGusts,
                                                        windDirectionDegrees: formattedWindDirectionDegrees)
-            
+
             dailyForecast.append(dailyWeatherObject)
         }
-        
+
         return dailyForecast
     }
-    
+
     private func getFormattedPrecipitation(precipitationAmount: Double) -> String {
         var formattedPrecipitationWithUnits = ""
-        
+
         if settings.unitOfMeasurement == .imperial {
             let precipitationAmount = precipitationAmount * 0.0393701
-            
+
             if precipitationAmount == 0 {
                 formattedPrecipitationWithUnits = "0 inches"
             } else if precipitationAmount < 0.6 {
                 formattedPrecipitationWithUnits = "<1 inch"
             } else {
                 let precipatationRounded = precipitationAmount.rounded()
-                
+
                 if precipatationRounded == 1.0 {
                     let precipitationAsString = String(format: "%.0f", precipatationRounded)
                     formattedPrecipitationWithUnits = precipitationAsString + " inch"
@@ -221,22 +223,22 @@ class HomeViewModel: ObservableObject {
 
     private func getFormattedWind(from amount: Double) -> String {
         var formattedWindWithUnits = ""
-        
+
         if settings.unitOfMeasurement == .imperial {
             let amountAsImperial = amount * 0.6214
             formattedWindWithUnits = String(format: "%.0f", amountAsImperial)
-            formattedWindWithUnits = formattedWindWithUnits + " mph"
+            formattedWindWithUnits += " mph"
         } else {
             formattedWindWithUnits = String(format: "%.0f", amount)
-            formattedWindWithUnits = formattedWindWithUnits + " km/h"
+            formattedWindWithUnits += " km/h"
         }
-        
+
         return formattedWindWithUnits
     }
 
     private func parseHourlyWeatherData(with response: HourlyWeatherData) -> [HourlyWeatherModel] {
         var hourlyForecast: [HourlyWeatherModel] = []
-        
+
         guard response.time.count > 0,
               response.temperature_2m.count > 0,
               response.weather_code.count > 0,
@@ -250,8 +252,8 @@ class HomeViewModel: ObservableObject {
         // for the hourly view.
         let startingIndex = findStartingHourlyIndex(from: response)
         let endingIndex = startingIndex + 24
-        
-        for index in startingIndex...endingIndex {
+
+        for index in startingIndex ... endingIndex {
             let dateStamp = response.time[index]
             guard let date = getDateAndTimeFromString(dateStamp) else { return hourlyForecast }
 
@@ -278,10 +280,10 @@ class HomeViewModel: ObservableObject {
             guard let date = getDateAndTimeFromString(dateStamp) else { return 0 }
 
             if date < currentDate {
-                guard let nextDate = getDateAndTimeFromString(hours.time[index+1]) else {
+                guard let nextDate = getDateAndTimeFromString(hours.time[index + 1]) else {
                     return 0
                 }
-                
+
                 if nextDate > currentDate {
                     return index
                 }

@@ -1,12 +1,12 @@
 //
-//  WeatherTests.swift
+//  HomeViewModelTests.swift
 //  WeatherTests
 //
 //  Created by Mark Davis on 1/4/25.
 //
 
-@testable import Weather
 import CoreLocation
+@testable import Weather
 import XCTest
 
 final class HomeViewModelTests: XCTestCase {
@@ -39,9 +39,9 @@ final class HomeViewModelTests: XCTestCase {
         let location = CLLocation(latitude: 37.7749, longitude: -122.4194)
 
         await viewModel.getWeather(location: location)
-        
+
         sleep(1)
-        
+
         if case let .success(homeModel) = viewModel.state {
             print(homeModel)
             XCTAssertEqual(homeModel.currentTemperature, "24")
@@ -51,7 +51,7 @@ final class HomeViewModelTests: XCTestCase {
             XCTFail("Expected state to be success, but was \(viewModel.state)")
         }
     }
-    
+
 //    func testLoadingState() async {
 //        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
 //        mockWeatherService.mockWeatherData = nil
@@ -60,7 +60,7 @@ final class HomeViewModelTests: XCTestCase {
 //
 //        XCTAssertEqual(viewModel.state, .loading)
 //    }
-    
+
 //    func testFailureState() async {
 //        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
 //        mockWeatherService.shouldReturnError = true

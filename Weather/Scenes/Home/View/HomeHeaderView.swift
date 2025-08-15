@@ -11,7 +11,7 @@ struct HomeHeaderView: View {
     var weatherModel: HomeModel
     var offset: CGFloat
     @Binding var showCollapsedView: Bool
-    
+
     var body: some View {
         if !showCollapsedView {
             VStack {
@@ -22,22 +22,22 @@ struct HomeHeaderView: View {
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
                     .padding(.bottom, 2)
-                
-                Text(weatherModel.currentTemperature+"°")
+
+                Text(weatherModel.currentTemperature + "°")
                     .accessibilityLabel("\(weatherModel.currentTemperature) degrees")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 46))
                     .fontWeight(.bold)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Text("Feels like \(weatherModel.apparentTemperature)°")
                     .accessibilityLabel("Feels like \(weatherModel.apparentTemperature) degrees")
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("SubheadingColor"))
                     .padding(.bottom, 5)
-                    
+
 //                Image(systemName: weatherModel.currentWeatherIconName)
 //                    .accessibilityLabel("\(weatherModel.currentWeatherIconName)")
 //                    .accessibilityAddTraits(.isImage)
@@ -45,7 +45,6 @@ struct HomeHeaderView: View {
 //                    .fontDesign(.serif)
 //                    .foregroundStyle(Color("TitleColor"))
 //                    .padding(.bottom)
-
             } //: VStack
         } else {
             VStack {
@@ -56,7 +55,7 @@ struct HomeHeaderView: View {
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
                     .padding(.bottom, 2)
-                
+
                 HStack {
                     Text(weatherModel.currentTemperature + "°" + " | " + "Feels like \(weatherModel.apparentTemperature)°")
                         .accessibilityLabel("\(weatherModel.currentTemperature) degrees, feels like \(weatherModel.apparentTemperature) degrees")

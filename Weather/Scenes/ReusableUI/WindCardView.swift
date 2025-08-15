@@ -19,30 +19,30 @@ struct WindCardView: View {
                     .accessibilityLabel("wind icon")
                     .accessibilityAddTraits(.isImage)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Text("Wind")
                     .accessibilityLabel("Wind")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.callout)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Spacer()
             } //: HStack
             .padding(.bottom, 10)
-            
+
             Divider()
                 .foregroundStyle(Color("TitleColor"))
-            
+
             HStack {
                 Text("Wind speed")
                     .accessibilityLabel("Wind speed")
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Spacer()
-                
+
                 Text(windSpeed)
                     .accessibilityLabel(windSpeed)
                     .accessibilityAddTraits(.isStaticText)
@@ -50,19 +50,19 @@ struct WindCardView: View {
                     .foregroundStyle(Color("TitleColor"))
                     .frame(minWidth: 45)
             } //: HStack
-            
+
             Divider()
                 .foregroundStyle(Color("TitleColor"))
-            
+
             HStack {
                 Text("Wind gust")
                     .accessibilityLabel("Wind gust")
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Spacer()
-                
+
                 Text(windGust)
                     .accessibilityLabel(windGust)
                     .accessibilityAddTraits(.isStaticText)
@@ -70,7 +70,7 @@ struct WindCardView: View {
                     .foregroundStyle(Color("TitleColor"))
                     .frame(minWidth: 45)
             } //: HStack
-            
+
             Divider()
                 .foregroundStyle(Color("TitleColor"))
 
@@ -80,9 +80,9 @@ struct WindCardView: View {
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Spacer()
-                
+
                 Text("\(windDirectinoDegrees)")
                     .accessibilityLabel(windDirectinoDegrees)
                     .accessibilityAddTraits(.isStaticText)

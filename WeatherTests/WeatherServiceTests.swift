@@ -13,10 +13,10 @@ final class WeatherServiceTests: XCTestCase {
         let mockURLSession = MockURLSession()
         let weatherService = WeatherService(urlSession: mockURLSession)
         let mockData = mockSuccessfulJsonData
-        
+
         mockURLSession.data = mockData
         let result = try await weatherService.getWeather(latitude: "37.7749", longitude: "-122.4194", unit: .metric)
-        
+
         XCTAssertNotNil(result)
         XCTAssertEqual(result?.current.time, "2025-01-21T19:45")
         XCTAssertEqual(result?.current.temperature, -19.6)
@@ -25,7 +25,7 @@ final class WeatherServiceTests: XCTestCase {
         XCTAssertEqual(result?.daily.time.count, 10)
         XCTAssertEqual(result?.hourly.time.count, 240)
     }
-    
+
     func testGetWeatherNetworkError() async throws {
         let mockURLSession = MockURLSession()
         mockURLSession.error = URLError(.notConnectedToInternet)
@@ -38,7 +38,7 @@ final class WeatherServiceTests: XCTestCase {
             XCTAssertEqual((error as? URLError)?.code, .notConnectedToInternet)
         }
     }
-    
+
     func testGetWeatherInvalidJSON() async throws {
         let mockURLSession = MockURLSession()
         let invalidJSONData = "{ invalid JSON }".data(using: .utf8)

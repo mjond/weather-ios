@@ -13,7 +13,7 @@ struct PropertyCardView: View {
     var value: String?
     var isTimeBased: Bool = false
     var date: Date?
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -21,24 +21,24 @@ struct PropertyCardView: View {
                     .accessibilityLabel("\(iconName)")
                     .accessibilityAddTraits(.isImage)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Text(title)
                     .accessibilityLabel("\(title)")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.callout)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
-                
+
                 Spacer()
             } //: HStack
-            
+
             Spacer()
 
             HStack {
                 if isTimeBased {
                     if let unwrappedDate = date {
                         let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: unwrappedDate)
-                        
+
                         Text(unwrappedDate, format: .dateTime.hour().minute())
                             .accessibilityLabel(DateComponentsFormatter.localizedString(from: dateComponents, unitsStyle: .spellOut) ?? "\(unwrappedDate)")
                             .accessibilityAddTraits(.isStaticText)
@@ -58,7 +58,6 @@ struct PropertyCardView: View {
                 }
 
                 Spacer()
-
             } //: HStack
         }
         .padding()

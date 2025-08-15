@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  Weather
 //
 //  Created by Mark Davis on 11/7/23.
@@ -11,8 +11,8 @@ struct HomeView: View {
     @StateObject var nav = NavigationStateManager()
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.scenePhase) var scenePhase
-    @ObservedObject var locationManager: LocationManager = LocationManager()
-    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var locationManager: LocationManager = .init()
+    @ObservedObject var viewModel: HomeViewModel = .init()
     @State private var goToSettings: Bool = false
     @State private var scrollOffset: CGFloat = 0
     @State var showCollapsedView: Bool = false
@@ -49,20 +49,20 @@ struct HomeView: View {
                                             .bold()
                                             .foregroundStyle(Color("TitleColor"))
                                             .padding(.leading, 15)
-                                        
+
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack {
                                                 ForEach(weatherModel.hourlyForecast) { hour in
                                                     HourlyCardView(date: hour.date,
                                                                    temp: hour.temperature,
                                                                    weatherIconName: hour.weatherIconName)
-                                                    .padding(.horizontal, 3)
+                                                        .padding(.horizontal, 3)
                                                 }
                                             }
                                         } //: ScrollView
                                         .padding(.horizontal)
                                         .padding(.bottom, 30)
-                                        
+
                                         Text("10 day forecast")
                                             .accessibilityLabel("10 day forecast")
                                             .accessibilityAddTraits(.isStaticText)
@@ -71,12 +71,12 @@ struct HomeView: View {
                                             .bold()
                                             .foregroundStyle(Color("TitleColor"))
                                             .padding(.leading, 15)
-                                        
+
                                         VStack {
                                             ForEach(weatherModel.dailyForecast) { day in
                                                 Divider()
                                                     .foregroundStyle(Color("TitleColor"))
-                                                
+
                                                 Button {
                                                     nav.path.append(day)
                                                 } label: {
@@ -84,47 +84,48 @@ struct HomeView: View {
                                                                maxTemp: day.maximumTemperature,
                                                                minTemp: day.minimumTemperature,
                                                                weatherIconName: day.weatherIconName)
-                                                    .accessibilityAddTraits(.isButton)
-                                                    .accessibilityHint("This button will take you to this day's detail view")
-                                                    .frame(minHeight: 40)
-                                                    .padding(.leading, 5)
+                                                        .accessibilityAddTraits(.isButton)
+                                                        .accessibilityHint("This button will take you to this day's detail view")
+                                                        .frame(minHeight: 40)
+                                                        .padding(.leading, 5)
                                                 }
                                             }
                                             Divider()
                                                 .foregroundStyle(Color("TitleColor"))
-                                            
                                         } //: VStack
                                         .padding(.horizontal, 20)
                                         .padding(.bottom, 10)
                                     } //: VStack
-                                    
+
                                     VStack {
                                         HStack {
                                             PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: weatherModel.currentSunrise)
-                                            
+
                                             Spacer()
-                                            
+
                                             PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: weatherModel.currentSunset)
                                         }
                                         .padding(.vertical, 5)
-                                        
-                                        WindCardView(windSpeed: weatherModel.currentWindSpeed, windGust: weatherModel.currentWindGust, windDirectinoDegrees: weatherModel.currentWindDirectionDegrees)
+
+                                        WindCardView(windSpeed: weatherModel.currentWindSpeed,
+                                                     windGust: weatherModel.currentWindGust,
+                                                     windDirectinoDegrees: weatherModel.currentWindDirectionDegrees)
                                             .padding(.vertical, 5)
-                                        
+
                                         HStack {
                                             PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: weatherModel.currentPrecipitationAmount)
-                                            
+
                                             Spacer()
-                                            
+
                                             PropertyCardView(title: "UV Index", iconName: "sun.max", value: weatherModel.currentUvIndex)
                                         }
                                         .padding(.vertical, 5)
                                     } //: VStack
                                     .padding(.horizontal)
                                     .padding(.bottom, 20)
-                                    
+
                                     Spacer()
-                                    
+
                                     Link(destination: URL(string: "https://open-meteo.com/")!, label: {
                                         Text("Data Source: Open Meteo")
                                             .accessibilityLabel("Data Source: Open Meteo")
@@ -133,7 +134,6 @@ struct HomeView: View {
                                             .fontDesign(.serif)
                                             .underline()
                                     })
-                                    
                                 } //: VStack
                                 .padding(.top, 25)
                                 .toolbarBackground(Color("BackgroundColor"))
@@ -163,7 +163,7 @@ struct HomeView: View {
                                     }
                                 }
                                 .background(GeometryReader { geometry in
-                                    Color.clear.onChange(of: geometry.frame(in: .global).minY) { oldValue, newValue in
+                                    Color.clear.onChange(of: geometry.frame(in: .global).minY) { _, newValue in
                                         scrollOffset = newValue
                                         DispatchQueue.main.async {
                                             withAnimation {
@@ -184,13 +184,13 @@ struct HomeView: View {
                     .background(Color("BackgroundColor"))
                     .task {
                         viewModel.configureCacheManager(context: viewContext)
-                        
+
                         if locationManager.lastLocation != nil {
                             await viewModel.getWeather(location: locationManager.lastLocation)
                         }
                         showCollapsedView = false
                     }
-                    .onChange(of: scenePhase) { oldPhase, newPhase in
+                    .onChange(of: scenePhase) { _, newPhase in
                         if newPhase == .active {
                             if locationManager.lastLocation != nil {
                                 Task {
@@ -216,7 +216,6 @@ struct HomeView: View {
                     LocationDeniedView()
                 }
             } //: VStack
-            
         } //: NavigationStack
         .environmentObject(nav)
     }

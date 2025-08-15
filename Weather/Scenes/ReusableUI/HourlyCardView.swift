@@ -23,23 +23,23 @@ struct HourlyCardView: View {
                 .foregroundStyle(Color("SubheadingColor"))
                 .padding(.top, 10)
                 .padding(.bottom, 1)
-            
-            Text(temp+"°")
+
+            Text(temp + "°")
                 .accessibilityLabel("\(temp) degrees")
                 .accessibilityAddTraits(.isStaticText)
                 .fontWeight(.bold)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
-            
+
             Spacer()
-            
+
             Image(systemName: weatherIconName)
                 .accessibilityLabel("\(weatherIconName)")
                 .accessibilityAddTraits(.isImage)
                 .font(.system(size: 22))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
-            
+
             Spacer()
         }
         .frame(width: 55, height: 100, alignment: .center)

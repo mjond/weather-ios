@@ -5,19 +5,19 @@
 //  Created by Mark Davis on 2/6/25.
 //
 
-import XCTest
 @testable import Weather
+import XCTest
 
 final class WeatherHelperTests: XCTestCase {
     func testGetCurrentWeatherCodeIcon() {
         let helper = WeatherHelper()
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
         if let fixedSunriseDate = dateFormatter.date(from: "2025-01-15T05:23") {
             let sunrise = fixedSunriseDate.addingTimeInterval(-3600)
             let sunset = Date().addingTimeInterval(3600)
-            
+
             XCTAssertEqual(helper.getCurrentWeatherCodeIcon(from: 0, sunrise: sunrise, sunset: sunset), "sun.max")
             XCTAssertEqual(helper.getCurrentWeatherCodeIcon(from: 1, sunrise: sunrise, sunset: sunset), "cloud.sun")
             XCTAssertEqual(helper.getCurrentWeatherCodeIcon(from: 2, sunrise: sunrise, sunset: sunset), "cloud.sun")
@@ -38,10 +38,10 @@ final class WeatherHelperTests: XCTestCase {
             XCTAssertEqual(helper.getCurrentWeatherCodeIcon(from: 95, sunrise: sunrise, sunset: sunset), "cloud.bolt.rain")
         }
     }
-        
+
     func testGetDailyWeatherCodeIcon() {
         let helper = WeatherHelper()
-        
+
         XCTAssertEqual(helper.getDailyWeatherCodeIcon(from: 0), "sun.max")
         XCTAssertEqual(helper.getDailyWeatherCodeIcon(from: 1), "cloud.sun")
         XCTAssertEqual(helper.getDailyWeatherCodeIcon(from: 2), "cloud.sun")
@@ -52,10 +52,10 @@ final class WeatherHelperTests: XCTestCase {
         XCTAssertEqual(helper.getDailyWeatherCodeIcon(from: 71), "cloud.snow")
         XCTAssertEqual(helper.getDailyWeatherCodeIcon(from: 95), "cloud.bolt.rain")
     }
-    
+
     func testGetHourlyWeatherCodeIcon() {
         let helper = WeatherHelper()
-        
+
         XCTAssertEqual(helper.getHourlyWeatherCodeIcon(0, 1), "sun.max")
         XCTAssertEqual(helper.getHourlyWeatherCodeIcon(0, 0), "moon")
         XCTAssertEqual(helper.getHourlyWeatherCodeIcon(1, 1), "cloud.sun")

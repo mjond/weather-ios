@@ -10,12 +10,12 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     @Published var isImperialActive: Bool
     @Published var isMetricActive: Bool
-    
+
     private var settings: WeatherSettingsProtocol
 
     init(settings: any WeatherSettingsProtocol = WeatherSettings.shared) {
         self.settings = settings
-        
+
         // Initialize state based on stored settings
         if settings.unitOfMeasurement == .imperial {
             isImperialActive = true

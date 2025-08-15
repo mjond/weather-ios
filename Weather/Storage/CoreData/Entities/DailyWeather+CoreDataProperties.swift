@@ -6,32 +6,27 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-
-extension DailyWeather {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<DailyWeather> {
+public extension DailyWeather {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<DailyWeather> {
         return NSFetchRequest<DailyWeather>(entityName: "DailyWeather")
     }
 
-    @NSManaged public var time: String?
-    @NSManaged public var minTemperature: Double
-    @NSManaged public var maxTemperature: Double
-    @NSManaged public var weatherCode: Int16
-    @NSManaged public var sunrise: String?
-    @NSManaged public var sunset: String?
-    @NSManaged public var precipitationProbabilityMean: Double
-    @NSManaged public var precipitationSum: Double
-    @NSManaged public var uvIndexMax: Double
-    @NSManaged public var windSpeedMax: Double
-    @NSManaged public var windGustsMax: Double
-    @NSManaged public var windDirectionDominant: Int16
-    @NSManaged public var origin: WeatherData?
-
+    @NSManaged var time: String?
+    @NSManaged var minTemperature: Double
+    @NSManaged var maxTemperature: Double
+    @NSManaged var weatherCode: Int16
+    @NSManaged var sunrise: String?
+    @NSManaged var sunset: String?
+    @NSManaged var precipitationProbabilityMean: Double
+    @NSManaged var precipitationSum: Double
+    @NSManaged var uvIndexMax: Double
+    @NSManaged var windSpeedMax: Double
+    @NSManaged var windGustsMax: Double
+    @NSManaged var windDirectionDominant: Int16
+    @NSManaged var origin: WeatherData?
 }
 
-extension DailyWeather : Identifiable {
-
-}
+extension DailyWeather: Identifiable {}

@@ -1,0 +1,97 @@
+excluded:
+  - DerivedData
+  - Package.swift
+
+disabled_rules:
+  - opening_brace
+
+opt_in_rules:
+  - contains_over_first_not_nil
+  - empty_count
+  - empty_string
+  - fallthrough
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - private_action
+  - private_outlet
+  - sorted_imports
+
+analyzer_rules:
+  - unused_import
+
+void_function_in_ternary:
+  severity: error
+first_where:
+  severity: error
+private_outlet:
+  severity: error
+private_action:
+  severity: error
+multiple_closures_with_trailing_closure:
+  severity: error
+notification_center_detachment:
+  severity: error
+empty_enum_arguments:
+  severity: error
+empty_parentheses_with_trailing_closure:
+  severity: error
+redundant_objc_attribute:
+  severity: error
+fatal_error_message:
+  severity: error
+fallthrough:
+  severity: error
+empty_string:
+  severity: error
+empty_count:
+  severity: warning
+return_arrow_whitespace:
+  severity: error
+vertical_parameter_alignment:
+  severity: error
+trailing_whitespace:
+  severity: error
+vertical_whitespace:
+  severity: error
+
+nesting:
+  type_level: 2
+
+function_parameter_count:
+  warning: 4
+  error: 5
+  ignores_default_parameters: false
+
+file_length:
+  warning: 500
+  error: 600
+
+line_length:
+  warning: 170
+  error: 180
+  ignores_comments: true
+
+type_body_length:
+  warning: 250
+  error: 400
+
+type_name:
+  allowed_symbols: ["_"]
+  max_length:
+    warning: 50
+    error: 60
+
+identifier_name:
+  allowed_symbols: ["_"]
+  excluded: ["id", "iv", "ok", "qa", "up", "in", "pv"]
+
+function_body_length:
+  warning: 100
+  error: 110
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+reporter: "xcode"

@@ -6,8 +6,8 @@
 //
 
 import CoreLocation
-import SwiftUI
 import Foundation
+import SwiftUI
 
 class SearchViewModel: ObservableObject {
     func getLocation(locationName: String, completion: @escaping (CLLocation?) -> Void) {

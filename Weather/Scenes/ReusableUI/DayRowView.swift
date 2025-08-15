@@ -20,18 +20,18 @@ struct DayRowView: View {
                 .accessibilityAddTraits(.isStaticText)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
-            
+
             Spacer()
-            
+
             Image(systemName: weatherIconName)
                 .accessibilityLabel(weatherIconName)
                 .accessibilityAddTraits(.isImage)
                 .font(.system(size: 26))
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.trailing, 35)
-            
+
             HStack {
-                Text(minTemp+"°")
+                Text(minTemp + "°")
                     .accessibilityLabel("\(minTemp) degrees")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 20))
@@ -39,11 +39,11 @@ struct DayRowView: View {
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
                     .frame(minWidth: 35)
-                
+
                 Text(" ----- ")
                     .frame(minWidth: 40)
-                
-                Text(maxTemp+"°")
+
+                Text(maxTemp + "°")
                     .accessibilityLabel("\(maxTemp) degrees")
                     .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 20))

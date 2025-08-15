@@ -19,24 +19,24 @@ struct DayCardView: View {
                 .padding()
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
-            
-            Text(maxTemp+"°")
+
+            Text(maxTemp + "°")
                 .font(.headline)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
 
-            Text(minTemp+"°")
+            Text(minTemp + "°")
                 .font(.subheadline)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
                 .padding(.bottom, 8)
-            
+
             Spacer()
-            
+
             Image(systemName: weatherIconName)
                 .font(.system(size: 32))
                 .foregroundStyle(Color("TitleColor"))
-            
+
             Spacer()
         }
         .frame(width: 75, height: 160, alignment: .center)

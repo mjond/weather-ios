@@ -1,12 +1,12 @@
 //
-//  Untitled.swift
+//  MockDateProvider.swift
 //  Weather
 //
 //  Created by Mark Davis on 1/24/25.
 //
 
-@testable import Weather
 import Foundation
+@testable import Weather
 
 class MockDateProvider: DateProviderProtocol {
     var fixedDate: Date

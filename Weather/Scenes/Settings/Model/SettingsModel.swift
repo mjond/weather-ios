@@ -31,10 +31,10 @@ final class WeatherSettings: WeatherSettingsProtocol {
             }
         } else {
             // if there isn't a stored setting, then default to imperial
-            unitOfMeasurement = .imperial            
+            unitOfMeasurement = .imperial
         }
     }
-    
+
     func updatePreference(value: UnitOfMeasurement, key: String) {
         UserDefaults().set(value.rawValue, forKey: key)
     }

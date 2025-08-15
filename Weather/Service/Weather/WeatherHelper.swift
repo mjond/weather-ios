@@ -46,7 +46,7 @@ class WeatherHelper {
             return "cloud"
         }
     }
-    
+
     func getDailyWeatherCodeIcon(from weatherCode: Int) -> String {
         switch weatherCode {
         case 0:
