@@ -10,7 +10,7 @@ import SwiftUI
 struct WindCardView: View {
     var windSpeed: String
     var windGust: String
-    var windDirectinoDegrees: String
+    var windDirectionDegrees: String
 
     var body: some View {
         VStack {
@@ -76,15 +76,15 @@ struct WindCardView: View {
 
             HStack {
                 Text("Wind direction")
-                    .accessibilityLabel("Wind gust")
+                    .accessibilityLabel("Wind direction")
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
 
                 Spacer()
 
-                Text("\(windDirectinoDegrees)")
-                    .accessibilityLabel(windDirectinoDegrees)
+                Text("\(windDirectionDegrees)")
+                    .accessibilityLabel(windDirectionDegrees)
                     .accessibilityAddTraits(.isStaticText)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
@@ -92,8 +92,6 @@ struct WindCardView: View {
             } //: HStack
         }
         .padding()
-        .frame(minWidth: 300, idealWidth: 360, maxWidth: 370)
-//        .frame(width: 360, height: 175, alignment: .center)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .strokeBorder(Color("SubheadingColor"), lineWidth: 1)
@@ -103,5 +101,7 @@ struct WindCardView: View {
 }
 
 #Preview {
-    WindCardView(windSpeed: "14 km/h", windGust: "25 km/h", windDirectinoDegrees: "125")
+    WindCardView(windSpeed: "14 km/h",
+                 windGust: "25 km/h",
+                 windDirectionDegrees: "125")
 }

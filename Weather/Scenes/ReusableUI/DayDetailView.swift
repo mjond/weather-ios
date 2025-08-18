@@ -68,10 +68,12 @@ struct DayDetailView: View {
                 }
                 .padding(.vertical, 5)
 
-                WindCardView(windSpeed: day.windSpeed, windGust: day.windGust, windDirectinoDegrees: day.windDirectionDegrees)
+                WindCardView(windSpeed: day.windSpeed,
+                             windGust: day.windGust,
+                             windDirectionDegrees: day.windDirectionDegrees)
                     .padding(.vertical, 5)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 5)
 
             VStack {
                 Divider()
@@ -99,7 +101,7 @@ struct DayDetailView: View {
                 Divider()
                     .foregroundStyle(Color("TitleColor"))
             }
-            .padding(.horizontal, 35)
+            .padding(.horizontal, 12)
 
             Spacer()
         } //: VStack

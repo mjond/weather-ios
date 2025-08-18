@@ -109,7 +109,7 @@ struct HomeView: View {
 
                                         WindCardView(windSpeed: weatherModel.currentWindSpeed,
                                                      windGust: weatherModel.currentWindGust,
-                                                     windDirectinoDegrees: weatherModel.currentWindDirectionDegrees)
+                                                     windDirectionDegrees: weatherModel.currentWindDirectionDegrees)
                                             .padding(.vertical, 5)
 
                                         HStack {
