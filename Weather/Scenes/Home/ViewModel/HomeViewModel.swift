@@ -26,7 +26,12 @@ class HomeViewModel: ObservableObject {
     }
 
     func configureCacheManager(context: NSManagedObjectContext) {
-        let cacheManager = WeatherCacheManager(context: context)
+        // Create a background context for cache operations to avoid context conflicts
+        let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        backgroundContext.persistentStoreCoordinator = context.persistentStoreCoordinator
+        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        let cacheManager = WeatherCacheManager(context: backgroundContext)
         weatherService.setCacheManager(cacheManager)
     }
 
