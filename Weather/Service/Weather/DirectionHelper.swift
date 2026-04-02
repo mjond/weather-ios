@@ -22,7 +22,6 @@ class DirectionHelper {
         let direction = directions[index]
 
         let degreesAsString = String(format: "%.0f", degrees)
-        let degreesWithDirection = " \(degreesAsString)° \(direction)"
-        return degreesWithDirection
+        return " \(degreesAsString)° \(direction)"
     }
 }

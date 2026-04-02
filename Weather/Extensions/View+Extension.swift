@@ -14,8 +14,7 @@ struct Shimmer: ViewModifier {
         content
             .mask(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.white, Color.clear]), startPoint: .leading, endPoint: .trailing)
                 .offset(x: isAnimating ? UIScreen.main.bounds.width : -UIScreen.main.bounds.width)
-                .animation(.linear(duration: 1.5).repeatForever(autoreverses: false), value: isAnimating)
-            )
+                .animation(.linear(duration: 1.5).repeatForever(autoreverses: false), value: isAnimating))
             .onAppear {
                 DispatchQueue.main.async {
                     withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {

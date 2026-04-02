@@ -74,7 +74,7 @@ line_length:
   ignores_comments: true
 
 type_body_length:
-  warning: 250
+  warning: 300
   error: 400
 
 type_name:

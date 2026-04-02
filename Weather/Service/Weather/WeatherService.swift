@@ -74,8 +74,7 @@ struct WeatherService: WeatherServiceProtocol {
 
         do {
             let (data, _) = try await urlSession.data(from: url)
-            let response = try JSONDecoder().decode(WeatherDataModel.self, from: data)
-            return response
+            return try JSONDecoder().decode(WeatherDataModel.self, from: data)
         } catch let error as DecodingError {
             print("WeatherService.fetchFromAPI() -> failed to fetch weather data with error: \(error)")
             throw error

@@ -39,10 +39,8 @@ struct SearchView: View {
                                     if !nav.path.isEmpty {
                                         nav.path.removeLast()
                                     }
-                                    isSearchingForCity = false
-                                } else {
-                                    isSearchingForCity = false
                                 }
+                                isSearchingForCity = false
                             }
                         }
                     } label: {

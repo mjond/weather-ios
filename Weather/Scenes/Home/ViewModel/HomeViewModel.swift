@@ -30,7 +30,7 @@ class HomeViewModel: ObservableObject {
         let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.persistentStoreCoordinator = context.persistentStoreCoordinator
         backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
+
         let cacheManager = WeatherCacheManager(context: backgroundContext)
         weatherService.setCacheManager(cacheManager)
     }
