@@ -1,0 +1,33 @@
+{
+  "UserAgent": "aws-amplify-cli/2.0",
+  "Version": "1.0",
+  "api": {
+    "plugins": {
+      "awsAPIPlugin": {
+        "WeatherAPI": {
+          "endpointType": "GraphQL",
+          "endpoint": "https://example.appsync-api.us-west-1.amazonaws.com/graphql",
+          "region": "us-west-1",
+          "authorizationType": "AWS_IAM"
+        }
+      }
+    }
+  },
+  "auth": {
+    "plugins": {
+      "awsCognitoAuthPlugin": {
+        "IdentityManager": {
+          "Default": {}
+        },
+        "CredentialsProvider": {
+          "CognitoIdentity": {
+            "Default": {
+              "PoolId": "us-west-1:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+              "Region": "us-west-1"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -22,6 +22,12 @@
 		B52ACD6D2CCDBC5200EE07F2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */; };
 		B52DDCDF2CD6C16D00BB3742 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */; };
 		B535C6A52D57C76D00E62A5B /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535C6A42D57C76700E62A5B /* SettingsViewModelTests.swift */; };
+		B53DF3DE2F8AE3A9005B395D /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = B53DF3DD2F8AE3A9005B395D /* AWSAPIPlugin */; };
+		B53DF3E02F8AE3A9005B395D /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = B53DF3DF2F8AE3A9005B395D /* AWSCognitoAuthPlugin */; };
+		B53DF3E22F8AE3A9005B395D /* AWSPluginsCore in Frameworks */ = {isa = PBXBuildFile; productRef = B53DF3E12F8AE3A9005B395D /* AWSPluginsCore */; };
+		B53DF3E42F8AE3A9005B395D /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = B53DF3E32F8AE3A9005B395D /* Amplify */; };
+		B53DF3EB2F8AEABB005B395D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = B53DF3EA2F8AE8E0005B395D /* amplifyconfiguration.json */; };
+		B53DF3EC2F8AEAD8005B395D /* AppConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */; };
 		B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56025202CD1B832007BB4F3 /* LocationManager.swift */; };
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
 		B562C51A2CF0D74F00BC7042 /* DayRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B562C5192CF0D74F00BC7042 /* DayRowView.swift */; };
@@ -96,6 +102,10 @@
 		B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		B52DDCDE2CD6C16600BB3742 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		B535C6A42D57C76700E62A5B /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		B53DF3E62F8AE444005B395D /* AppConfig.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfig.example.xcconfig; sourceTree = "<group>"; };
+		B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfig.xcconfig; sourceTree = "<group>"; };
+		B53DF3EA2F8AE470005B395D /* amplifyconfiguration.example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = amplifyconfiguration.example.json; sourceTree = "<group>"; };
+		B53DF3EA2F8AE8E0005B395D /* amplifyconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		B56025202CD1B832007BB4F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B562C5192CF0D74F00BC7042 /* DayRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRowView.swift; sourceTree = "<group>"; };
@@ -159,6 +169,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B53DF3DE2F8AE3A9005B395D /* AWSAPIPlugin in Frameworks */,
+				B53DF3E42F8AE3A9005B395D /* Amplify in Frameworks */,
+				B53DF3E02F8AE3A9005B395D /* AWSCognitoAuthPlugin in Frameworks */,
+				B53DF3E22F8AE3A9005B395D /* AWSPluginsCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +208,17 @@
 				B52ACD6C2CCDBC4E00EE07F2 /* View+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B53DF3E52F8AE439005B395D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B53DF3EA2F8AE8E0005B395D /* amplifyconfiguration.json */,
+				B53DF3EA2F8AE470005B395D /* amplifyconfiguration.example.json */,
+				B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */,
+				B53DF3E62F8AE444005B395D /* AppConfig.example.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		B560251E2CD1B820007BB4F3 /* Weather */ = {
@@ -259,6 +284,7 @@
 		B56A06742CC6CE660080DC74 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B53DF3E52F8AE439005B395D /* Config */,
 				B560251F2CD1B82C007BB4F3 /* Location */,
 				B560251E2CD1B820007BB4F3 /* Weather */,
 			);
@@ -494,6 +520,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5D5ABDA2AFADDFE00A1FAC3 /* Build configuration list for PBXNativeTarget "Weather" */;
 			buildPhases = (
+				B53DF3ED2F8AE473005B395D /* Ensure Local Config */,
 				B5DB9E7B2E4FC1020023A41D /* Swift Format */,
 				B516DE692CC832B2007C52B5 /* Swift Lint */,
 				B5D5ABC82AFADDFD00A1FAC3 /* Sources */,
@@ -538,6 +565,7 @@
 			);
 			mainGroup = B5D5ABC32AFADDFD00A1FAC3;
 			packageReferences = (
+				B53DF3DC2F8AE3A9005B395D /* XCRemoteSwiftPackageReference "amplify-swift" */,
 			);
 			productRefGroup = B5D5ABCD2AFADDFD00A1FAC3 /* Products */;
 			projectDirPath = "";
@@ -562,8 +590,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */,
+				B53DF3EC2F8AEAD8005B395D /* AppConfig.xcconfig in Resources */,
 				B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */,
 				B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */,
+				B53DF3EB2F8AEABB005B395D /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +618,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ `uname -m` == 'arm64' ]]; then\n  echo \"** Running on Apple Silicon\"\n  PATH=${PATH}:/opt/homebrew/bin:/opt/homebrew/sbin\nelse\n  echo \"** Running on a Apple x86\"\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint lint --config .swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		B53DF3ED2F8AE473005B395D /* Ensure Local Config */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Ensure Local Config";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Weather/Service/Config/AppConfig.xcconfig",
+				"$(SRCROOT)/Weather/Service/Config/amplifyconfiguration.json",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIG_DIR=\"${SRCROOT}/Weather/Service/Config\"\nmkdir -p \"${CONFIG_DIR}\"\nif [ ! -f \"${CONFIG_DIR}/AppConfig.xcconfig\" ]; then\n  cp \"${CONFIG_DIR}/AppConfig.example.xcconfig\" \"${CONFIG_DIR}/AppConfig.xcconfig\"\nfi\nif [ ! -f \"${CONFIG_DIR}/amplifyconfiguration.json\" ]; then\n  cp \"${CONFIG_DIR}/amplifyconfiguration.example.json\" \"${CONFIG_DIR}/amplifyconfiguration.json\"\nfi\n";
 		};
 		B5DB9E7B2E4FC1020023A41D /* Swift Format */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -857,6 +907,7 @@
 		};
 		B5D5ABDB2AFADDFE00A1FAC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -893,6 +944,7 @@
 		};
 		B5D5ABDC2AFADDFE00A1FAC3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -958,6 +1010,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B53DF3DC2F8AE3A9005B395D /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.55.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B53DF3DD2F8AE3A9005B395D /* AWSAPIPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B53DF3DC2F8AE3A9005B395D /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSAPIPlugin;
+		};
+		B53DF3DF2F8AE3A9005B395D /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B53DF3DC2F8AE3A9005B395D /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+		B53DF3E12F8AE3A9005B395D /* AWSPluginsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B53DF3DC2F8AE3A9005B395D /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSPluginsCore;
+		};
+		B53DF3E32F8AE3A9005B395D /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B53DF3DC2F8AE3A9005B395D /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = Amplify;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B5DB9E542E4CEA610023A41D /* Weather.xcdatamodeld */ = {

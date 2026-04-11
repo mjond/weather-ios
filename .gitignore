@@ -3,6 +3,9 @@
 ## User settings
 xcuserdata/
 
+Weather/Service/Config/AppConfig.xcconfig
+Weather/Service/Config/amplifyconfiguration.json
+
 ## App packaging
 *.ipa
 *.dSYM.zip

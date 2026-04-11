@@ -1,0 +1,4 @@
+APPSYNC_REGION = us-west-1
+APPSYNC_GRAPHQL_URL = https:/$()/example.appsync-api.us-west-1.amazonaws.com/graphql
+APPSYNC_IDENTITY_POOL_ID = us-west-1:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+APPSYNC_AUTH_MODE = AWS_IAM

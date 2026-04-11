@@ -73,7 +73,7 @@ struct SearchView: View {
                         nav.path.removeLast()
                     }
                 } label: {
-                    Image(systemName: "chevron.left.circle")
+                    Image(systemName: "chevron.left")
                         .accessibilityLabel("Back button")
                         .accessibilityAddTraits(.isButton)
                         .font(.system(size: 22))

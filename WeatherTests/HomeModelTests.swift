@@ -14,10 +14,10 @@ final class HomeModelTests: XCTestCase {
         let dailyForecast = [
             DailyWeatherModel(date: now, minimumTemperature: "10", maximumTemperature: "20", weatherCode: 48,
                               precipitationProbability: "30", precipitationAmount: "5", uvIndexMax: "8",
-                              sunset: now, sunrise: now, windSpeed: "10", windGust: "20", windDirectionDegrees: "180")
+                              sunset: now, sunrise: now, windSpeed: "10", windGust: "20", windDirectionDegrees: "180"),
         ]
         let hourlyForecast = [
-            HourlyWeatherModel(date: now, temperature: "15", weatherCode: 48, isDay: 1)
+            HourlyWeatherModel(date: now, temperature: "15", weatherCode: 48, isDay: 1),
         ]
         let homeModel = HomeModel(locationName: "New York", currentTemperature: "22",
                                   apparentTemperature: "21", currentSunrise: now, currentSunset: now,
