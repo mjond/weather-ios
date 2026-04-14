@@ -28,6 +28,11 @@
 		B53DF3E42F8AE3A9005B395D /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = B53DF3E32F8AE3A9005B395D /* Amplify */; };
 		B53DF3EB2F8AEABB005B395D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = B53DF3EA2F8AE8E0005B395D /* amplifyconfiguration.json */; };
 		B53DF3EC2F8AEAD8005B395D /* AppConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */; };
+		B53DF3EE2F8DBBA1005B395D /* AirQualityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DF3ED2F8DBB96005B395D /* AirQualityService.swift */; };
+		B53DF3F12F8DBDF3005B395D /* AirQualityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DF3F02F8DBDEE005B395D /* AirQualityDataModel.swift */; };
+		B53DF3F42F8DBE9F005B395D /* GetAirQuality.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B53DF3F32F8DBE98005B395D /* GetAirQuality.graphql */; };
+		B53DF3F62F8DBF9E005B395D /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B53DF3F52F8DBF9E005B395D /* schema.graphql */; };
+		B53DF3FD2F8DC211005B395D /* AirQualityGeneratedSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DF3FC2F8DC210005B395D /* AirQualityGeneratedSchema.swift */; };
 		B56025212CD1B83C007BB4F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56025202CD1B832007BB4F3 /* LocationManager.swift */; };
 		B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */; };
 		B562C51A2CF0D74F00BC7042 /* DayRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B562C5192CF0D74F00BC7042 /* DayRowView.swift */; };
@@ -106,6 +111,12 @@
 		B53DF3E82F8AE457005B395D /* AppConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfig.xcconfig; sourceTree = "<group>"; };
 		B53DF3EA2F8AE470005B395D /* amplifyconfiguration.example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = amplifyconfiguration.example.json; sourceTree = "<group>"; };
 		B53DF3EA2F8AE8E0005B395D /* amplifyconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		B53DF3ED2F8DBB96005B395D /* AirQualityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityService.swift; sourceTree = "<group>"; };
+		B53DF3F02F8DBDEE005B395D /* AirQualityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityDataModel.swift; sourceTree = "<group>"; };
+		B53DF3F32F8DBE98005B395D /* GetAirQuality.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetAirQuality.graphql; sourceTree = "<group>"; };
+		B53DF3F52F8DBF9E005B395D /* schema.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
+		B53DF3F82F8DC129005B395D /* .graphqlconfig.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .graphqlconfig.yml; sourceTree = "<group>"; };
+		B53DF3FC2F8DC210005B395D /* AirQualityGeneratedSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityGeneratedSchema.swift; sourceTree = "<group>"; };
 		B56025202CD1B832007BB4F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B562481E2B0567C10081FFC3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B562C5192CF0D74F00BC7042 /* DayRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRowView.swift; sourceTree = "<group>"; };
@@ -221,6 +232,27 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		B53DF3EF2F8DBDC9005B395D /* AirQuality */ = {
+			isa = PBXGroup;
+			children = (
+				B53DF3F82F8DC129005B395D /* .graphqlconfig.yml */,
+				B53DF3F02F8DBDEE005B395D /* AirQualityDataModel.swift */,
+				B53DF3FC2F8DC210005B395D /* AirQualityGeneratedSchema.swift */,
+				B53DF3ED2F8DBB96005B395D /* AirQualityService.swift */,
+				B53DF3F22F8DBE7B005B395D /* Operations */,
+				B53DF3F52F8DBF9E005B395D /* schema.graphql */,
+			);
+			path = AirQuality;
+			sourceTree = "<group>";
+		};
+		B53DF3F22F8DBE7B005B395D /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				B53DF3F32F8DBE98005B395D /* GetAirQuality.graphql */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		B560251E2CD1B820007BB4F3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +316,7 @@
 		B56A06742CC6CE660080DC74 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				B53DF3EF2F8DBDC9005B395D /* AirQuality */,
 				B53DF3E52F8AE439005B395D /* Config */,
 				B560251F2CD1B82C007BB4F3 /* Location */,
 				B560251E2CD1B820007BB4F3 /* Weather */,
@@ -398,9 +431,9 @@
 		B5D5ABC32AFADDFD00A1FAC3 = {
 			isa = PBXGroup;
 			children = (
+				B5D5ABCD2AFADDFD00A1FAC3 /* Products */,
 				B5D5ABCE2AFADDFD00A1FAC3 /* Weather */,
 				B573CC5A2D30695000925D4B /* WeatherTests */,
-				B5D5ABCD2AFADDFD00A1FAC3 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -592,8 +625,10 @@
 				B562481F2B0567C10081FFC3 /* LaunchScreen.storyboard in Resources */,
 				B53DF3EC2F8AEAD8005B395D /* AppConfig.xcconfig in Resources */,
 				B5D5ABD72AFADDFE00A1FAC3 /* Preview Assets.xcassets in Resources */,
+				B53DF3F62F8DBF9E005B395D /* schema.graphql in Resources */,
 				B5D5ABD42AFADDFE00A1FAC3 /* Assets.xcassets in Resources */,
 				B53DF3EB2F8AEABB005B395D /* amplifyconfiguration.json in Resources */,
+				B53DF3F42F8DBE9F005B395D /* GetAirQuality.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,9 +750,12 @@
 				B562C51A2CF0D74F00BC7042 /* DayRowView.swift in Sources */,
 				B52927592CDA52D7009B6A93 /* UserDefaultsConstants.swift in Sources */,
 				B5DB9E512E4CE9B20023A41D /* PersistenceController.swift in Sources */,
+				B53DF3EE2F8DBBA1005B395D /* AirQualityService.swift in Sources */,
 				B5DB9E7A2E4E5D0D0023A41D /* WeatherCacheManager.swift in Sources */,
 				B599DA472CD99AB100023F5D /* SettingsViewModel.swift in Sources */,
 				B52ACD6D2CCDBC5200EE07F2 /* View+Extension.swift in Sources */,
+				B53DF3F12F8DBDF3005B395D /* AirQualityDataModel.swift in Sources */,
+				B53DF3FD2F8DC211005B395D /* AirQualityGeneratedSchema.swift in Sources */,
 				B5D5ABD02AFADDFD00A1FAC3 /* WeatherApp.swift in Sources */,
 				B5A0D89D2CE92B7200A413BF /* SearchViewModel.swift in Sources */,
 				B59A48CD2CCDBDDE00F2C9FB /* HomeFailureView.swift in Sources */,

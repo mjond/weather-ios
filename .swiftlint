@@ -2,6 +2,7 @@ excluded:
   - DerivedData
   - Package.swift
   - WeatherTests/Mocks
+  - Weather/Service/AirQuality/AirQualityGeneratedSchema.swift
 
 disabled_rules:
   - opening_brace

@@ -1,0 +1,26 @@
+# this is an auto generated file. This will be overwritten
+
+query GetAirQuality($input: AirQualityInput!) {
+  getAirQuality(input: $input) {
+    latitude
+    longitude
+    current {
+      time
+      usAqi
+      pm10
+      pm25
+      __typename
+    }
+    forecast {
+      date
+      pm25High
+      pm25Low
+      pm10High
+      pm10Low
+      usAqiHigh
+      usAqiLow
+      __typename
+    }
+    __typename
+  }
+}

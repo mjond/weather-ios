@@ -1,0 +1,14 @@
+projects:
+  airQuality:
+    schemaPath: schema.graphql
+    includes:
+      - Operations/**/*.graphql
+    extensions:
+      amplify:
+        codeGenTarget: swift
+        generatedFileName: AirQualityGeneratedSchema.swift
+        docsFilePath: .
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

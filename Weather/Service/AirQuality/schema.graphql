@@ -1,0 +1,41 @@
+# GraphQL Schema for Air Quality API
+
+input AirQualityInput {
+  latitude: Float!
+  longitude: Float!
+  """Number of days of hourly air-quality data to request (daily high/low forecast is derived). Open-Meteo allows 0–7; values above 7 are treated as 7. Default: 7."""
+  forecastDays: Int = 7
+}
+
+type CurrentAirQuality {
+  time: String!
+  usAqi: Int
+  pm10: Float
+  pm25: Float
+}
+
+type DailyAirQualityForecast {
+  date: String!
+  pm25High: Float
+  pm25Low: Float
+  pm10High: Float
+  pm10Low: Float
+  usAqiHigh: Int
+  usAqiLow: Int
+}
+
+type AirQuality {
+  latitude: Float!
+  longitude: Float!
+  current: CurrentAirQuality
+  forecast: [DailyAirQualityForecast!]
+}
+
+type Query {
+  getAirQuality(input: AirQualityInput!): AirQuality
+}
+
+schema {
+  query: Query
+}
+

@@ -1,0 +1,25 @@
+query GetAirQuality($latitude: Float!, $longitude: Float!, $forecastDays: Int) {
+  getAirQuality(input: {
+    latitude: $latitude
+    longitude: $longitude
+    forecastDays: $forecastDays
+  }) {
+    latitude
+    longitude
+    current {
+      time
+      usAqi
+      pm10
+      pm25
+    }
+    forecast {
+      date
+      pm25High
+      pm25Low
+      pm10High
+      pm10Low
+      usAqiHigh
+      usAqiLow
+    }
+  }
+}
