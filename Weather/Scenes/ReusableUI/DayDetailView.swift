@@ -68,10 +68,14 @@ struct DayDetailView: View {
                 }
                 .padding(.vertical, 5)
 
-                WindCardView(windSpeed: day.windSpeed,
-                             windGust: day.windGust,
-                             windDirectionDegrees: day.windDirectionDegrees)
-                    .padding(.vertical, 5)
+                ConditionsCardView(cardIconName: "wind",
+                                   cardTitle: "Wind",
+                                   rowItems: [
+                                       "Wind speed": day.windSpeed,
+                                       "Wind gust": day.windGust,
+                                       "Wind direction": day.windDirectionDegrees,
+                                   ])
+                                   .padding(.vertical, 5)
             }
             .padding(.horizontal, 5)
 
@@ -116,7 +120,7 @@ struct DayDetailView: View {
                         nav.path.removeLast()
                     }
                 } label: {
-                    Image(systemName: "chevron.left.circle")
+                    Image(systemName: "chevron.left")
                         .font(.system(size: 22))
                         .foregroundStyle(Color("TitleColor"))
                         .accessibilityLabel("Back button")

@@ -9,7 +9,7 @@ import Amplify
 import AWSPluginsCore
 import Foundation
 
-protocol WeatherAPIClientProtocol {
+protocol AirQualityServiceProtocol {
     func fetchAirQuality(
         latitude: Double,
         longitude: Double,
@@ -17,7 +17,7 @@ protocol WeatherAPIClientProtocol {
     ) async throws -> AirQualityResponse
 }
 
-final class WeatherAPIClient: WeatherAPIClientProtocol {
+final class AirQualityService: AirQualityServiceProtocol {
     func fetchAirQuality(
         latitude: Double,
         longitude: Double,
@@ -43,7 +43,7 @@ final class WeatherAPIClient: WeatherAPIClientProtocol {
         switch result {
         case let .success(data):
             guard let generated = data.getAirQuality else {
-                throw WeatherAPIError.noData
+                throw AirQualityError.noData
             }
             return AirQualityResponse(generated: generated)
         case let .failure(error):
@@ -52,7 +52,7 @@ final class WeatherAPIClient: WeatherAPIClientProtocol {
     }
 }
 
-enum WeatherAPIError: Error {
+enum AirQualityError: Error {
     case graphQLErrors(String)
     case noData
 }

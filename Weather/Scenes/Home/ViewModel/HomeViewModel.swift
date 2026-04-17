@@ -13,15 +13,19 @@ class HomeViewModel: ObservableObject {
     @Published var state = ViewState.loading
     private var settings: WeatherSettingsProtocol
     private var weatherService: WeatherServiceProtocol
+    private var weatherAPIClient: AirQualityServiceProtocol
     private var dateProvider: DateProviderProtocol
     private var isAPICallInProgress = false
+    private var isAirQualityCallInProgress = false
 
     init(settings: any WeatherSettingsProtocol = WeatherSettings.shared,
          weatherService: WeatherServiceProtocol = WeatherService(),
+         weatherAPIClient: AirQualityServiceProtocol = AirQualityService(),
          dateProvider: DateProviderProtocol = DateProvider())
     {
         self.settings = settings
         self.weatherService = weatherService
+        self.weatherAPIClient = weatherAPIClient
         self.dateProvider = dateProvider
     }
 
@@ -79,9 +83,11 @@ class HomeViewModel: ObservableObject {
 
                 let currentSunrise = dailyWeather[0].sunrise
                 let currentSunset = dailyWeather[0].sunset
-                let currentWindSpeed = dailyWeather[0].windSpeed
-                let currentWindGust = dailyWeather[0].windGust
-                let currentWindDirectionDegrees = dailyWeather[0].windDirectionDegrees
+                let windConditions = [
+                    "Wind speed": dailyWeather[0].windSpeed,
+                    "Wind gust": dailyWeather[0].windGust,
+                    "Wind direction": dailyWeather[0].windDirectionDegrees,
+                ]
                 let currentUvIndex = dailyWeather[0].uvIndexMax
                 let currentPrecipitationAmount = dailyWeather[0].precipitationAmount
 
@@ -91,9 +97,10 @@ class HomeViewModel: ObservableObject {
                                           currentSunrise: currentSunrise,
                                           currentSunset: currentSunset,
                                           currentWeatherCode: weatherCode,
-                                          currentWindSpeed: currentWindSpeed,
-                                          currentWindGust: currentWindGust,
-                                          currentWindDirectionDegrees: currentWindDirectionDegrees,
+                                          windConditions: windConditions,
+                                          airQualityConditions: [:],
+                                          isAirQualityLoading: true,
+                                          isAirQualityUnavailable: false,
                                           currentUvIndex: currentUvIndex,
                                           currentPrecipitationAmount: currentPrecipitationAmount,
                                           dailyForecast: dailyWeather,
@@ -102,6 +109,10 @@ class HomeViewModel: ObservableObject {
                 await MainActor.run {
                     self.isAPICallInProgress = false
                     self.state = .success(homeModel)
+                }
+
+                Task { [weak self] in
+                    await self?.getAirQuality(location: location)
                 }
             }
         } catch {
@@ -113,6 +124,50 @@ class HomeViewModel: ObservableObject {
         }
 
         isAPICallInProgress = false
+    }
+
+    func getAirQuality(location: CLLocation?) async {
+        guard !isAirQualityCallInProgress else {
+            print("HomeViewModel.getAirQuality() call already in progress")
+            return
+        }
+
+        guard let latitude = location?.coordinate.latitude,
+              let longitude = location?.coordinate.longitude
+        else {
+            print("HomeViewModel.getAirQuality() missing coordinates")
+            return
+        }
+
+        guard case let .success(currentModel) = state else {
+            // Weather data needs to exist before we can merge AQI content into HomeModel.
+            return
+        }
+
+        isAirQualityCallInProgress = true
+
+        await MainActor.run {
+            var loadingModel = currentModel
+            loadingModel.isAirQualityLoading = true
+            loadingModel.isAirQualityUnavailable = false
+            self.state = .success(loadingModel)
+        }
+
+        let airQualityResult = await getAirQualityConditions(latitude: latitude, longitude: longitude)
+
+        await MainActor.run {
+            guard case let .success(updatedModel) = self.state else {
+                self.isAirQualityCallInProgress = false
+                return
+            }
+
+            var nextModel = updatedModel
+            nextModel.airQualityConditions = airQualityResult.conditions
+            nextModel.isAirQualityLoading = false
+            nextModel.isAirQualityUnavailable = airQualityResult.isUnavailable
+            self.state = .success(nextModel)
+            self.isAirQualityCallInProgress = false
+        }
     }
 
     private func getLocationName(location: CLLocation?) async -> String {
@@ -239,6 +294,33 @@ class HomeViewModel: ObservableObject {
         }
 
         return formattedWindWithUnits
+    }
+
+    private func getAirQualityConditions(latitude: Double, longitude: Double) async -> (conditions: [String: String], isUnavailable: Bool) {
+        do {
+            let airQuality = try await weatherAPIClient.fetchAirQuality(latitude: latitude, longitude: longitude, forecastDays: nil)
+            guard let current = airQuality.current else {
+                return ([:], true)
+            }
+
+            let hasAnyValues = current.usAqi != nil || current.pm10 != nil || current.pm25 != nil
+            guard hasAnyValues else {
+                return ([:], true)
+            }
+
+            let usAqi = current.usAqi.map { String($0) } ?? "--"
+            let pm10 = current.pm10.map { String(format: "%.1f ug/m3", $0) } ?? "--"
+            let pm25 = current.pm25.map { String(format: "%.1f ug/m3", $0) } ?? "--"
+
+            return ([
+                "US AQI": usAqi,
+                "PM2.5": pm25,
+                "PM10": pm10,
+            ], false)
+        } catch {
+            print("HomeViewModel.getAirQualityConditions() -> failed to get air quality data")
+            return ([:], true)
+        }
     }
 
     private func parseHourlyWeatherData(with response: HourlyWeatherData) -> [HourlyWeatherModel] {

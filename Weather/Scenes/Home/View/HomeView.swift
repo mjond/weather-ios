@@ -107,9 +107,9 @@ struct HomeView: View {
                                         }
                                         .padding(.vertical, 5)
 
-                                        WindCardView(windSpeed: weatherModel.currentWindSpeed,
-                                                     windGust: weatherModel.currentWindGust,
-                                                     windDirectionDegrees: weatherModel.currentWindDirectionDegrees)
+                                        ConditionsCardView(cardIconName: "wind",
+                                                           cardTitle: "Wind",
+                                                           rowItems: weatherModel.windConditions)
                                             .padding(.vertical, 5)
 
                                         HStack {
@@ -119,6 +119,14 @@ struct HomeView: View {
 
                                             PropertyCardView(title: "UV Index", iconName: "sun.max", value: weatherModel.currentUvIndex)
                                         }
+
+                                        ConditionsCardView(cardIconName: "aqi.medium",
+                                                           cardTitle: "Air Quality",
+                                                           rowItems: weatherModel.airQualityConditions,
+                                                           isLoading: weatherModel.isAirQualityLoading,
+                                                           isUnavailable: weatherModel.isAirQualityUnavailable)
+                                            .padding(.vertical, 5)
+                                        
                                         .padding(.vertical, 5)
                                     } //: VStack
                                     .padding(.horizontal)

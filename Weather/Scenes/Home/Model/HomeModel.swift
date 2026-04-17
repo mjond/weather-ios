@@ -18,9 +18,10 @@ struct HomeModel: Equatable {
         WeatherHelper().getCurrentWeatherCodeIcon(from: currentWeatherCode, sunrise: currentSunrise, sunset: currentSunset)
     }
 
-    var currentWindSpeed: String
-    var currentWindGust: String
-    var currentWindDirectionDegrees: String
+    var windConditions: [String: String]
+    var airQualityConditions: [String: String]
+    var isAirQualityLoading: Bool
+    var isAirQualityUnavailable: Bool
     var currentUvIndex: String
     var currentPrecipitationAmount: String
     var dailyForecast: [DailyWeatherModel]
