@@ -24,8 +24,8 @@ final class AirQualityService: AirQualityServiceProtocol {
         forecastDays: Int? = nil
     ) async throws -> AirQualityResponse {
         var variables: [String: Any] = [
-            "latitude": latitude,
-            "longitude": longitude,
+            "latitude": Float(latitude),
+            "longitude": Float(longitude),
         ]
         if let forecastDays {
             variables["forecastDays"] = forecastDays
@@ -35,10 +35,19 @@ final class AirQualityService: AirQualityServiceProtocol {
             apiName: "WeatherAPI",
             document: GetAirQualityQuery.operationString,
             variables: variables,
-            responseType: GetAirQualityQuery.Data.self
+            responseType: GetAirQualityQuery.Data.self,
+            authMode: AWSAuthorizationType.awsIAM
         )
 
-        let result = try await Amplify.API.query(request: request)
+        try await ensureGuestCredentialsForIAMSigning()
+
+        let result: GraphQLResponse<GetAirQualityQuery.Data>
+        do {
+            result = try await Amplify.API.query(request: request)
+        } catch {
+            print("AirQualityService.fetchAirQuality() -> failed to fetch air quality data with error: \(error)")
+            throw error
+        }
 
         switch result {
         case let .success(data):
@@ -47,6 +56,30 @@ final class AirQualityService: AirQualityServiceProtocol {
             }
             return AirQualityResponse(generated: generated)
         case let .failure(error):
+            print("AirQualityService.fetchAirQuality() -> failed to fetch air quality data with error: \(error)")
+            throw error
+        }
+    }
+
+    private func ensureGuestCredentialsForIAMSigning() async throws {
+        let session: AuthSession
+        do {
+            session = try await Amplify.Auth.fetchAuthSession()
+        } catch {
+            print("AirQualityService.fetchAirQuality() -> failed to fetch auth session with error: \(error)")
+            throw error
+        }
+
+        guard let provider = session as? AuthAWSCredentialsProvider else {
+            print("AirQualityService.fetchAirQuality() -> auth session does not supply AWS credentials; check awsCognitoAuthPlugin CredentialsProvider.CognitoIdentity in amplifyconfiguration.json")
+            throw AirQualityError.missingGuestCredentials
+        }
+
+        switch provider.getAWSCredentials() {
+        case .success:
+            return
+        case let .failure(error):
+            print("AirQualityService.fetchAirQuality() -> failed to obtain AWS credentials for IAM signing with error: \(error)")
             throw error
         }
     }
@@ -55,4 +88,5 @@ final class AirQualityService: AirQualityServiceProtocol {
 enum AirQualityError: Error {
     case graphQLErrors(String)
     case noData
+    case missingGuestCredentials
 }
