@@ -29,7 +29,9 @@ struct HomeModel: Equatable {
 }
 
 struct DailyWeatherModel: Identifiable, Hashable {
-    var id = UUID()
+    /// Stable across AQI and other field updates so `ForEach` and navigation state stay valid.
+    var id: String { Self.calendarDayKey(for: date) }
+
     var date: Date
     var abbreviatedDayName: String {
         return date.formatted(Date.FormatStyle().weekday(.abbreviated))
@@ -57,6 +59,14 @@ struct DailyWeatherModel: Identifiable, Hashable {
     var airQualityConditions: [String: String]
     var isAirQualityLoading: Bool
     var isAirQualityUnavailable: Bool
+
+    static func calendarDayKey(for date: Date) -> String {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let y = components.year ?? 0
+        let m = components.month ?? 0
+        let d = components.day ?? 0
+        return String(format: "%04d-%02d-%02d", y, m, d)
+    }
 }
 
 struct HourlyWeatherModel: Identifiable, Hashable {

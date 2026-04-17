@@ -17,6 +17,8 @@ class HomeViewModel: ObservableObject {
     private var dateProvider: DateProviderProtocol
     private var isAPICallInProgress = false
     private var isAirQualityCallInProgress = false
+    /// `HomeView`'s `.task` can run more than once; only attach one cache + one background `NSManagedObjectContext` for the service lifetime.
+    private var didConfigureWeatherCache = false
 
     init(settings: any WeatherSettingsProtocol = WeatherSettings.shared,
          weatherService: WeatherServiceProtocol = WeatherService(),
@@ -30,6 +32,9 @@ class HomeViewModel: ObservableObject {
     }
 
     func configureCacheManager(context: NSManagedObjectContext) {
+        guard !didConfigureWeatherCache else { return }
+        didConfigureWeatherCache = true
+
         // Create a background context for cache operations to avoid context conflicts
         let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.persistentStoreCoordinator = context.persistentStoreCoordinator

@@ -78,7 +78,7 @@ struct HomeView: View {
                                                     .foregroundStyle(Color("TitleColor"))
 
                                                 Button {
-                                                    nav.path.append(day)
+                                                    nav.path.append(DailyWeatherModel.calendarDayKey(for: day.date))
                                                 } label: {
                                                     DayRowView(dayName: day.fullDayName,
                                                                maxTemp: day.maximumTemperature,
@@ -205,8 +205,8 @@ struct HomeView: View {
                             }
                         }
                     }
-                    .navigationDestination(for: DailyWeatherModel.self) { day in
-                        DayDetailView(day: day)
+                    .navigationDestination(for: String.self) { dayKey in
+                        dayNavigationDetail(dayKey: dayKey)
                     }
                     .navigationDestination(isPresented: $goToSettings) {
                         SettingsView()
@@ -224,6 +224,14 @@ struct HomeView: View {
             } //: VStack
         } //: NavigationStack
         .environmentObject(nav)
+    }
+
+    @ViewBuilder
+    private func dayNavigationDetail(dayKey: String) -> some View {
+        if case let .success(weatherModel) = viewModel.state,
+           let day = weatherModel.dailyForecast.first(where: { DailyWeatherModel.calendarDayKey(for: $0.date) == dayKey }) {
+            DayDetailView(day: day)
+        }
     }
 }
 

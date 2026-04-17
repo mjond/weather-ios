@@ -17,23 +17,30 @@ class WeatherCacheManager {
     }
 
     func getCachedWeather(latitude: Double, longitude: Double, unit: UnitOfMeasurement) -> WeatherDataModel? {
-        do {
-            try clearExpiredCache()
-        } catch {
-            print("WeatherCacheManager.getCachedWeather -> Error clearing expired cache: \(error)")
+        var result: WeatherDataModel?
+        context.performAndWait {
+            do {
+                try clearExpiredCache()
+            } catch {
+                print("WeatherCacheManager.getCachedWeather -> Error clearing expired cache: \(error)")
+            }
+
+            let request: NSFetchRequest<WeatherData> = WeatherData.fetchRequest()
+            let expirationDate = Date().addingTimeInterval(-cacheExpiration)
+            request.predicate = NSPredicate(
+                format: "latitude == %@ AND longitude == %@ AND unitOfMeasurement == %@ AND cachedAt > %@",
+                argumentArray: [latitude, longitude, unit.rawValue, expirationDate as NSDate]
+            )
+            request.fetchLimit = 1
+
+            guard let weatherData = try? context.fetch(request).first else {
+                result = nil
+                return
+            }
+
+            result = convertToWeatherDataModel(weatherData)
         }
-
-        let request: NSFetchRequest<WeatherData> = WeatherData.fetchRequest()
-        let expirationDate = Date().addingTimeInterval(-cacheExpiration)
-        request.predicate = NSPredicate(
-            format: "latitude == %@ AND longitude == %@ AND unitOfMeasurement == %@ AND cachedAt > %@",
-            argumentArray: [latitude, longitude, unit.rawValue, expirationDate as NSDate]
-        )
-        request.fetchLimit = 1
-
-        guard let weatherData = try? context.fetch(request).first else { return nil }
-
-        return convertToWeatherDataModel(weatherData)
+        return result
     }
 
     func saveWeather(_ model: WeatherDataModel, latitude: Double, longitude: Double, unit: UnitOfMeasurement) throws {
