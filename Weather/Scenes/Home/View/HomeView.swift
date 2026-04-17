@@ -126,8 +126,6 @@ struct HomeView: View {
                                                            isLoading: weatherModel.isAirQualityLoading,
                                                            isUnavailable: weatherModel.isAirQualityUnavailable)
                                             .padding(.vertical, 5)
-                                        
-                                        .padding(.vertical, 5)
                                     } //: VStack
                                     .padding(.horizontal)
                                     .padding(.bottom, 20)

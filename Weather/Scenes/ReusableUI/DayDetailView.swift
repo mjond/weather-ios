@@ -13,104 +13,112 @@ struct DayDetailView: View {
     let day: DailyWeatherModel
 
     var body: some View {
-        VStack {
-            Text(day.fullDayName)
-                .accessibilityLabel("\(day.fullDayName)")
-                .accessibilityAddTraits(.isStaticText)
-                .font(.system(size: 36))
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
-                .padding(.bottom, 10)
+        ScrollView {
+            VStack {
+                Text(day.fullDayName)
+                    .accessibilityLabel("\(day.fullDayName)")
+                    .accessibilityAddTraits(.isStaticText)
+                    .font(.system(size: 36))
+                    .fontDesign(.serif)
+                    .foregroundStyle(Color("TitleColor"))
+                    .padding(.bottom, 10)
 
-            Image(systemName: day.weatherIconName)
-                .accessibilityLabel("\(day.weatherIconName)")
-                .accessibilityAddTraits(.isImage)
-                .font(.system(size: 70))
-                .fontDesign(.serif)
-                .foregroundStyle(Color("TitleColor"))
+                Image(systemName: day.weatherIconName)
+                    .accessibilityLabel("\(day.weatherIconName)")
+                    .accessibilityAddTraits(.isImage)
+                    .font(.system(size: 70))
+                    .fontDesign(.serif)
+                    .foregroundStyle(Color("TitleColor"))
+                    .padding(.bottom)
+
+                VStack {
+                    Text("Max: \(day.maximumTemperature)°")
+                        .accessibilityLabel("Maximum temperature is \(day.maximumTemperature) degrees")
+                        .accessibilityAddTraits(.isStaticText)
+                        .font(.system(size: 22))
+                        .fontWeight(.bold)
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+
+                    Text("Min: \(day.minimumTemperature)°")
+                        .accessibilityLabel("Minimum temperature is \(day.minimumTemperature) degrees")
+                        .accessibilityAddTraits(.isStaticText)
+                        .font(.system(size: 22))
+                        .fontWeight(.bold)
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color("TitleColor"))
+                }
                 .padding(.bottom)
 
-            VStack {
-                Text("Max: \(day.maximumTemperature)°")
-                    .accessibilityLabel("Maximum temperature is \(day.maximumTemperature) degrees")
-                    .accessibilityAddTraits(.isStaticText)
-                    .font(.system(size: 22))
-                    .fontWeight(.bold)
-                    .fontDesign(.serif)
-                    .foregroundStyle(Color("TitleColor"))
+                VStack {
+                    HStack {
+                        PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: day.sunrise)
 
-                Text("Min: \(day.minimumTemperature)°")
-                    .accessibilityLabel("Minimum temperature is \(day.minimumTemperature) degrees")
-                    .accessibilityAddTraits(.isStaticText)
-                    .font(.system(size: 22))
-                    .fontWeight(.bold)
-                    .fontDesign(.serif)
-                    .foregroundStyle(Color("TitleColor"))
-            }
-            .padding(.bottom)
+                        Spacer()
 
-            VStack {
-                HStack {
-                    PropertyCardView(title: "Sunrise", iconName: "sunrise", isTimeBased: true, date: day.sunrise)
+                        PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: day.sunset)
+                    }
+                    .padding(.vertical, 5)
 
-                    Spacer()
+                    HStack {
+                        PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: day.precipitationAmount)
 
-                    PropertyCardView(title: "Sunset", iconName: "sunset", isTimeBased: true, date: day.sunset)
+                        Spacer()
+
+                        PropertyCardView(title: "UV Index", iconName: "sun.max", value: day.uvIndexMax)
+                    }
+                    .padding(.vertical, 5)
+
+                    ConditionsCardView(cardIconName: "wind",
+                                       cardTitle: "Wind",
+                                       rowItems: [
+                                           "Wind speed": day.windSpeed,
+                                           "Wind gust": day.windGust,
+                                           "Wind direction": day.windDirectionDegrees,
+                                       ])
+                                       .padding(.vertical, 5)
                 }
-                .padding(.vertical, 5)
+                .padding(.horizontal, 5)
 
-                HStack {
-                    PropertyCardView(title: "Precipitation", iconName: "drop.fill", value: day.precipitationAmount)
-
-                    Spacer()
-
-                    PropertyCardView(title: "UV Index", iconName: "sun.max", value: day.uvIndexMax)
-                }
-                .padding(.vertical, 5)
-
-                ConditionsCardView(cardIconName: "wind",
-                                   cardTitle: "Wind",
-                                   rowItems: [
-                                       "Wind speed": day.windSpeed,
-                                       "Wind gust": day.windGust,
-                                       "Wind direction": day.windDirectionDegrees,
-                                   ])
-                                   .padding(.vertical, 5)
-            }
-            .padding(.horizontal, 5)
-
-            VStack {
-                Divider()
-                    .foregroundStyle(Color("TitleColor"))
-
-                HStack {
-                    Text("Chance of precipitation:")
-                        .accessibilityLabel("Chance of precipitation:")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
+                VStack {
+                    Divider()
                         .foregroundStyle(Color("TitleColor"))
 
-                    Spacer()
+                    HStack {
+                        Text("Chance of precipitation:")
+                            .accessibilityLabel("Chance of precipitation:")
+                            .accessibilityAddTraits(.isStaticText)
+                            .font(.system(size: 18))
+                            .fontDesign(.serif)
+                            .foregroundStyle(Color("TitleColor"))
 
-                    Text("\(day.precipitationProbability)")
-                        .accessibilityLabel("\(day.precipitationProbability)")
-                        .accessibilityAddTraits(.isStaticText)
-                        .font(.system(size: 18))
-                        .fontDesign(.serif)
+                        Spacer()
+
+                        Text("\(day.precipitationProbability)")
+                            .accessibilityLabel("\(day.precipitationProbability)")
+                            .accessibilityAddTraits(.isStaticText)
+                            .font(.system(size: 18))
+                            .fontDesign(.serif)
+                            .foregroundStyle(Color("TitleColor"))
+                    }
+                    .padding(.top, 10)
+
+                    Divider()
                         .foregroundStyle(Color("TitleColor"))
                 }
-                .padding(.top, 10)
+                .padding(.horizontal, 12)
 
-                Divider()
-                    .foregroundStyle(Color("TitleColor"))
-            }
-            .padding(.horizontal, 12)
-
-            Spacer()
-        } //: VStack
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-        .padding()
+                ConditionsCardView(cardIconName: "aqi.medium",
+                                   cardTitle: "Air Quality",
+                                   rowItems: day.airQualityConditions,
+                                   isLoading: day.isAirQualityLoading,
+                                   isUnavailable: day.isAirQualityUnavailable)
+                    .padding(.horizontal, 5)
+                    .padding(.top, 10)
+            } //: VStack
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+            .padding()
+        }
         .background(Color("BackgroundColor"))
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -144,5 +152,12 @@ struct DayDetailView: View {
                                          sunrise: Date(),
                                          windSpeed: "14 km/h",
                                          windGust: "27 km/h",
-                                         windDirectionDegrees: "125"))
+                                         windDirectionDegrees: "125",
+                                         airQualityConditions: [
+                                             "US AQI (Low / High)": "35 / 60",
+                                             "PM2.5 (Low / High)": "8.2 / 14.7 ug/m3",
+                                             "PM10 (Low / High)": "12.1 / 21.4 ug/m3",
+                                         ],
+                                         isAirQualityLoading: false,
+                                         isAirQualityUnavailable: false))
 }

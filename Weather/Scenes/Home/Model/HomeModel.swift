@@ -54,6 +54,9 @@ struct DailyWeatherModel: Identifiable, Hashable {
     var windSpeed: String
     var windGust: String
     var windDirectionDegrees: String
+    var airQualityConditions: [String: String]
+    var isAirQualityLoading: Bool
+    var isAirQualityUnavailable: Bool
 }
 
 struct HourlyWeatherModel: Identifiable, Hashable {

@@ -45,6 +45,17 @@ class HomeViewModel: ObservableObject {
         case success(HomeModel)
     }
 
+    private struct AirQualityResult {
+        let currentConditions: [String: String]
+        let isCurrentUnavailable: Bool
+        let forecastByDate: [String: AirQualityDayResult]
+    }
+
+    private struct AirQualityDayResult {
+        let conditions: [String: String]
+        let isUnavailable: Bool
+    }
+
     func getWeather(location: CLLocation?) async {
         guard !isAPICallInProgress else {
             print("HomeViewModel.getWeather() call already in progress")
@@ -162,9 +173,13 @@ class HomeViewModel: ObservableObject {
             }
 
             var nextModel = updatedModel
-            nextModel.airQualityConditions = airQualityResult.conditions
+            nextModel.airQualityConditions = airQualityResult.currentConditions
             nextModel.isAirQualityLoading = false
-            nextModel.isAirQualityUnavailable = airQualityResult.isUnavailable
+            nextModel.isAirQualityUnavailable = airQualityResult.isCurrentUnavailable
+            nextModel.dailyForecast = self.mergedDailyForecastWithAirQuality(
+                from: nextModel.dailyForecast,
+                forecastByDate: airQualityResult.forecastByDate
+            )
             self.state = .success(nextModel)
             self.isAirQualityCallInProgress = false
         }
@@ -244,7 +259,10 @@ class HomeViewModel: ObservableObject {
                                                        sunrise: sunrise,
                                                        windSpeed: formattedWindSpeed,
                                                        windGust: formattedWindGusts,
-                                                       windDirectionDegrees: formattedWindDirectionDegrees)
+                                                       windDirectionDegrees: formattedWindDirectionDegrees,
+                                                       airQualityConditions: [:],
+                                                       isAirQualityLoading: true,
+                                                       isAirQualityUnavailable: false)
 
             dailyForecast.append(dailyWeatherObject)
         }
@@ -296,30 +314,106 @@ class HomeViewModel: ObservableObject {
         return formattedWindWithUnits
     }
 
-    private func getAirQualityConditions(latitude: Double, longitude: Double) async -> (conditions: [String: String], isUnavailable: Bool) {
+    private func getAirQualityConditions(latitude: Double, longitude: Double) async -> AirQualityResult {
         do {
             let airQuality = try await weatherAPIClient.fetchAirQuality(latitude: latitude, longitude: longitude, forecastDays: nil)
-            guard let current = airQuality.current else {
-                return ([:], true)
-            }
+            let currentResult = mapCurrentAirQuality(airQuality.current)
+            let forecastResults = mapForecastAirQuality(airQuality.forecast)
 
-            let hasAnyValues = current.usAqi != nil || current.pm10 != nil || current.pm25 != nil
-            guard hasAnyValues else {
-                return ([:], true)
-            }
-
-            let usAqi = current.usAqi.map { String($0) } ?? "--"
-            let pm10 = current.pm10.map { String(format: "%.1f ug/m3", $0) } ?? "--"
-            let pm25 = current.pm25.map { String(format: "%.1f ug/m3", $0) } ?? "--"
-
-            return ([
-                "US AQI": usAqi,
-                "PM2.5": pm25,
-                "PM10": pm10,
-            ], false)
+            return AirQualityResult(currentConditions: currentResult.conditions,
+                                    isCurrentUnavailable: currentResult.isUnavailable,
+                                    forecastByDate: forecastResults)
         } catch {
             print("HomeViewModel.getAirQualityConditions() -> failed to get air quality data")
+            return AirQualityResult(currentConditions: [:],
+                                    isCurrentUnavailable: true,
+                                    forecastByDate: [:])
+        }
+    }
+
+    private func mapCurrentAirQuality(_ current: AirQualityCurrent?) -> (conditions: [String: String], isUnavailable: Bool) {
+        guard let current else {
             return ([:], true)
+        }
+
+        let hasAnyValues = current.usAqi != nil || current.pm10 != nil || current.pm25 != nil
+        guard hasAnyValues else {
+            return ([:], true)
+        }
+
+        let usAqi = current.usAqi.map { String($0) } ?? "--"
+        let pm10 = current.pm10.map { String(format: "%.1f ug/m3", $0) } ?? "--"
+        let pm25 = current.pm25.map { String(format: "%.1f ug/m3", $0) } ?? "--"
+
+        return ([
+            "US AQI": usAqi,
+            "PM2.5": pm25,
+            "PM10": pm10,
+        ], false)
+    }
+
+    private func mapForecastAirQuality(_ forecast: [AirQualityForecastDay]?) -> [String: AirQualityDayResult] {
+        guard let forecast else {
+            return [:]
+        }
+
+        var forecastResults: [String: AirQualityDayResult] = [:]
+
+        for day in forecast {
+            guard let date = day.date else {
+                continue
+            }
+
+            let hasAnyValues = day.usAqiHigh != nil || day.usAqiLow != nil
+                || day.pm25High != nil || day.pm25Low != nil
+                || day.pm10High != nil || day.pm10Low != nil
+
+            if !hasAnyValues {
+                forecastResults[date] = AirQualityDayResult(conditions: [:], isUnavailable: true)
+                continue
+            }
+
+            let usAqiLow = day.usAqiLow.map { String($0) } ?? "--"
+            let usAqiHigh = day.usAqiHigh.map { String($0) } ?? "--"
+            let pm25Low = day.pm25Low.map { String(format: "%.1f", $0) } ?? "--"
+            let pm25High = day.pm25High.map { String(format: "%.1f", $0) } ?? "--"
+            let pm10Low = day.pm10Low.map { String(format: "%.1f", $0) } ?? "--"
+            let pm10High = day.pm10High.map { String(format: "%.1f", $0) } ?? "--"
+
+            forecastResults[date] = AirQualityDayResult(
+                conditions: [
+                    "US AQI (Low / High)": "\(usAqiLow) / \(usAqiHigh)",
+                    "PM2.5 (Low / High)": "\(pm25Low) / \(pm25High) ug/m3",
+                    "PM10 (Low / High)": "\(pm10Low) / \(pm10High) ug/m3",
+                ],
+                isUnavailable: false
+            )
+        }
+
+        return forecastResults
+    }
+
+    private func mergedDailyForecastWithAirQuality(
+        from dailyForecast: [DailyWeatherModel],
+        forecastByDate: [String: AirQualityDayResult]
+    ) -> [DailyWeatherModel] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        return dailyForecast.map { day in
+            var updatedDay = day
+            let dateKey = formatter.string(from: day.date)
+
+            if let forecastDay = forecastByDate[dateKey] {
+                updatedDay.airQualityConditions = forecastDay.conditions
+                updatedDay.isAirQualityUnavailable = forecastDay.isUnavailable
+            } else {
+                updatedDay.airQualityConditions = [:]
+                updatedDay.isAirQualityUnavailable = true
+            }
+
+            updatedDay.isAirQualityLoading = false
+            return updatedDay
         }
     }
 
