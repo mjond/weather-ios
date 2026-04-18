@@ -80,6 +80,11 @@ This is the main view of the application. It displays the current weather, 24 ho
     <img src="Screenshots/home_dark_mode.PNG" alt="drawing" width="250"/>
 </p>
 
+<p float="left">
+    <img src="Screenshots/home_bottom.PNG" alt="drawing" width="250"/>
+    <img src="Screenshots/home_bottom_dark_mode.PNG" alt="drawing" width="250"/>
+</p>
+
 ### Day Detail
 
 Tapping on a day from the Home screen will bring the user to the Day Detail View.
@@ -89,18 +94,28 @@ Tapping on a day from the Home screen will bring the user to the Day Detail View
     <img src="Screenshots/day_detail_dark_mode.PNG" alt="drawing" width="250"/>
 </p>
 
+<p float="left">
+    <img src="Screenshots/day_detail_bottom.PNG" alt="drawing" width="250"/>
+    <img src="Screenshots/day_detail_bottom_dark_mode.PNG" alt="drawing" width="250"/>
+</p>
+
 ### Location Search
 
 Tapping on the magnifying glass icon from the Home screen's navigation bar will bring the user here. This view utilizes the `MKLocalSearchCompleter` from MapKit to search for locations.
 
-<img src="Screenshots/location_search.PNG" alt="drawing" width="250"/>
+<p float="left">
+    <img src="Screenshots/location_search.PNG" alt="drawing" width="250"/>
+    <img src="Screenshots/location_search_dark_mode.PNG" alt="drawing" width="250"/>
+</p>
 
 ### Settings
 
 Tapping on the gear icon from the Home screen's navigation bar will bring the user to Settings where the user can change between Imperial and Metric.
 
-<img src="Screenshots/settings.PNG" alt="drawing" width="250"/>
-<img src="Screenshots/settings_dark_mode.PNG" alt="drawing" width="250"/>
+<p float="left">
+    <img src="Screenshots/settings.PNG" alt="drawing" width="250"/>
+    <img src="Screenshots/settings_dark_mode.PNG" alt="drawing" width="250"/>
+</p>
 
 ### Location
 
