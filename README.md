@@ -2,7 +2,7 @@
 
 This is a simple SwiftUI app to show current weather and forecasted weather. Please keep in mind the purpose of this isn't to show UI/UX design but rather architecture patterns, data handling, dependency injection, and testing :)
 
-This app uses CoreLocation and MapKit to search for locations. No third-party SDKs are used in this project to showcase using what comes with the phone. All icons are from SF Symbols.
+This app uses CoreLocation and MapKit to search for locations. The only SDK brought into the project is the Amplify SDK (and its dependencies) to help showcase the tools that come with the OS. All icons are from SF Symbols.
 
 ## Technical Highlights
 
@@ -16,9 +16,9 @@ This app uses CoreLocation and MapKit to search for locations. No third-party SD
 
 ## Requirements
 
-- Xcode 16.x
+- Xcode 26.x
 - Swift 5
-- Minimum iOS: 17.0
+- Minimum iOS: 18.0
 
 ## Getting Started
 
@@ -96,4 +96,4 @@ If a user denies location services, or turns it off at a later time, then the us
 
 ## Unit Testing
 
-Coverage is currently at 73%. See `WeatherTests/` for details.
+Coverage is currently at 70%. The tests focus on the data models, services, and view models. See `WeatherTests/` for details.

@@ -1,6 +1,6 @@
 //
 //  SettingsViewModelTests.swift
-//  Weather
+//  WeatherTests
 //
 //  Created by Mark Davis on 2/8/25.
 //

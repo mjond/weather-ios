@@ -1,6 +1,6 @@
 //
 //  WeatherHelperTests.swift
-//  Weather
+//  WeatherTests
 //
 //  Created by Mark Davis on 2/6/25.
 //

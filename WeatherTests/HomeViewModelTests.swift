@@ -52,21 +52,21 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
 
-//    func testLoadingState() async {
-//        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
-//        mockWeatherService.mockWeatherData = nil
-//
-//        await viewModel.getWeather(location: mockLocation)
-//
-//        XCTAssertEqual(viewModel.state, .loading)
-//    }
+    func testLoadingState() async {
+        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
+        mockWeatherService.mockWeatherData = nil
 
-//    func testFailureState() async {
-//        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
-//        mockWeatherService.shouldReturnError = true
-//
-//        await viewModel.getWeather(location: mockLocation)
-//
-//        XCTAssertEqual(viewModel.state, .failure)
-//    }
+        await viewModel.getWeather(location: mockLocation)
+
+        XCTAssertEqual(viewModel.state, .loading)
+    }
+
+    func testFailureState() async {
+        let mockLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
+        mockWeatherService.shouldReturnError = true
+
+        await viewModel.getWeather(location: mockLocation)
+
+        XCTAssertEqual(viewModel.state, .failure)
+    }
 }

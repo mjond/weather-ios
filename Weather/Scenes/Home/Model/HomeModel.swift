@@ -30,7 +30,9 @@ struct HomeModel: Equatable {
 
 struct DailyWeatherModel: Identifiable, Hashable {
     /// Stable across AQI and other field updates so `ForEach` and navigation state stay valid.
-    var id: String { Self.calendarDayKey(for: date) }
+    var id: String {
+        Self.calendarDayKey(for: date)
+    }
 
     var date: Date
     var abbreviatedDayName: String {
@@ -62,10 +64,10 @@ struct DailyWeatherModel: Identifiable, Hashable {
 
     static func calendarDayKey(for date: Date) -> String {
         let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
-        let y = components.year ?? 0
-        let m = components.month ?? 0
-        let d = components.day ?? 0
-        return String(format: "%04d-%02d-%02d", y, m, d)
+        let year = components.year ?? 0
+        let month = components.month ?? 0
+        let day = components.day ?? 0
+        return String(format: "%04d-%02d-%02d", year, month, day)
     }
 }
 

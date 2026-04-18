@@ -8,7 +8,8 @@
 import Foundation
 @testable import Weather
 
-struct MockWeatherService: WeatherServiceProtocol {
+/// Reference type so tests can change `mockWeatherData` / `shouldReturnError` after the same instance is injected into `HomeViewModel`.
+final class MockWeatherService: WeatherServiceProtocol {
     var shouldReturnError: Bool = false
     var mockWeatherData: WeatherDataModel? = mockData
 
@@ -20,7 +21,7 @@ struct MockWeatherService: WeatherServiceProtocol {
         return mockWeatherData
     }
 
-    mutating func setCacheManager(_: Weather.WeatherCacheManager) {
+    func setCacheManager(_: Weather.WeatherCacheManager) {
         // not needed for unit tests
     }
 }

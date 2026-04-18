@@ -1,6 +1,6 @@
 //
 //  HomeModelTests.swift
-//  Weather
+//  WeatherTests
 //
 //  Created by Mark Davis on 2/6/25.
 //
@@ -14,15 +14,32 @@ final class HomeModelTests: XCTestCase {
         let dailyForecast = [
             DailyWeatherModel(date: now, minimumTemperature: "10", maximumTemperature: "20", weatherCode: 48,
                               precipitationProbability: "30", precipitationAmount: "5", uvIndexMax: "8",
-                              sunset: now, sunrise: now, windSpeed: "10", windGust: "20", windDirectionDegrees: "180"),
+                              sunset: now, sunrise: now, windSpeed: "10", windGust: "20", windDirectionDegrees: "180",
+                              airQualityConditions: ["US AQI": "40"],
+                              isAirQualityLoading: false,
+                              isAirQualityUnavailable: false),
         ]
         let hourlyForecast = [
             HourlyWeatherModel(date: now, temperature: "15", weatherCode: 48, isDay: 1),
         ]
+        let windConditions = [
+            "Wind speed": "10",
+            "Wind gust": "15",
+            "Wind direction": "180",
+        ]
+        let airQualityConditions = [
+            "US AQI": "38",
+            "PM2.5": "9",
+            "PM10": "12",
+        ]
         let homeModel = HomeModel(locationName: "New York", currentTemperature: "22",
                                   apparentTemperature: "21", currentSunrise: now, currentSunset: now,
-                                  currentWeatherCode: 48, currentWindSpeed: "10", currentWindGust: "15",
-                                  currentWindDirectionDegrees: "180", currentUvIndex: "5",
+                                  currentWeatherCode: 48,
+                                  windConditions: windConditions,
+                                  airQualityConditions: airQualityConditions,
+                                  isAirQualityLoading: false,
+                                  isAirQualityUnavailable: false,
+                                  currentUvIndex: "5",
                                   currentPrecipitationAmount: "2",
                                   dailyForecast: dailyForecast, hourlyForecast: hourlyForecast)
 
@@ -31,9 +48,14 @@ final class HomeModelTests: XCTestCase {
         XCTAssertEqual(homeModel.apparentTemperature, "21")
         XCTAssertEqual(homeModel.currentWeatherCode, 48)
         XCTAssertEqual(homeModel.currentWeatherIconName, "cloud.fog")
-        XCTAssertEqual(homeModel.currentWindSpeed, "10")
-        XCTAssertEqual(homeModel.currentWindGust, "15")
-        XCTAssertEqual(homeModel.currentWindDirectionDegrees, "180")
+        XCTAssertEqual(homeModel.windConditions["Wind speed"], "10")
+        XCTAssertEqual(homeModel.windConditions["Wind gust"], "15")
+        XCTAssertEqual(homeModel.windConditions["Wind direction"], "180")
+        XCTAssertEqual(homeModel.airQualityConditions["US AQI"], "38")
+        XCTAssertEqual(homeModel.airQualityConditions["PM2.5"], "9")
+        XCTAssertEqual(homeModel.airQualityConditions["PM10"], "12")
+        XCTAssertFalse(homeModel.isAirQualityLoading)
+        XCTAssertFalse(homeModel.isAirQualityUnavailable)
         XCTAssertEqual(homeModel.currentUvIndex, "5")
         XCTAssertEqual(homeModel.currentPrecipitationAmount, "2")
         XCTAssertEqual(homeModel.dailyForecast.count, 1)
@@ -46,7 +68,10 @@ final class HomeModelTests: XCTestCase {
         if let fixedDate = dateFormatter.date(from: "2025-01-15T05:23") {
             let dailyWeather = DailyWeatherModel(date: fixedDate, minimumTemperature: "10", maximumTemperature: "20", weatherCode: 48,
                                                  precipitationProbability: "30", precipitationAmount: "5", uvIndexMax: "8",
-                                                 sunset: fixedDate, sunrise: fixedDate, windSpeed: "10", windGust: "20", windDirectionDegrees: "180")
+                                                 sunset: fixedDate, sunrise: fixedDate, windSpeed: "10", windGust: "20", windDirectionDegrees: "180",
+                                                 airQualityConditions: ["US AQI (Low / High)": "12 / 55"],
+                                                 isAirQualityLoading: false,
+                                                 isAirQualityUnavailable: false)
 
             XCTAssertEqual(dailyWeather.minimumTemperature, "10")
             XCTAssertEqual(dailyWeather.maximumTemperature, "20")
@@ -58,8 +83,12 @@ final class HomeModelTests: XCTestCase {
             XCTAssertEqual(dailyWeather.windSpeed, "10")
             XCTAssertEqual(dailyWeather.windGust, "20")
             XCTAssertEqual(dailyWeather.windDirectionDegrees, "180")
+            XCTAssertEqual(dailyWeather.airQualityConditions["US AQI (Low / High)"], "12 / 55")
+            XCTAssertFalse(dailyWeather.isAirQualityLoading)
+            XCTAssertFalse(dailyWeather.isAirQualityUnavailable)
             XCTAssertEqual(dailyWeather.fullDayName, "Wednesday")
             XCTAssertEqual(dailyWeather.abbreviatedDayName, "Wed")
+            XCTAssertEqual(dailyWeather.id, DailyWeatherModel.calendarDayKey(for: fixedDate))
         }
     }
 

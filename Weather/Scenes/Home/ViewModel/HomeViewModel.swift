@@ -9,6 +9,7 @@ import CoreData
 import CoreLocation
 import SwiftUI
 
+// swiftlint:disable type_body_length
 class HomeViewModel: ObservableObject {
     @Published var state = ViewState.loading
     private var settings: WeatherSettingsProtocol
@@ -497,3 +498,5 @@ class HomeViewModel: ObservableObject {
         return nil
     }
 }
+
+// swiftlint:enable type_body_length

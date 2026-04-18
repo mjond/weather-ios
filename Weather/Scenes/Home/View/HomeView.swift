@@ -229,7 +229,8 @@ struct HomeView: View {
     @ViewBuilder
     private func dayNavigationDetail(dayKey: String) -> some View {
         if case let .success(weatherModel) = viewModel.state,
-           let day = weatherModel.dailyForecast.first(where: { DailyWeatherModel.calendarDayKey(for: $0.date) == dayKey }) {
+           let day = weatherModel.dailyForecast.first(where: { DailyWeatherModel.calendarDayKey(for: $0.date) == dayKey })
+        {
             DayDetailView(day: day)
         }
     }
