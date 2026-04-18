@@ -100,6 +100,7 @@ Tapping on the magnifying glass icon from the Home screen's navigation bar will 
 Tapping on the gear icon from the Home screen's navigation bar will bring the user to Settings where the user can change between Imperial and Metric.
 
 <img src="Screenshots/settings.PNG" alt="drawing" width="250"/>
+<img src="Screenshots/settings_dark_mode.PNG" alt="drawing" width="250"/>
 
 ### Location
 
