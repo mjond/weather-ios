@@ -52,6 +52,19 @@ Here is a screenshot from CoreDataLab showing the stored objects:
     <img src="Screenshots/core_data_storage.PNG" alt="drawing" width="750"/>
 </p>
 
+### Air quality (GraphQL)
+
+Current and forecast air quality on Home and Day Detail come from this AWS AppSync GraphQL api ([aws-weather-service](https://github.com/mjond/aws-weather-service)) which sources its data from [Open-Meteo](https://open-meteo.com/). The app uses the **Amplify Swift** libraries with **IAM**-signed requests (`AirQualityService` and the `GetAirQuality` operation). Query documents and the local schema live under `Weather/Service/AirQuality/` (including `Operations/GetAirQuality.graphql`).
+
+### Setting up GraphQL
+
+Local config files are gitignored; the Xcode **Ensure Local Config** run script copies the examples on first build if the real files are missing. Setting up the GraphQL API call isn't necessary to run the app. Without this, the air quality section will simply show an error.
+
+1. Build once in Xcode (or manually copy `Weather/Service/Config/amplifyconfiguration.example.json` → `amplifyconfiguration.json`, and `AppConfig.example.xcconfig` → `AppConfig.xcconfig` in the same folder).
+2. Edit **`Weather/Service/Config/amplifyconfiguration.json`**: set the AppSync **GraphQL endpoint** and **region** for the `WeatherAPI` entry, and set the **Cognito Identity Pool** (`CredentialsProvider` → `CognitoIdentity` → `PoolId`) so the app can obtain guest IAM credentials for signing.
+3. Edit **`Weather/Service/Config/AppConfig.xcconfig`** so `APPSYNC_GRAPHQL_URL`, `APPSYNC_REGION`, `APPSYNC_IDENTITY_POOL_ID`, and `APPSYNC_AUTH_MODE` match the same backend.
+4. Clean build and run. If your AppSync schema does not match this repo’s, update the `.graphql` files under `Weather/Service/AirQuality/` and the generated selection types in `AirQualityGeneratedSchema.swift` accordingly.
+
 ## Navigation
 
 This app uses `NavigationStack` with `NavigationPath` for navigation. See `NavigationStateManager.swift`.
