@@ -54,7 +54,9 @@ Here is a screenshot from CoreDataLab showing the stored objects:
 
 ### Air quality (GraphQL)
 
-Current and forecast air quality on Home and Day Detail come from this AWS AppSync GraphQL api ([aws-weather-service](https://github.com/mjond/aws-weather-service)) which sources its data from [Open-Meteo](https://open-meteo.com/). The app uses the **Amplify Swift** libraries with **IAM**-signed requests (`AirQualityService` and the `GetAirQuality` operation). Query documents and the local schema live under `Weather/Service/AirQuality/` (including `Operations/GetAirQuality.graphql`).
+Current and forecast air quality on Home and Day Detail come from this AWS AppSync GraphQL api ([aws-weather-service](https://github.com/mjond/aws-weather-service)) which sources its data from [Open-Meteo](https://open-meteo.com/). **Note:** This API isn't always deployed, so you may see a "data not available" message for the air quality view.
+
+The app uses the **Amplify Swift** libraries with **IAM**-signed requests (`AirQualityService` and the `GetAirQuality` operation). Query documents and the local schema live under `Weather/Service/AirQuality/`.
 
 ### Setting up GraphQL
 
