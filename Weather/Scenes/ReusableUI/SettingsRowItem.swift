@@ -16,11 +16,13 @@ struct SettingsRowItem: View {
         HStack {
             if isSelected == true {
                 Image(systemName: "checkmark.circle.fill")
+                    .accessibilityHidden(true)
                     .font(.system(size: 20))
                     .padding(.trailing, 25)
                     .foregroundStyle(Color("TitleColor"))
             } else {
                 Image(systemName: "circle")
+                    .accessibilityHidden(true)
                     .font(.system(size: 20))
                     .padding(.trailing, 25)
                     .foregroundStyle(Color("TitleColor"))
@@ -41,6 +43,9 @@ struct SettingsRowItem: View {
             Spacer()
         } //: HStack
         .background(.clear)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(title), \(subHeading)")
+        .accessibilityValue(isSelected ? "Selected" : "Not selected")
     }
 }
 

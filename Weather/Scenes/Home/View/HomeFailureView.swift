@@ -20,7 +20,6 @@ struct HomeFailureView: View {
                 .padding(.bottom, 2)
             Text("Something went wrong...")
                 .accessibilityLabel("Something went wrong with getting weather data")
-                .accessibilityAddTraits(.isStaticText)
                 .padding(.bottom, 20)
                 .foregroundStyle(Color("TitleColor"))
                 .fontDesign(.serif)

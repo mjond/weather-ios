@@ -16,24 +16,19 @@ struct DayRowView: View {
     var body: some View {
         HStack {
             Text(dayName)
-                .accessibilityLabel(dayName)
-                .accessibilityAddTraits(.isStaticText)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
 
             Spacer()
 
             Image(systemName: weatherIconName)
-                .accessibilityLabel(weatherIconName)
-                .accessibilityAddTraits(.isImage)
+                .accessibilityHidden(true)
                 .font(.system(size: 26))
                 .foregroundStyle(Color("TitleColor"))
                 .padding(.trailing, 35)
 
             HStack {
                 Text(minTemp + "°")
-                    .accessibilityLabel("\(minTemp) degrees")
-                    .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 20))
                     .fontWeight(.light)
                     .fontDesign(.serif)
@@ -44,8 +39,6 @@ struct DayRowView: View {
                     .frame(minWidth: 40)
 
                 Text(maxTemp + "°")
-                    .accessibilityLabel("\(maxTemp) degrees")
-                    .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 20))
                     .fontWeight(.bold)
                     .fontDesign(.serif)
@@ -55,6 +48,20 @@ struct DayRowView: View {
             .frame(minWidth: 110)
         } //: HStack
         .background(.clear)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var accessibilitySummary: String {
+        "\(dayName), low \(minTemp) degrees, high \(maxTemp) degrees, \(readableCondition)"
+    }
+
+    private var readableCondition: String {
+        weatherIconName
+            .replacingOccurrences(of: ".", with: " ")
+            .replacingOccurrences(of: "fill", with: "")
+            .replacingOccurrences(of: "  ", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 

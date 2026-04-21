@@ -14,7 +14,6 @@ struct SettingsView: View {
         VStack(alignment: .leading) {
             Text("Settings")
                 .accessibilityLabel("Settings")
-                .accessibilityAddTraits(.isStaticText)
                 .font(.system(size: 42))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
@@ -24,7 +23,6 @@ struct SettingsView: View {
 
             Text("Unit of Measurement")
                 .accessibilityLabel("Unit of Measurement")
-                .accessibilityAddTraits(.isStaticText)
                 .fontWeight(.medium)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))

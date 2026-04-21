@@ -18,13 +18,10 @@ struct PropertyCardView: View {
         VStack {
             HStack {
                 Image(systemName: iconName)
-                    .accessibilityLabel("\(iconName)")
-                    .accessibilityAddTraits(.isImage)
+                    .accessibilityHidden(true)
                     .foregroundStyle(Color("TitleColor"))
 
                 Text(title)
-                    .accessibilityLabel("\(title)")
-                    .accessibilityAddTraits(.isStaticText)
                     .font(.callout)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
@@ -37,11 +34,7 @@ struct PropertyCardView: View {
             HStack {
                 if isTimeBased {
                     if let unwrappedDate = date {
-                        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: unwrappedDate)
-
                         Text(unwrappedDate, format: .dateTime.hour().minute())
-                            .accessibilityLabel(DateComponentsFormatter.localizedString(from: dateComponents, unitsStyle: .spellOut) ?? "\(unwrappedDate)")
-                            .accessibilityAddTraits(.isStaticText)
                             .font(.title)
                             .fontDesign(.serif)
                             .foregroundStyle(Color("TitleColor"))
@@ -49,8 +42,6 @@ struct PropertyCardView: View {
                 } else {
                     if let unwrappedValue = value {
                         Text(unwrappedValue)
-                            .accessibilityLabel("\(unwrappedValue)")
-                            .accessibilityAddTraits(.isStaticText)
                             .font(.title)
                             .fontDesign(.serif)
                             .foregroundStyle(Color("TitleColor"))
@@ -67,6 +58,26 @@ struct PropertyCardView: View {
                 .strokeBorder(Color("SubheadingColor"), lineWidth: 1)
         )
         .background(.clear)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var accessibilitySummary: String {
+        if isTimeBased, let date {
+            return "\(title), \(spokenTime(from: date))"
+        }
+
+        if let value {
+            return "\(title), \(value)"
+        }
+
+        return title
+    }
+
+    private func spokenTime(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter.string(from: date)
     }
 }
 

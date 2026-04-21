@@ -14,10 +14,7 @@ struct HourlyCardView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            let hourComponent = Calendar.current.dateComponents([.hour], from: date)
             Text(date, format: .dateTime.hour())
-                .accessibilityLabel(DateComponentsFormatter.localizedString(from: hourComponent, unitsStyle: .spellOut) ?? "\(date)")
-                .accessibilityAddTraits(.isStaticText)
                 .font(.subheadline)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("SubheadingColor"))
@@ -25,8 +22,6 @@ struct HourlyCardView: View {
                 .padding(.bottom, 1)
 
             Text(temp + "°")
-                .accessibilityLabel("\(temp) degrees")
-                .accessibilityAddTraits(.isStaticText)
                 .fontWeight(.bold)
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
@@ -34,8 +29,7 @@ struct HourlyCardView: View {
             Spacer()
 
             Image(systemName: weatherIconName)
-                .accessibilityLabel("\(weatherIconName)")
-                .accessibilityAddTraits(.isImage)
+                .accessibilityHidden(true)
                 .font(.system(size: 22))
                 .fontDesign(.serif)
                 .foregroundStyle(Color("TitleColor"))
@@ -48,6 +42,27 @@ struct HourlyCardView: View {
                 .strokeBorder(Color("SubheadingColor"), lineWidth: 1)
         )
         .background(.clear)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var accessibilitySummary: String {
+        let spokenHour = spokenHourText
+        return "\(spokenHour), \(temp) degrees, \(readableCondition)"
+    }
+
+    private var spokenHourText: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h a"
+        return formatter.string(from: date)
+    }
+
+    private var readableCondition: String {
+        weatherIconName
+            .replacingOccurrences(of: ".", with: " ")
+            .replacingOccurrences(of: "fill", with: "")
+            .replacingOccurrences(of: "  ", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 

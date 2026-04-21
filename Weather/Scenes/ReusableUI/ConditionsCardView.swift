@@ -18,13 +18,10 @@ struct ConditionsCardView: View {
         VStack {
             HStack {
                 Image(systemName: cardIconName)
-                    .accessibilityLabel(cardIconName)
-                    .accessibilityAddTraits(.isImage)
+                    .accessibilityHidden(true)
                     .foregroundStyle(Color("TitleColor"))
 
                 Text(cardTitle)
-                    .accessibilityLabel(cardTitle)
-                    .accessibilityAddTraits(.isStaticText)
                     .font(.callout)
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
@@ -39,12 +36,9 @@ struct ConditionsCardView: View {
             if isLoading {
                 VStack(spacing: 8) {
                     ProgressView()
-                        .accessibilityLabel("Loading")
                         .tint(Color("TitleColor"))
 
                     Text("Loading \(cardTitle)")
-                        .accessibilityLabel("Loading \(cardTitle)")
-                        .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(Color("TitleColor"))
@@ -54,14 +48,11 @@ struct ConditionsCardView: View {
             } else if isUnavailable {
                 VStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .accessibilityLabel("Data unavailable")
-                        .accessibilityAddTraits(.isImage)
+                        .accessibilityHidden(true)
                         .font(.system(size: 24))
                         .foregroundStyle(Color("TitleColor"))
 
                     Text("Data Unavailable")
-                        .accessibilityLabel("Data Unavailable")
-                        .accessibilityAddTraits(.isStaticText)
                         .fontDesign(.serif)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(Color("TitleColor"))
@@ -72,16 +63,12 @@ struct ConditionsCardView: View {
                 ForEach(Array(rowItems.sorted { $0.key < $1.key }.enumerated()), id: \.element.key) { index, item in
                     HStack {
                         Text(item.key)
-                            .accessibilityLabel(item.key)
-                            .accessibilityAddTraits(.isStaticText)
                             .fontDesign(.serif)
                             .foregroundStyle(Color("TitleColor"))
 
                         Spacer()
 
                         Text(item.value)
-                            .accessibilityLabel(item.value)
-                            .accessibilityAddTraits(.isStaticText)
                             .fontDesign(.serif)
                             .foregroundStyle(Color("TitleColor"))
                             .frame(minWidth: 45)
@@ -100,6 +87,29 @@ struct ConditionsCardView: View {
                 .strokeBorder(Color("SubheadingColor"), lineWidth: 1)
         )
         .background(.clear)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var accessibilitySummary: String {
+        if isLoading {
+            return "\(cardTitle), loading"
+        }
+
+        if isUnavailable {
+            return "\(cardTitle), data unavailable"
+        }
+
+        let rows = rowItems
+            .sorted { $0.key < $1.key }
+            .map { "\($0.key), \($0.value)" }
+            .joined(separator: ". ")
+
+        if rows.isEmpty {
+            return cardTitle
+        }
+
+        return "\(cardTitle). \(rows)"
     }
 }
 

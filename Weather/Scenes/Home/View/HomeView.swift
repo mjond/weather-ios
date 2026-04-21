@@ -43,7 +43,6 @@ struct HomeView: View {
                                     VStack(alignment: .leading) {
                                         Text("24 hour forecast")
                                             .accessibilityLabel("24 hour forecast")
-                                            .accessibilityAddTraits(.isStaticText)
                                             .font(.callout)
                                             .fontDesign(.serif)
                                             .bold()
@@ -65,7 +64,6 @@ struct HomeView: View {
 
                                         Text("10 day forecast")
                                             .accessibilityLabel("10 day forecast")
-                                            .accessibilityAddTraits(.isStaticText)
                                             .font(.callout)
                                             .fontDesign(.serif)
                                             .bold()

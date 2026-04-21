@@ -17,7 +17,6 @@ struct DayDetailView: View {
             VStack {
                 Text(day.fullDayName)
                     .accessibilityLabel("\(day.fullDayName)")
-                    .accessibilityAddTraits(.isStaticText)
                     .font(.system(size: 36))
                     .fontDesign(.serif)
                     .foregroundStyle(Color("TitleColor"))
@@ -34,7 +33,6 @@ struct DayDetailView: View {
                 VStack {
                     Text("Max: \(day.maximumTemperature)°")
                         .accessibilityLabel("Maximum temperature is \(day.maximumTemperature) degrees")
-                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 22))
                         .fontWeight(.bold)
                         .fontDesign(.serif)
@@ -42,7 +40,6 @@ struct DayDetailView: View {
 
                     Text("Min: \(day.minimumTemperature)°")
                         .accessibilityLabel("Minimum temperature is \(day.minimumTemperature) degrees")
-                        .accessibilityAddTraits(.isStaticText)
                         .font(.system(size: 22))
                         .fontWeight(.bold)
                         .fontDesign(.serif)
@@ -87,7 +84,6 @@ struct DayDetailView: View {
                     HStack {
                         Text("Chance of precipitation:")
                             .accessibilityLabel("Chance of precipitation:")
-                            .accessibilityAddTraits(.isStaticText)
                             .font(.system(size: 18))
                             .fontDesign(.serif)
                             .foregroundStyle(Color("TitleColor"))
@@ -96,7 +92,6 @@ struct DayDetailView: View {
 
                         Text("\(day.precipitationProbability)")
                             .accessibilityLabel("\(day.precipitationProbability)")
-                            .accessibilityAddTraits(.isStaticText)
                             .font(.system(size: 18))
                             .fontDesign(.serif)
                             .foregroundStyle(Color("TitleColor"))

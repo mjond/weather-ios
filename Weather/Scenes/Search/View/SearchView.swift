@@ -23,7 +23,6 @@ struct SearchView: View {
             if searchService.results.isEmpty {
                 Text("No location results")
                     .accessibilityLabel("No location results. Search for a location to see results.")
-                    .accessibilityAddTraits(.isStaticText)
                     .foregroundStyle(Color("TitleColor"))
                     .fontDesign(.serif)
                     .padding(.bottom, 350)
