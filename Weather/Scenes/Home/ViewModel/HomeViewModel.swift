@@ -247,11 +247,14 @@ class HomeViewModel: ObservableObject {
 
             let formattedMinTemp = String(format: "%.0f", minTemp)
             let formattedMaxTemp = String(format: "%.0f", maxTemp)
-            let formattedPrecipitation = getFormattedPrecipitation(precipitationAmount: precipitationAmount)
+            let formattedPrecipitation = WeatherValueFormatter.formatPrecipitation(
+                precipitationAmount: precipitationAmount,
+                unit: settings.unitOfMeasurement
+            )
             let formattedPrecipitationProbability = String(format: "%.0f", precipitationProbability)
             let formattedUv = String(format: "%.0f", uvIndex)
-            let formattedWindSpeed = getFormattedWind(from: windSpeed)
-            let formattedWindGusts = getFormattedWind(from: windGusts)
+            let formattedWindSpeed = WeatherValueFormatter.formatWind(from: windSpeed, unit: settings.unitOfMeasurement)
+            let formattedWindGusts = WeatherValueFormatter.formatWind(from: windGusts, unit: settings.unitOfMeasurement)
             let formattedWindDirectionDegrees = windDirectionWithDegrees
 
             let dailyWeatherObject = DailyWeatherModel(date: date,
@@ -274,50 +277,6 @@ class HomeViewModel: ObservableObject {
         }
 
         return dailyForecast
-    }
-
-    private func getFormattedPrecipitation(precipitationAmount: Double) -> String {
-        var formattedPrecipitationWithUnits = ""
-
-        if settings.unitOfMeasurement == .imperial {
-            let precipitationAmount = precipitationAmount * 0.0393701
-
-            if precipitationAmount == 0 {
-                formattedPrecipitationWithUnits = "0 inches"
-            } else if precipitationAmount < 0.6 {
-                formattedPrecipitationWithUnits = "<1 inch"
-            } else {
-                let precipatationRounded = precipitationAmount.rounded()
-
-                if precipatationRounded == 1.0 {
-                    let precipitationAsString = String(format: "%.0f", precipatationRounded)
-                    formattedPrecipitationWithUnits = precipitationAsString + " inch"
-                } else {
-                    let precipitationAsString = String(format: "%.0f", precipatationRounded)
-                    formattedPrecipitationWithUnits = precipitationAsString + " inches"
-                }
-            }
-        } else {
-            let precipitationAsString = String(format: "%.0f", precipitationAmount)
-            formattedPrecipitationWithUnits = precipitationAsString + " mm"
-        }
-
-        return formattedPrecipitationWithUnits
-    }
-
-    private func getFormattedWind(from amount: Double) -> String {
-        var formattedWindWithUnits = ""
-
-        if settings.unitOfMeasurement == .imperial {
-            let amountAsImperial = amount * 0.6214
-            formattedWindWithUnits = String(format: "%.0f", amountAsImperial)
-            formattedWindWithUnits += " mph"
-        } else {
-            formattedWindWithUnits = String(format: "%.0f", amount)
-            formattedWindWithUnits += " km/h"
-        }
-
-        return formattedWindWithUnits
     }
 
     private func getAirQualityConditions(latitude: Double, longitude: Double) async -> AirQualityResult {

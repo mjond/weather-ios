@@ -5,8 +5,8 @@
 //  Created by Mark Davis on 4/18/26.
 //
 
-@testable import Weather
 import Amplify
+@testable import Weather
 import XCTest
 
 // MARK: - Mocks for AirQualityService
@@ -183,7 +183,7 @@ final class AirQualityServiceTests: XCTestCase {
             _ = try await service.fetchAirQuality(latitude: 0, longitude: 0, forecastDays: nil)
             XCTFail("Expected error")
         } catch let error as GraphQLResponseError<GetAirQualityQuery.Data> {
-            if case .error(let errors) = error {
+            if case let .error(errors) = error {
                 XCTAssertEqual(errors.first?.message, "upstream")
             } else {
                 XCTFail("Expected .error case")
